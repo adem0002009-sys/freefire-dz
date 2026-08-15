@@ -1,400 +1,525 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="محتوى إعدادات الألعاب والتطبيقات الحصرية - Adem Settings DZ">
-  <title>Adem_Settings_DZ</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0b0f17;
-      --card-bg: rgba(255, 255, 255, 0.03);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --card-hover: rgba(255, 255, 255, 0.07);
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --accent: #3b82f6;
-      --liquid-tint: rgba(162, 210, 255, 0.12);
-      --liquid-glow: rgba(162, 210, 255, 0.3);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    <!-- ✅ الوسوم الوصفية الأساسية (SEO) -->
+    <title>Adem_Settings_DZ - إعدادات الألعاب والتطبيقات الحصرية</title>
+    <meta name="description" content="أفضل إعدادات الألعاب والتطبيقات الحصرية - Filza, سكريبتات, ملفات OBB, إعدادات PUBG و Free Fire. تحميل مباشر ومجاني.">
+    <meta name="keywords" content="Adem Settings, Filza, سكريبتات, OBB, PUBG, Free Fire, إعدادات الألعاب, تحميل مجاني">
+    <meta name="author" content="Adem_Settings_DZ">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Arabic">
+    <meta name="revisit-after" content="7 days">
 
-    body {
-      background-color: var(--bg);
-      background-image: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.12), transparent 60%);
-      color: var(--text-main);
-      font-family: 'Tajawal', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 24px 16px;
-    }
+    <!-- ✅ وسوم Open Graph (فيسبوك، واتساب، تيليجرام) -->
+    <meta property="og:title" content="Adem_Settings_DZ - إعدادات الألعاب والتطبيقات الحصرية">
+    <meta property="og:description" content="أفضل إعدادات الألعاب والتطبيقات الحصرية - Filza, سكريبتات, ملفات OBB, إعدادات PUBG و Free Fire. تحميل مباشر ومجاني.">
+    <meta property="og:image" content="https://i.ibb.co/bjbknNxL/IMG-3210.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://adem-settings-dz.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Adem_Settings_DZ">
+    <meta property="og:locale" content="ar_AR">
 
-    .wrap {
-      width: 100%;
-      max-width: 420px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    <!-- ✅ وسوم Twitter Card (تويتر) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Adem_Settings_DZ - إعدادات الألعاب والتطبيقات الحصرية">
+    <meta name="twitter:description" content="أفضل إعدادات الألعاب والتطبيقات الحصرية - Filza, سكريبتات, ملفات OBB, إعدادات PUBG و Free Fire.">
+    <meta name="twitter:image" content="https://i.ibb.co/bjbknNxL/IMG-3210.jpg">
+    <meta name="twitter:site" content="@adem_ar28">
 
-    /* ========== Avatar Logo ========== */
-    .avatar {
-      width: 96px;
-      height: 96px;
-      border-radius: 26px;
-      background: linear-gradient(160deg, rgba(22, 33, 58, 0.6) 0%, rgba(11, 15, 23, 0.8) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 18px;
-      box-shadow: 0 16px 32px -12px rgba(0, 0, 0, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-      -webkit-backdrop-filter: blur(16px);
-      backdrop-filter: blur(16px);
-    }
+    <!-- ✅ رابط التحقق من جوجل (اختياري) -->
+    <meta name="google-site-verification" content="your-verification-code-here">
 
-    .avatar svg {
-      width: 52px;
-      height: 52px;
-    }
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #080c14;
+            --card-bg: #101726;
+            --card-border: #1d2a40;
+            --card-hover: #141e33;
+            --icon-bg: #182338;
+            --text-color: #f1f5f9;
+            --text-secondary: #8d9bb0;
+            --accent-blue: #38bdf8;
+            --ad-color: #10b981;
+        }
 
-    .handle {
-      font-family: 'Inter', sans-serif;
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-bottom: 6px;
-      direction: ltr;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-    .tagline {
-      font-size: 14px;
-      color: var(--text-muted);
-      text-align: center;
-      line-height: 1.5;
-      margin-bottom: 32px;
-    }
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            padding: 25px 15px 40px 15px;
+            min-height: 100vh;
+        }
 
-    .links {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+        .main-container {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    /* ========== Link Cards & iOS Glass ========== */
-    .link-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 20px;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      text-decoration: none;
-      color: var(--text-main);
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
-      transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-    .link-card:hover,
-    .link-card:focus-visible {
-      background: var(--liquid-tint);
-      border-color: rgba(162, 210, 255, 0.3);
-      transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 8px 25px var(--liquid-glow);
-    }
+        .logo-box {
+            width: 90px;
+            height: 90px;
+            background-color: #ffffff;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            position: relative;
+        }
 
-    .link-card:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
+        .logo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            z-index: 2;
+        }
 
-    .link-info {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
+        .logo-fallback {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            position: absolute;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
 
-    .icon-box {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.05);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
-    }
+        .title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
 
-    .icon-box svg {
-      width: 20px;
-      height: 20px;
-      fill: var(--text-main);
-    }
+        .subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
 
-    .title {
-      font-size: 15px;
-      font-weight: 600;
-      z-index: 2;
-    }
+        .links-stack { width: 100%; display: flex; flex-direction: column; gap: 12px; }
 
-    .arrow {
-      color: var(--text-muted);
-      font-size: 18px;
-      transition: transform 0.3s ease;
-      z-index: 2;
-    }
+        .nav-button {
+            width: 100%; background-color: var(--card-bg);
+            border: 1px solid var(--card-border); border-radius: 18px;
+            padding: 14px 18px; display: flex; align-items: center;
+            justify-content: space-between; color: var(--text-color);
+            text-decoration: none; cursor: pointer; transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .nav-button:hover { border-color: var(--accent-blue); background-color: var(--card-hover); }
 
-    .link-card:hover .arrow {
-      transform: translateX(-4px);
-      color: var(--text-main);
-    }
+        .btn-content { display: flex; align-items: center; gap: 12px; font-size: 1.05rem; font-weight: 700; }
+        .icon-box {
+            width: 38px; height: 38px; background-color: var(--icon-bg);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+        }
+        .arrow { font-size: 1.1rem; color: var(--text-secondary); transition: transform 0.3s ease; }
+        .open .arrow { transform: rotate(-90deg); }
 
-    /* ========== Dropdown Accordion ========== */
-    .dropdown-container {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+        .sub-menu { display: none; flex-direction: column; gap: 10px; padding: 5px 0; }
+        .sub-menu.open { display: flex; }
 
-    .dropdown-chevron {
-      transition: transform 0.3s ease;
-    }
+        .app-card {
+            background-color: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 16px; padding: 12px; display: flex; align-items: center; gap: 12px;
+            text-decoration: none; color: var(--text-color); transition: border-color 0.2s ease; cursor: pointer;
+        }
+        .app-card:hover { border-color: var(--accent-blue); }
 
-    .dropdown-container.open .dropdown-chevron {
-      transform: rotate(-90deg);
-    }
+        .app-icon {
+            width: 50px; height: 50px; background: #38bdf8;
+            border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .app-icon svg { width: 30px; height: 30px; fill: #ffffff; }
+        .icon-red { background: #ef4444; }
+        .icon-purple { background: #8b5cf6; }
+        .icon-orange { background: #f97316; }
+        .icon-gray { background: #475569; }
 
-    .dropdown-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      padding-right: 10px;
-    }
+        .app-details { display: flex; flex-direction: column; flex-grow: 1; }
+        .app-title { font-weight: 700; font-size: 0.95rem; line-height: 1.2; direction: ltr; text-align: right;}
+        .app-meta { display: flex; gap: 12px; font-size: 0.75rem; color: var(--text-secondary); margin-top: 5px; direction: ltr;}
+        .download-btn {
+            background-color: var(--icon-bg); padding: 8px 12px; border-radius: 10px;
+            font-size: 0.85rem; font-weight: 600; color: var(--accent-blue);
+        }
 
-    .dropdown-container.open .dropdown-content {
-      max-height: 500px;
-    }
+        .section-block {
+            width: 100%; background-color: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 18px; padding: 16px; margin-top: 10px;
+        }
+        .section-header {
+            font-size: 1.05rem; font-weight: 700; color: var(--accent-blue);
+            margin-bottom: 12px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px;
+        }
+        .table-custom { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .table-custom td { padding: 8px 4px; border-bottom: 1px solid #162236; }
+        code { background-color: #080d17; padding: 2px 6px; border-radius: 4px; color: var(--accent-blue); font-family: monospace; direction: ltr; display: inline-block; }
 
-    .sub-card {
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 14px;
-      padding: 12px 16px;
-      border-color: rgba(255, 255, 255, 0.05);
-    }
+        /* نافذة التوجيه التفاعلية الفورية (بدون انتظار) */
+        .step-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 20px;
+        }
+        .step-modal.active { display: flex; }
+        .step-box {
+            background: var(--card-bg); border: 2px solid var(--ad-color); border-radius: 20px;
+            padding: 25px; width: 100%; max-width: 380px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+        .step-box h3 { color: var(--ad-color); font-size: 1.2rem; margin-bottom: 10px; }
+        .step-box p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px; }
+        .step-btn {
+            display: block; width: 100%; background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff; text-decoration: none; padding: 14px; border-radius: 12px;
+            font-weight: 800; font-size: 1.05rem; border: none; cursor: pointer;
+        }
+        .step-close {
+            background: transparent; border: none; color: var(--text-secondary);
+            margin-top: 15px; font-size: 0.85rem; cursor: pointer; text-decoration: underline;
+        }
 
-    /* ========== Ripple Wave Effect ========== */
-    .ripple-effect {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(162, 210, 255, 0.35);
-      backdrop-filter: blur(8px);
-      transform: scale(0);
-      animation: ripple 0.55s linear;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    @keyframes ripple {
-      to {
-        transform: scale(4);
-        opacity: 0;
-      }
-    }
-
-    footer {
-      margin-top: 40px;
-      font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
-    }
-  </style>
+        /* ✅ تذييل الصفحة */
+        .footer {
+            margin-top: 25px;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--card-border);
+            width: 100%;
+        }
+        .footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
-<div class="wrap">
-  <div class="avatar">
-    <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Adem Settings DZ">
-      <defs>
-        <linearGradient id="markGrad" x1="6" y1="4" x2="46" y2="48" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stop-color="#60a5fa"/>
-          <stop offset="1" stop-color="#3b82f6"/>
-        </linearGradient>
-      </defs>
-      <path d="M26 5 L45 45 H37.5 L33.2 35.5 H18.8 L14.5 45 H7 L26 5 Z M26 16.5 L21 29 H31 L26 16.5 Z" fill="url(#markGrad)"/>
-      <circle cx="26" cy="45.5" r="3.4" fill="url(#markGrad)"/>
-    </svg>
-  </div>
-  <div class="handle">Adem_Settings_DZ</div>
-  <p class="tagline">محتوى إعدادات الألعاب والتطبيقات الحصرية 🎮</p>
+<!-- نافذة نظام التوجيه ذو الخطوتين الفوري -->
+<div class="step-modal" id="stepModal">
+    <div class="step-box">
+        <h3 id="modalTitle">⚡ خطوة التحميل (1 من 2)</h3>
+        <p id="modalDesc">اضغط "متابعة" للانتقال الفوري بدون أي انتظار</p>
+        <button class="step-btn" id="modalActionBtn" onclick="processStep()">متابعة</button>
+        <button class="step-close" onclick="closeModal()">إلغاء وإغلاق</button>
+    </div>
+</div>
 
-  <div class="links">
+<div class="main-container">
 
-    <!-- القائمة المنسدلة للتطبيقات -->
-    <div class="dropdown-container" id="appsDropdown">
-      <div class="link-card" id="dropdownTrigger">
-        <div class="link-info">
-          <div class="icon-box">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <div class="title">التطبيقات</div>
+    <div class="header">
+        <div class="logo-box">
+            <div class="logo-fallback">LA</div>
+            <img src="https://i.ibb.co/bjbknNxL/IMG-3210.jpg" alt="Adem Settings DZ" onerror="this.style.display='none';">
         </div>
-        <div class="arrow dropdown-chevron" aria-hidden="true">←</div>
-      </div>
-
-      <div class="dropdown-content">
-        <a class="link-card sub-card download-btn" href="#" data-file-url="https://www.mediafire.com/file/swp72v19x0garbn/FilzaSlop-v1.0.1-unsigned.ipa/file">
-          <div class="link-info">
-            <div class="icon-box">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-            </div>
-            <div class="title">FilzaSlop v1.0.1</div>
-          </div>
-          <div class="arrow" aria-hidden="true">←</div>
-        </a>
-
-        <a class="link-card sub-card download-btn" href="#" data-file-url="https://www.mediafire.com/file/o2rr473iu06ocxs/Filza.ipa/file">
-          <div class="link-info">
-            <div class="icon-box">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-            </div>
-            <div class="title">Filza</div>
-          </div>
-          <div class="arrow" aria-hidden="true">←</div>
-        </a>
-
-        <a class="link-card sub-card download-btn" href="#" data-file-url="https://www.mediafire.com/file/jma0r53oqhn9l09/Filza+Mod_4.0_1786666141.ipa/file">
-          <div class="link-info">
-            <div class="icon-box">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-            </div>
-            <div class="title">Filza Mod 4.0</div>
-          </div>
-          <div class="arrow" aria-hidden="true">←</div>
-        </a>
-      </div>
+        <h1 class="title">Adem_Settings_DZ</h1>
+        <p class="subtitle">محتوى إعدادات الألعاب والتطبيقات الحصرية 🎮</p>
     </div>
 
-    <!-- روابط التواصل الاجتماعي -->
-    <a class="link-card social-btn" href="https://t.me/FreeFire_Settings_DZ" target="_blank" rel="noopener noreferrer">
-      <div class="link-info">
-        <div class="icon-box">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 4.6c.3-1-.4-1.4-1.1-1.1L2.6 10.6c-1 .4-1 1 .1 1.3l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.1-2 4.4 3.2c.8.5 1.4.2 1.6-.7L21.9 4.6zM8.6 13.6l9.2-5.8c.4-.3.8-.1.5.2l-7.7 7-.3 3-1.4-4.4z"/></svg>
-        </div>
-        <div class="title">قناة التيليجرام</div>
-      </div>
-      <div class="arrow" aria-hidden="true">←</div>
+    <!-- زر إعلاني علوي -->
+    <a href="https://omg10.com/4/11583688" target="_blank" rel="noopener noreferrer" class="nav-button" style="border: 1px dashed var(--ad-color); color: var(--ad-color); justify-content: center; margin-bottom: 12px;">
+        <span>🔥 سيرفر التحميل السريع (رابط قوي)</span>
     </a>
 
-    <a class="link-card social-btn" href="https://youtube.com/@adem_ar28?si=6BrTNX-_jleRPDH6" target="_blank" rel="noopener noreferrer">
-      <div class="link-info">
-        <div class="icon-box">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2c-.3-1-1-1.8-2-2C19.6 3.7 12 3.7 12 3.7s-7.6 0-9.5.5c-1 .3-1.8 1-2 2C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1 1 1.8 2 2 1.9.5 9.5.5 9.5.5s7.6 0 9.5-.5c1-.3 1.8-1 2-2 .5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+    <div class="links-stack">
+
+        <!-- 1. قسم تطبيقات Filza (7 نسخ) -->
+        <div class="nav-button" onclick="toggleMenu('apps-dropdown', this)">
+            <div class="btn-content"><div class="icon-box">📱</div><span>تطبيقات Filza (7 نسخ)</span></div>
+            <span class="arrow">←</span>
         </div>
-        <div class="title">قناة اليوتيوب</div>
-      </div>
-      <div class="arrow" aria-hidden="true">←</div>
-    </a>
-
-    <a class="link-card social-btn" href="https://www.instagram.com/i7_xx_x?igsh=c2Rlb2p0Mzg3ejBp&utm_source=qr" target="_blank" rel="noopener noreferrer">
-      <div class="link-info">
-        <div class="icon-box">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c2.7 0 3.1 0 4.1.06 1.1.05 1.8.22 2.4.46.7.27 1.2.62 1.7 1.13.5.5.86 1.02 1.13 1.7.24.66.41 1.36.46 2.44.06 1 .06 1.4.06 4.1s0 3.1-.06 4.1c-.05 1.1-.22 1.8-.46 2.44-.27.7-.62 1.2-1.13 1.7-.5.5-1.02.86-1.7 1.13-.66.24-1.36.41-2.44.46-1 .06-1.4.06-4.1.06s-3.1 0-4.1-.06c-1.1-.05-1.8-.22-2.44-.46a4.7 4.7 0 0 1-1.7-1.13 4.7 4.7 0 0 1-1.13-1.7c-.24-.66-.41-1.36-.46-2.44C2 15.1 2 14.7 2 12s0-3.1.06-4.1c.05-1.1.22-1.8.46-2.44.27-.7.62-1.2 1.13-1.7A4.7 4.7 0 0 1 5.35 2.6c.66-.24 1.36-.41 2.44-.46C8.9 2 9.3 2 12 2zm0 1.8c-2.65 0-2.97 0-4.02.06-.9.04-1.4.2-1.7.32-.44.17-.75.37-1.08.7-.33.33-.53.64-.7 1.08-.13.3-.28.8-.32 1.7C4.13 8.9 4.13 9.2 4.13 12s0 2.97.06 4.02c.04.9.2 1.4.32 1.7.17.44.37.75.7 1.08.33.33.64.53 1.08.7.3.13.8.28 1.7.32 1.05.06 1.37.06 4.02.06s2.97 0 4.02-.06c.9-.04 1.4-.2 1.7-.32.44-.17.75-.37 1.08-.7.33-.33.64-.53 0-1.08-.13-.3-.28-.8-.32-1.7-.06-1.05-.06-1.37-.06-4.02s0-2.97-.06-4.02c-.04-.9-.2-1.4-.32-1.7a2.9 2.9 0 0 0-.7-1.08 2.9 2.9 0 0 0-1.08-.7c-.3-.13-.8-.28-1.7-.32-1.05-.06-1.37-.06-4.02-.06zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4zm5.2-2.7a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg>
+        
+        <div class="sub-menu" id="apps-dropdown">
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/2jssxjhxf80zai1/Filza-iOS-26-27.ipa/file')">
+                <div class="app-icon"><svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg></div>
+                <div class="app-details"><span class="app-title">Filza iOS 26-27</span><div class="app-meta"><span>📦 IPA</span><span>⚡ جدار سريع</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/91j014gmw3zez56/FilzaJailed.ipa/file')">
+                <div class="app-icon icon-red"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg></div>
+                <div class="app-details"><span class="app-title">Filza Jailed</span><div class="app-meta"><span>📦 IPA</span><span>⚡ آمن</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/o2rr473iu06ocxs/Filza.ipa/file')">
+                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z"/></svg></div>
+                <div class="app-details"><span class="app-title">Filza</span><div class="app-meta"><span>📦 IPA</span><span>⚡ v1.0</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/qukjj032uo1njxj/Filza_V4.ipa/file')">
+                <div class="app-icon icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8l7.5 14.2H4.5L12 5.8z"/></svg></div>
+                <div class="app-details"><span class="app-title">Filza V4</span><div class="app-meta"><span>📦 IPA</span><span>⚡ معدل</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/kut6mi01lph8rsw/FILZA_SANDBOX_APPLY.dylib/file')">
+                <div class="app-icon icon-gray"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+                <div class="app-details"><span class="app-title">FILZA SANDBOX APPLY</span><div class="app-meta"><span>📦 dylib</span><span>⚡ خاص</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/jma0r53oqhn9l09/Filza_Mod_4.0_1786666141.ipa/file')">
+                <div class="app-icon"><svg viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg></div>
+                <div class="app-details"><span class="app-title">Filza Mod 4.0</span><div class="app-meta"><span>📦 IPA</span><span>⚡ v4.0</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/swp72v19x0garbn/FilzaSlop-v1.0.1-unsigned.ipa/file')">
+                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z"/></svg></div>
+                <div class="app-details"><span class="app-title">FilzaSlop v1.0.1</span><div class="app-meta"><span>📦 IPA</span><span>⚡ خفيف</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
         </div>
-        <div class="title">حساب الإنستغرام</div>
-      </div>
-      <div class="arrow" aria-hidden="true">←</div>
-    </a>
 
-  </div>
+        <!-- زر إعلاني وسطي -->
+        <a href="https://omg10.com/4/11583683" target="_blank" rel="noopener noreferrer" class="nav-button" style="border: 1px dashed var(--ad-color); color: var(--ad-color); justify-content: center;">
+            <span>⚡ تحديثات إضافية (رابط خفيف)</span>
+        </a>
 
-  <footer>ADEM SETTINGS DZ</footer>
+        <!-- 2. قسم السكريبتات وملفات OBB (16 ملف) -->
+        <div class="nav-button" onclick="toggleMenu('scripts-dropdown', this)">
+            <div class="btn-content"><div class="icon-box">⚡</div><span>السكريبتات وملفات OBB (16 ملف)</span></div>
+            <span class="arrow">←</span>
+        </div>
+        
+        <div class="sub-menu" id="scripts-dropdown">
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/u2yqg6nvmklbk2y/كشف+إمكان++AIM+BOT+85%+.zip/file')">
+                <div class="app-icon icon-red"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+                <div class="app-details"><span class="app-title">AIM BOT 85% - كشف أماكن</span><div class="app-meta"><span>📦 Zip</span><span>⚡ VIP</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/s4w64kaz4ve69l3/VIP+⚙️🪄.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file')">
+                <div class="app-icon icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8l7.5 14.2H4.5L12 5.8z"/></svg></div>
+                <div class="app-details"><span class="app-title">VIP Settings ⚙️🪄</span><div class="app-meta"><span>📦 Config</span><span>⚡ VIP</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/7e0mjrw9w6wdcvs/cache_res+2.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file')">
+                <div class="app-icon icon-gray"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+                <div class="app-details"><span class="app-title">Cache Res (V2)</span><div class="app-meta"><span>📦 Cache</span><span>⚡ Fast</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/keom86elamj5ezd/Adem.Zit.VV.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file')">
+                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+                <div class="app-details"><span class="app-title">Adem Zit VV</span><div class="app-meta"><span>📦 Config</span><span>⚡ قوي</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/ic2ker2yxdpoaiw/cache_res.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file')">
+                <div class="app-icon icon-red"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg></div>
+                <div class="app-details"><span class="app-title">Cache Res (V1)</span><div class="app-meta"><span>📦 Cache</span><span>⚡ Fast</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/3cukb3p6mita611/cache_res+3.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file')">
+                <div class="app-icon icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8l7.5 14.2H4.5L12 5.8z"/></svg></div>
+                <div class="app-details"><span class="app-title">Cache Res (V3)</span><div class="app-meta"><span>📦 Cache</span><span>⚡ فائق</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/23xs8xgra00w07x/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D+2/file')">
+                <div class="app-icon icon-gray"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+                <div class="app-details"><span class="app-title">Cache Res (ODVY)</span><div class="app-meta"><span>📦 Cache</span><span>🎯 دقيق</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/c9uw9o8igl0ox2j/3D.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D/file')">
+                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z"/></svg></div>
+                <div class="app-details"><span class="app-title">3D Config</span><div class="app-meta"><span>📦 Config</span><span>🌍 عالمي</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/c4t52290jp0r6yo/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D/file')">
+                <div class="app-icon icon-red"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+                <div class="app-details"><span class="app-title">Cache Res ODVY</span><div class="app-meta"><span>📦 Cache</span><span>🌙 مميز</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/n2c3g52hqtruy3z/Aimlock+v10.mobileconfig/file')">
+                <div class="app-icon icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8l7.5 14.2H4.5L12 5.8z"/></svg></div>
+                <div class="app-details"><span class="app-title">Aimlock v10</span><div class="app-meta"><span>📦 mobileconfig</span><span>🚀 رهيب</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/a315csklqijsk9s/VIP.+🗿🪄assetindexer.PENojQAQf9a1l6Dzjs0n1Z3rtVU~3D/file')">
+                <div class="app-icon icon-gray"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+                <div class="app-details"><span class="app-title">VIP Assetindexer</span><div class="app-meta"><span>📦 Config</span><span>⚡ VIP</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/33l4v8ii1vd6c3d/assetindexer+2.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file')">
+                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z"/></svg></div>
+                <div class="app-details"><span class="app-title">Assetindexer (H5ak)</span><div class="app-meta"><span>📦 Config</span><span>⚡ Fast</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/zlxp3tmme9lpt28/assetindexer.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file')">
+                <div class="app-icon icon-red"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg></div>
+                <div class="app-details"><span class="app-title">Assetindexer</span><div class="app-meta"><span>📦 Config</span><span>⚡ قوي</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/ynwgltfbf3rmuq3/assetindexer+3.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file')">
+                <div class="app-icon icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8l7.5 14.2H4.5L12 5.8z"/></svg></div>
+                <div class="app-details"><span class="app-title">Assetindexer V3</span><div class="app-meta"><span>📦 Config</span><span>⚡ مميز</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/eflddee5yabiozt/Aimlock+v10.zip/file')">
+                <div class="app-icon icon-gray"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+                <div class="app-details"><span class="app-title">Aimlock v10 Zip</span><div class="app-meta"><span>📦 Zip</span><span>🎯 دقيق</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+            <div class="app-card" onclick="initDownload('https://www.mediafire.com/file/62sqlv4i75371lt/AIMBOT+CUELLO.confg.txt/file')">
+                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z"/></svg></div>
+                <div class="app-details"><span class="app-title">AIMBOT CUELLO</span><div class="app-meta"><span>📦 Config</span><span>⚡ VIP</span></div></div>
+                <div class="download-btn">تحميل</div>
+            </div>
+        </div>
+
+        <!-- منصات التواصل الاجتماعي -->
+        <a href="https://t.me/FreeFire_Settings_DZ" target="_blank" rel="noopener noreferrer" class="nav-button">
+            <div class="btn-content"><div class="icon-box">✈</div><span>قناة التيليجرام</span></div>
+            <span class="arrow">→</span>
+        </a>
+
+        <a href="https://youtube.com/@adem_ar28?si=4OVhIL2CdXbFezeE" target="_blank" rel="noopener noreferrer" class="nav-button">
+            <div class="btn-content"><div class="icon-box">▶️</div><span>قناة اليوتيوب</span></div>
+            <span class="arrow">→</span>
+        </a>
+
+        <a href="https://www.instagram.com/i7_xx_x?igsh=c2Rlb2p0Mzg3ejBp&utm_source=qr" target="_blank" rel="noopener noreferrer" class="nav-button">
+            <div class="btn-content"><div class="icon-box">📸</div><span>حساب الانستغرام</span></div>
+            <span class="arrow">→</span>
+        </a>
+
+        <!-- قسم الإعدادات -->
+        <div class="section-block">
+            <div class="section-header">🎮 إعدادات وتعديلات اللعبة</div>
+            <table class="table-custom">
+                <tr><td>No Smoke</td><td><code>FX.MaxCPUParticles...=1</code></td></tr>
+                <tr><td>No Water</td><td><code>water.heightScale=0</code></td></tr>
+                <tr><td>Aimbot</td><td><code>SystemAimAssistSettings</code></td></tr>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- ✅ تذييل الصفحة -->
+    <div class="footer">
+        <p>© 2026 <strong>Adem_Settings_DZ</strong> - جميع الحقوق محفوظة</p>
+        <p>تم التطوير بواسطة <a href="https://t.me/FreeFire_Settings_DZ" target="_blank">Adem_Settings_DZ</a></p>
+    </div>
+
 </div>
 
 <script>
-  // رابط الإعلان المباشر الخاص بك من Monetag
-  const adUrl = "https://omg10.com/4/11578028"; 
-  let adSeen = sessionStorage.getItem('adSeen') === 'true';
+    // ✅ روابط الإعلانات الصحيحة من Monetag (تم التصحيح)
+    const adPool = [
+        "https://omg10.com/4/11583670",
+        "https://omg10.com/4/11582772",
+        "https://omg10.com/4/11583690",
+        "https://omg10.com/4/11583686",
+        "https://omg10.com/4/11583683",
+        "https://omg10.com/4/11583677",
+        "https://omg10.com/4/11583681",
+        "https://omg10.com/4/11583688",
+        "https://omg10.com/4/11579405",
+        "https://omg10.com/4/11578028"
+    ];
 
-  // فتح وإغلاق القائمة المنسدلة
-  const dropdownTrigger = document.getElementById('dropdownTrigger');
-  const appsDropdown = document.getElementById('appsDropdown');
+    let recentAds = [];
+    let currentStep = 0;
+    let targetFinalUrl = "";
 
-  dropdownTrigger.addEventListener('click', function(e) {
-    appsDropdown.classList.toggle('open');
-  });
-
-  // التحكم بإعلانات التحميل
-  const downloadButtons = document.querySelectorAll('.download-btn');
-
-  downloadButtons.forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const fileUrl = btn.getAttribute('data-file-url');
-
-      if (!adSeen) {
-        adSeen = true;
-        sessionStorage.setItem('adSeen', 'true');
-        window.open(adUrl, '_blank', 'noopener,noreferrer');
-        
-        const titleEl = btn.querySelector('.title');
-        if (titleEl && !titleEl.dataset.original) {
-          titleEl.dataset.original = titleEl.textContent;
-          titleEl.textContent = 'اضغط مرة أخرى للتحميل ⬇';
+    // اختيار رابط عشوائي مع تذكر آخر 3 روابط لمنع التكرار
+    function getSmartRandomAd() {
+        let availableAds = adPool.filter(ad => !recentAds.includes(ad));
+        if (availableAds.length === 0) {
+            recentAds = [];
+            availableAds = adPool;
         }
-      } else {
-        window.open(fileUrl, '_blank', 'noopener,noreferrer');
-      }
-    });
-  });
-
-  // تأثير الموجة (Ripple Effect)
-  document.querySelectorAll('.link-card').forEach(card => {
-    card.addEventListener('click', function(e) {
-      createRipple(e, this);
-    });
-  });
-
-  function createRipple(event, element) {
-    const circle = document.createElement('span');
-    const diameter = Math.max(element.clientWidth, element.clientHeight);
-    const radius = diameter / 2;
-
-    const rect = element.getBoundingClientRect();
-    circle.style.width = circle.style.height = `${diameter}px`;
-    circle.style.left = `${event.clientX - rect.left - radius}px`;
-    circle.style.top = `${event.clientY - rect.top - radius}px`;
-    circle.classList.add('ripple-effect');
-
-    const existingRipple = element.querySelector('.ripple-effect');
-    if (existingRipple) {
-      existingRipple.remove();
+        let selectedAd = availableAds[Math.floor(Math.random() * availableAds.length)];
+        
+        recentAds.push(selectedAd);
+        if (recentAds.length > 3) {
+            recentAds.shift();
+        }
+        return selectedAd;
     }
 
-    element.appendChild(circle);
+    // فتح القوائم المنسدلة بسلاسة
+    function toggleMenu(id, element) {
+        const menu = document.getElementById(id);
+        document.querySelectorAll('.sub-menu').forEach(m => {
+            if(m.id !== id) {
+                m.classList.remove('open');
+                if(m.previousElementSibling) m.previousElementSibling.classList.remove('open');
+            }
+        });
+        menu.classList.toggle('open');
+        element.classList.toggle('open');
+    }
 
-    setTimeout(() => {
-      circle.remove();
-    }, 550);
-  }
+    // بدء دورة التحميل (إعلان أول + إعلان ثاني + ميديافاير بدون أي عداد أو انتظار)
+    function initDownload(finalUrl) {
+        targetFinalUrl = finalUrl;
+        currentStep = 1;
+        
+        document.getElementById('modalTitle').innerText = "⚡ خطوة التحميل (1 من 2)";
+        document.getElementById('modalDesc').innerText = "اضغط 'متابعة' للمتابعة الفورية";
+        document.getElementById('stepModal').classList.add('active');
+    }
+
+    // معالجة الخطوات عند الضغط
+    function processStep() {
+        if (currentStep === 1) {
+            // الخطوة الأولى: فتح الإعلان الأول عشوائياً
+            let ad1 = getSmartRandomAd();
+            window.open(ad1, '_blank');
+            
+            // التجهيز للخطوة الثانية فوراً بدون أي انتظار
+            currentStep = 2;
+            document.getElementById('modalTitle').innerText = "🚀 خطوة التحميل النهائية (2 من 2)";
+            document.getElementById('modalDesc').innerText = "اضغط 'متابعة' لفتح ملف التحميل الأساسي";
+        } else if (currentStep === 2) {
+            // الخطوة الثانية: فتح الإعلان الثاني عشوائياً (مختلف تماماً)
+            let ad2 = getSmartRandomAd();
+            window.open(ad2, '_blank');
+            
+            // فتح رابط MediaFire النهائي في تاب جديد
+            window.open(targetFinalUrl, '_blank');
+            
+            // إغلاق النافذة المنبثقة
+            closeModal();
+        }
+    }
+
+    function closeModal() {
+        document.getElementById('stepModal').classList.remove('active');
+        currentStep = 0;
+        targetFinalUrl = "";
+    }
 </script>
 
 </body>
