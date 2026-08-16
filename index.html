@@ -1,823 +1,582 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adem_Settings_DZ - إعدادات فري فاير وFilza</title>
-    <meta name="description" content="تحميل إعدادات فري فاير، تطبيقات Filza، Esign، King Store، سكريبتات، وملفات OBB حصرية">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-main: #080c14;
-            --card-bg: #101726;
-            --card-border: #1d2a40;
-            --card-hover: #141e33;
-            --icon-bg: #182338;
-            --text-color: #f1f5f9;
-            --text-secondary: #8d9bb0;
-            --accent-blue: #38bdf8;
-            --ad-color: #10b981;
-            --esign-color: #7c3aed;
-            --king-color: #f59e0b;
-            --troll-color: #ec4899;
+‏<!DOCTYPE html>
+‏<html lang="ar" dir="rtl">
+‏<head>
+‏    <meta charset="UTF-8">
+‏    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+‏    <title>Adem_Settings_DZ - إعدادات فري فاير وFilza</title>
+‏    <meta name="description" content="تحميل إعدادات فري فاير، تطبيقات Filza، Esign، King Store، سكريبتات، وملفات OBB حصرية">
+‏    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+‏    <style>
+‏        :root {
+‏            --bg-main: #080c14;
+‏            --card-bg: #101726;
+‏            --card-border: #1d2a40;
+‏            --card-hover: #141e33;
+‏            --icon-bg: #182338;
+‏            --text-color: #f1f5f9;
+‏            --text-secondary: #8d9bb0;
+‏            --accent-blue: #38bdf8;
+‏            --ad-color: #10b981;
+‏            --esign-color: #7c3aed;
+‏            --king-color: #f59e0b;
+‏            --troll-color: #ec4899;
         }
 
         * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-            -webkit-tap-highlight-color: transparent;
+‏            box-sizing: border-box;
+‏            margin: 0;
+‏            padding: 0;
+‏            font-family: 'Cairo', sans-serif;
+‏            -webkit-tap-highlight-color: transparent;
         }
 
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            padding: 20px 12px 40px 12px;
-            min-height: 100vh;
+‏        body {
+‏            background-color: var(--bg-main);
+‏            color: var(--text-color);
+‏            display: flex;
+‏            justify-content: center;
+‏            padding: 20px 12px 40px 12px;
+‏            min-height: 100vh;
         }
 
-        .main-container {
-            width: 100%;
-            max-width: 480px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+‏        .main-container {
+‏            width: 100%;
+‏            max-width: 480px;
+‏            display: flex;
+‏            flex-direction: column;
+‏            align-items: center;
         }
 
-        /* ===== الهيدر ===== */
-        .header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 18px;
-            text-align: center;
+‏        .header {
+‏            display: flex;
+‏            flex-direction: column;
+‏            align-items: center;
+‏            margin-bottom: 18px;
+‏            text-align: center;
         }
 
-        .logo-box {
-            width: 85px;
-            height: 85px;
-            background-color: #ffffff;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-            position: relative;
+‏        .logo-box {
+‏            width: 85px;
+‏            height: 85px;
+‏            background-color: #ffffff;
+‏            border-radius: 20px;
+‏            display: flex;
+‏            align-items: center;
+‏            justify-content: center;
+‏            margin-bottom: 12px;
+‏            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+‏            overflow: hidden;
+‏            position: relative;
         }
 
-        .logo-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            z-index: 2;
+‏        .logo-box img {
+‏            width: 100%;
+‏            height: 100%;
+‏            object-fit: cover;
+‏            position: absolute;
+‏            z-index: 2;
         }
 
-        .logo-fallback {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #000000;
-            position: absolute;
-            z-index: 1;
+‏        .title {
+‏            font-size: 1.4rem;
+‏            font-weight: 800;
+‏            margin-bottom: 2px;
         }
 
-        .title {
-            font-size: 1.4rem;
-            font-weight: 800;
-            margin-bottom: 2px;
+‏        .subtitle {
+‏            font-size: 0.9rem;
+‏            color: var(--text-secondary);
         }
 
-        .subtitle {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+‏        .links-stack {
+‏            width: 100%;
+‏            display: flex;
+‏            flex-direction: column;
+‏            gap: 10px;
         }
 
-        /* ===== الأزرار ===== */
-        .links-stack {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+‏        .nav-button {
+‏            width: 100%;
+‏            background-color: var(--card-bg);
+‏            border: 1px solid var(--card-border);
+‏            border-radius: 16px;
+‏            padding: 13px 16px;
+‏            display: flex;
+‏            align-items: center;
+‏            justify-content: space-between;
+‏            color: var(--text-color);
+‏            text-decoration: none;
+‏            cursor: pointer;
+‏            transition: all 0.2s ease;
+‏            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+‏            user-select: none;
         }
 
-        .nav-button {
-            width: 100%;
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 13px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: var(--text-color);
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            user-select: none;
+‏        .nav-button:hover {
+‏            border-color: var(--accent-blue);
+‏            background-color: var(--card-hover);
         }
 
-        .nav-button:hover {
-            border-color: var(--accent-blue);
-            background-color: var(--card-hover);
+‏        .btn-content {
+‏            display: flex;
+‏            align-items: center;
+‏            gap: 10px;
+‏            font-size: 1rem;
+‏            font-weight: 700;
         }
 
-        .btn-content {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1rem;
-            font-weight: 700;
+‏        .icon-box {
+‏            width: 36px;
+‏            height: 36px;
+‏            background-color: var(--icon-bg);
+‏            border-radius: 10px;
+‏            display: flex;
+‏            align-items: center;
+‏            justify-content: center;
+‏            font-size: 1rem;
+‏            flex-shrink: 0;
         }
 
-        .icon-box {
-            width: 36px;
-            height: 36px;
-            background-color: var(--icon-bg);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            flex-shrink: 0;
+‏        .arrow {
+‏            font-size: 1rem;
+‏            color: var(--text-secondary);
+‏            transition: transform 0.3s ease;
         }
 
-        .arrow {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            transition: transform 0.3s ease;
+‏        .open .arrow {
+‏            transform: rotate(-90deg);
         }
 
-        .open .arrow {
-            transform: rotate(-90deg);
+‏        .sub-menu {
+‏            display: none;
+‏            flex-direction: column;
+‏            gap: 8px;
+‏            padding: 4px 0;
         }
 
-        /* ===== القوائم المنسدلة ===== */
-        .sub-menu {
-            display: none;
-            flex-direction: column;
-            gap: 8px;
-            padding: 4px 0;
+‏        .sub-menu.open {
+‏            display: flex;
         }
 
-        .sub-menu.open {
-            display: flex;
+‏        .app-card {
+‏            background-color: var(--card-bg);
+‏            border: 1px solid var(--card-border);
+‏            border-radius: 14px;
+‏            padding: 10px 12px;
+‏            display: flex;
+‏            align-items: center;
+‏            gap: 10px;
+‏            text-decoration: none;
+‏            color: var(--text-color);
+‏            transition: all 0.2s ease;
+‏            cursor: pointer;
+‏            user-select: none;
         }
 
-        .app-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 14px;
-            padding: 10px 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: var(--text-color);
-            transition: all 0.2s ease;
-            cursor: pointer;
-            user-select: none;
+‏        .app-card:hover {
+‏            border-color: var(--accent-blue);
+‏            background-color: var(--card-hover);
         }
 
-        .app-card:hover {
-            border-color: var(--accent-blue);
-            background-color: var(--card-hover);
+‏        .app-card:active {
+‏            transform: scale(0.98);
         }
 
-        .app-card:active {
-            transform: scale(0.98);
+‏        .app-icon {
+‏            width: 44px;
+‏            height: 44px;
+‏            background: #38bdf8;
+‏            border-radius: 10px;
+‏            display: flex;
+‏            align-items: center;
+‏            justify-content: center;
+‏            flex-shrink: 0;
         }
 
-        .app-icon {
-            width: 44px;
-            height: 44px;
-            background: #38bdf8;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
+‏        .app-icon svg {
+‏            width: 26px;
+‏            height: 26px;
+‏            fill: #ffffff;
         }
 
-        .app-icon svg {
-            width: 26px;
-            height: 26px;
-            fill: #ffffff;
+‏        .icon-red { background: #ef4444; }
+‏        .icon-purple { background: #8b5cf6; }
+‏        .icon-orange { background: #f97316; }
+‏        .icon-gray { background: #475569; }
+
+‏        .app-details {
+‏            display: flex;
+‏            flex-direction: column;
+‏            flex-grow: 1;
         }
 
-        .icon-red { background: #ef4444; }
-        .icon-purple { background: #8b5cf6; }
-        .icon-orange { background: #f97316; }
-        .icon-gray { background: #475569; }
-
-        .app-details {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
+‏        .app-title {
+‏            font-weight: 700;
+‏            font-size: 0.85rem;
+‏            line-height: 1.2;
+‏            direction: ltr;
+‏            text-align: right;
         }
 
-        .app-title {
-            font-weight: 700;
-            font-size: 0.85rem;
-            line-height: 1.2;
-            direction: ltr;
-            text-align: right;
+‏        .app-meta {
+‏            display: flex;
+‏            gap: 10px;
+‏            font-size: 0.65rem;
+‏            color: var(--text-secondary);
+‏            margin-top: 3px;
+‏            direction: ltr;
         }
 
-        .app-meta {
-            display: flex;
-            gap: 10px;
-            font-size: 0.65rem;
-            color: var(--text-secondary);
-            margin-top: 3px;
-            direction: ltr;
+‏        .download-btn {
+‏            background-color: var(--icon-bg);
+‏            padding: 6px 12px;
+‏            border-radius: 8px;
+‏            font-size: 0.75rem;
+‏            font-weight: 600;
+‏            color: var(--accent-blue);
+‏            transition: 0.2s;
+‏            flex-shrink: 0;
         }
 
-        .download-btn {
-            background-color: var(--icon-bg);
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--accent-blue);
-            transition: 0.2s;
-            flex-shrink: 0;
+‏        .download-btn:hover {
+‏            background-color: var(--card-hover);
         }
 
-        .download-btn:hover {
-            background-color: var(--card-hover);
+‏        .link-store { border-color: var(--king-color) !important; }
+‏        .link-store:hover { border-color: #fbbf24 !important; }
+‏        .link-store .icon-box { background: rgba(245, 158, 11, 0.2) !important; }
+‏        .link-store .badge-text { font-size: 0.6rem; color: #fbbf24; }
+
+‏        .ad-banner {
+‏            background: rgba(16, 23, 38, 0.8);
+‏            border: 1px solid rgba(16, 185, 129, 0.2);
+‏            border-radius: 12px;
+‏            padding: 8px 12px;
+‏            margin: 4px 0 10px 0;
+‏            text-align: center;
+‏            font-size: 0.75rem;
+‏            color: var(--text-secondary);
+‏            width: 100%;
+‏            cursor: pointer;
+‏            transition: 0.2s;
         }
 
-        /* ===== الروابط الخارجية المميزة ===== */
-        .link-esign { border-color: var(--esign-color) !important; }
-        .link-esign:hover { border-color: #a78bfa !important; }
-        .link-esign .icon-box { background: rgba(124, 58, 237, 0.2) !important; }
-        .link-esign .badge-text { font-size: 0.6rem; color: #a78bfa; }
-
-        .link-king { border-color: var(--king-color) !important; }
-        .link-king:hover { border-color: #fbbf24 !important; }
-        .link-king .icon-box { background: rgba(245, 158, 11, 0.2) !important; }
-        .link-king .badge-text { font-size: 0.6rem; color: #fbbf24; }
-
-        .link-troll { border-color: var(--troll-color) !important; }
-        .link-troll:hover { border-color: #f472b6 !important; }
-        .link-troll .icon-box { background: rgba(236, 72, 153, 0.2) !important; }
-        .link-troll .badge-text { font-size: 0.6rem; color: #f472b6; }
-
-        /* ===== الإعلانات الداخلية ===== */
-        .ad-banner {
-            background: rgba(16, 23, 38, 0.8);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            border-radius: 12px;
-            padding: 8px 12px;
-            margin: 4px 0 10px 0;
-            text-align: center;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            width: 100%;
-            cursor: pointer;
-            transition: 0.2s;
+‏        .ad-banner:hover {
+‏            border-color: var(--ad-color);
+‏            background: rgba(16, 23, 38, 0.95);
         }
 
-        .ad-banner:hover {
-            border-color: var(--ad-color);
-            background: rgba(16, 23, 38, 0.95);
+‏        .section-block {
+‏            width: 100%;
+‏            background-color: var(--card-bg);
+‏            border: 1px solid var(--card-border);
+‏            border-radius: 16px;
+‏            padding: 14px;
+‏            margin-top: 8px;
         }
 
-        .ad-banner a {
-            color: var(--ad-color);
-            text-decoration: none;
-            font-weight: 600;
+‏        .section-header {
+‏            font-size: 1rem;
+‏            font-weight: 700;
+‏            color: var(--accent-blue);
+‏            margin-bottom: 10px;
+‏            border-bottom: 1px solid var(--card-border);
+‏            padding-bottom: 6px;
         }
 
-        .ad-banner a:hover {
-            text-decoration: underline;
+‏        .table-custom {
+‏            width: 100%;
+‏            border-collapse: collapse;
+‏            font-size: 0.8rem;
         }
 
-        /* ===== نافذة التوجيه المبسطة ===== */
-        .step-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+‏        .table-custom td {
+‏            padding: 6px 4px;
+‏            border-bottom: 1px solid #162236;
         }
 
-        .step-modal.active {
-            display: flex;
+‏        code {
+‏            background-color: #080d17;
+‏            padding: 2px 6px;
+‏            border-radius: 4px;
+‏            color: var(--accent-blue);
+‏            font-family: monospace;
+‏            direction: ltr;
+‏            display: inline-block;
+‏            font-size: 0.7rem;
         }
 
-        .step-box {
-            background: var(--card-bg);
-            border: 2px solid var(--ad-color);
-            border-radius: 20px;
-            padding: 30px 24px;
-            width: 100%;
-            max-width: 360px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
-            animation: popIn 0.25s ease;
+‏        .social-row {
+‏            display: flex;
+‏            gap: 8px;
+‏            margin-top: 10px;
+‏            flex-wrap: wrap;
+‏            justify-content: center;
+‏            width: 100%;
         }
 
-        @keyframes popIn {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+‏        .social-row a {
+‏            background: var(--card-bg);
+‏            padding: 8px 14px;
+‏            border-radius: 12px;
+‏            border: 1px solid var(--card-border);
+‏            color: var(--text-color);
+‏            text-decoration: none;
+‏            font-size: 0.75rem;
+‏            display: flex;
+‏            align-items: center;
+‏            gap: 6px;
+‏            transition: 0.2s;
         }
 
-        .step-box h3 {
-            color: var(--ad-color);
-            font-size: 1.1rem;
-            margin-bottom: 8px;
+‏        .social-row a:hover {
+‏            border-color: var(--accent-blue);
+‏            background: var(--card-hover);
         }
 
-        .step-box p {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            margin-bottom: 18px;
+‏        .footer-note {
+‏            margin-top: 16px;
+‏            font-size: 0.65rem;
+‏            color: #4b5a70;
+‏            text-align: center;
+‏            line-height: 1.5;
+‏            opacity: 0.7;
         }
 
-        .step-btn {
-            display: block;
-            width: 100%;
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: #ffffff;
-            padding: 13px;
-            border-radius: 12px;
-            font-weight: 800;
-            font-size: 1rem;
-            border: none;
-            cursor: pointer;
-            transition: 0.15s;
+‏        @media (max-width: 400px) {
+‏            .app-card { padding: 8px 10px; gap: 8px; flex-wrap: wrap; }
+‏            .app-icon { width: 38px; height: 38px; }
+‏            .app-icon svg { width: 22px; height: 22px; }
+‏            .app-title { font-size: 0.78rem; }
+‏            .nav-button { padding: 11px 14px; }
+‏            .btn-content { font-size: 0.9rem; gap: 8px; }
+‏            .icon-box { width: 32px; height: 32px; font-size: 0.85rem; }
         }
+‏    </style>
+‏</head>
+‏<body>
 
-        .step-btn:hover {
-            transform: scale(1.02);
-        }
+‏<div class="main-container">
 
-        .step-btn:active {
-            transform: scale(0.97);
-        }
+‏    <div class="header">
+‏        <div class="logo-box">
+‏            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAkACQAAD/4QCMRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAIAAIdpAAQAAAABAAAAWgAAAAAAAACQAAAAAQAAAJAAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAAArSgAwAEAAAAAQAAArAAAAAA/+0AOFBob3Rvc2hvcCAzLjAAOEJJTQQEAAAAAAAAOEJJTQQlAAAAAAAQ1B2M2Y8AsgTpgAmY7PhCfv/AABEIArACtAMBEQACEQEDEQH/xAAfAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgv/xAC1EAACAQMDAgQDBQUEBAAAAX0BAgMABBEFEiExQQYTUWEHInEUMoGRoQgjQrHBFVLR8CQzYnKCCQoWFxgZGiUmJygpKjQ1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4eLj5OXm5+jp6vHy8/T19vf4+fr/xAAfAQADAQEBAQEBAQEBAAAAAAAAAQIDBAUGBwgJCgv/xAC1EQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/3QAEAFf/2gAMAwEAAhEDEQA/AP78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9D+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//R/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//0v78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9P+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//U/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//1f78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9b+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//X/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//0P78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9H+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//S/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//0/78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9T+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//V/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//1v78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9f+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//Q/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//0f78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9L+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//T/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//1P78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9X+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//W/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//1/78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9D+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//R/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAHKMnH/wBf+q/z/LHzAEuQuB0/DNACb19f0oAN6+v6UAG9fX9KADevr+lABvX1/SgCGgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP/0v78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgBykA5P0/z/Lt+mGAKl/dw2UUtzNIEhgjeWVj0WONdzn32qpOOPT2YA+dLn9rb4C6fcS2l145tY54W2yIbebKnGeoQg5BHQ/nzQBB/wANhfs+/wDQ+Wn/AIDz/wDxugA/4bC/Z9/6Hy0/8B5//jdAC/8ADYH7PxGf+E7tcev2e4x6f3fX12/1oA0NK/as+ButahbaVpnjO3ub+8cpbwLbXGZGVGcgHawGFUnk/nn5QD6IRldEdTlXVXU+quoZT26gg9PyoAdQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFA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+KC3eU2tpPrdzLGXuHVdrT6ruOPQHIyaAPwDP/Bot4dYALr9yv8AeP2fS/vHtxP6Ed+3fJoAT/iEU8P4/wCRhuOvXyNM49v9d/7N+A60AH/EInoB6eIbk/8Abvpv/wAfoAlj/wCDRjQI5Aw1654U9INLPPbP71Of84AOaAP6A/8Agkd/wTK1/wD4JzeHvFHg8eIr3U/D2stpptrWf7IsVsLNtXlby1t3/jl1EMxLdRkKpDbgD9s6ACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//R/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAJBt2jPJGeO/X/AD1/DrQBH1cdl5/rgd8fn+fFAEhA5+Yf5/H/AB+goAMDH3h7+/pnnt+P0HFABgf38j09R6ffH8vyoAaMZx0XJPJ9/wAeefX86AH4T1H50AGE9R+dAEZ6n0zQAlABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAf5/z0/n+VACMTj5RjPBxkcevLH+f4HIoAci4UZbB6nPr6/e/wAPwoAeAOcsCD+HPr1P8vxOaADA7Nj/AD/vL/n0/iAFYgKcHJOO/X+fYevtzQA3AAVcjgEZ7f8A1v6/hQAygAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//S/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//0/78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9T+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//V/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//1v78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9f+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//Q/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//0f78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9L+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//T/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//1P78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9X+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//W/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//1/78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9D+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//R/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//0v78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9P+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//U/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//1f78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9b+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//X/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//0P78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9H+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//S/vwoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgD//0/78KACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoA//9T+/CgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKACgAoAKAP//Z" alt="Adem Settings DZ">
+‏        </div>
+‏        <h1 class="title">🎮 Adem_Settings_DZ</h1>
+‏        <p class="subtitle">إعدادات فري فاير • Filza • Esign • King Store</p>
+‏    </div>
 
-        .step-close {
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            margin-top: 12px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            text-decoration: underline;
-        }
+‏    <div class="ad-banner" onclick="window.open('https://omg10.com/4/11583688','_blank')">
+        🔥 سيرفر التحميل السريع - اضغط هنا
+‏    </div>
 
-        /* ===== روابط التواصل ===== */
-        .social-row {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-        }
-
-        .social-row a {
-            background: var(--card-bg);
-            padding: 8px 14px;
-            border-radius: 12px;
-            border: 1px solid var(--card-border);
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: 0.2s;
-        }
-
-        .social-row a:hover {
-            border-color: var(--accent-blue);
-            background: var(--card-hover);
-        }
-
-        /* ===== قسم الإعدادات ===== */
-        .section-block {
-            width: 100%;
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 14px;
-            margin-top: 8px;
-        }
-
-        .section-header {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--accent-blue);
-            margin-bottom: 10px;
-            border-bottom: 1px solid var(--card-border);
-            padding-bottom: 6px;
-        }
-
-        .table-custom {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.8rem;
-        }
-
-        .table-custom td {
-            padding: 6px 4px;
-            border-bottom: 1px solid #162236;
-        }
-
-        code {
-            background-color: #080d17;
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: var(--accent-blue);
-            font-family: monospace;
-            direction: ltr;
-            display: inline-block;
-            font-size: 0.7rem;
-        }
-
-        /* ===== استجابة ===== */
-        @media (max-width: 400px) {
-            .app-card { padding: 8px 10px; gap: 8px; flex-wrap: wrap; }
-            .app-icon { width: 38px; height: 38px; }
-            .app-icon svg { width: 22px; height: 22px; }
-            .app-title { font-size: 0.78rem; }
-            .nav-button { padding: 11px 14px; }
-            .btn-content { font-size: 0.9rem; gap: 8px; }
-            .icon-box { width: 32px; height: 32px; font-size: 0.85rem; }
-            .step-box { padding: 18px; }
-        }
-    </style>
-</head>
-<body>
-
-<!-- ===== نافذة التوجيه المبسطة ===== -->
-<div class="step-modal" id="stepModal">
-    <div class="step-box">
-        <h3 id="modalTitle">⏳ جارٍ تجهيز التحميل</h3>
-        <p id="modalDesc">سيتم فتح الإعلان ورابط التحميل معاً</p>
-        <button class="step-btn" id="modalActionBtn" onclick="processDownload()">⬇️ متابعة التحميل</button>
-        <button class="step-close" onclick="closeModal()">إلغاء</button>
-    </div>
-</div>
-
-<!-- ===== المحتوى الرئيسي ===== -->
-<div class="main-container">
-
-    <div class="header">
-        <div class="logo-box">
-            <div class="logo-fallback">LA</div>
-            <img src="https://i.ibb.co/bjbknNxL/IMG-3210.jpg" alt="Adem Settings DZ" onerror="this.style.display='none';">
-        </div>
-        <h1 class="title">🎮 Adem_Settings_DZ</h1>
-        <p class="subtitle">إعدادات فري فاير • Filza • Esign • King Store</p>
-    </div>
-
-    <!-- ===== الإعلانات الداخلية ===== -->
-    <div class="ad-banner" onclick="openAdDirect('https://omg10.com/4/11583688')">
-        🔥 <a href="#" onclick="event.preventDefault(); openAdDirect('https://omg10.com/4/11583688')">سيرفر التحميل السريع - اضغط هنا</a>
-    </div>
-
-    <div class="links-stack">
+‏    <div class="links-stack">
 
         <!-- ===== 1. تطبيقات Filza ===== -->
-        <div class="nav-button" onclick="toggleMenu('apps-dropdown', this)">
-            <div class="btn-content"><div class="icon-box">📱</div><span>تطبيقات Filza (8 نسخ)</span></div>
-            <span class="arrow">←</span>
-        </div>
+‏        <div class="nav-button" onclick="toggleMenu('apps-dropdown', this)">
+‏            <div class="btn-content"><div class="icon-box">📱</div><span>تطبيقات Filza (7 نسخ)</span></div>
+‏            <span class="arrow">←</span>
+‏        </div>
 
-        <div class="sub-menu" id="apps-dropdown">
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/2jssxjhxf80zai1/Filza-iOS-26-27.ipa/file')">
-                <div class="app-icon"><svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg></div>
-                <div class="app-details"><span class="app-title">Filza iOS 26-27</span><div class="app-meta"><span>📦 IPA</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/91j014gmw3zez56/FilzaJailed.ipa/file')">
-                <div class="app-icon icon-red"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg></div>
-                <div class="app-details"><span class="app-title">Filza Jailed</span><div class="app-meta"><span>📦 IPA</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/o2rr473iu06ocxs/Filza.ipa/file')">
-                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z"/></svg></div>
-                <div class="app-details"><span class="app-title">Filza</span><div class="app-meta"><span>📦 IPA</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/qukjj032uo1njxj/Filza_V4.ipa/file')">
-                <div class="app-icon icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8l7.5 14.2H4.5L12 5.8z"/></svg></div>
-                <div class="app-details"><span class="app-title">Filza V4</span><div class="app-meta"><span>📦 IPA</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/kut6mi01lph8rsw/FILZA_SANDBOX_APPLY.dylib/file')">
-                <div class="app-icon icon-gray"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
-                <div class="app-details"><span class="app-title">FILZA SANDBOX APPLY</span><div class="app-meta"><span>📦 dylib</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/jma0r53oqhn9l09/Filza_Mod_4.0_1786666141.ipa/file')">
-                <div class="app-icon"><svg viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg></div>
-                <div class="app-details"><span class="app-title">Filza Mod 4.0</span><div class="app-meta"><span>📦 IPA</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/swp72v19x0garbn/FilzaSlop-v1.0.1-unsigned.ipa/file')">
-                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z"/></svg></div>
-                <div class="app-details"><span class="app-title">FilzaSlop v1.0.1</span><div class="app-meta"><span>📦 IPA</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/jma0r53oqhn9l09/Filza_Mod_4.0_1786666141.ipa/file')">
-                <div class="app-icon icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8l7.5 14.2H4.5L12 5.8z"/></svg></div>
-                <div class="app-details"><span class="app-title">Filza Mod 4.0 (نسخة 2)</span><div class="app-meta"><span>📦 IPA</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-        </div>
+‏        <div class="sub-menu" id="apps-dropdown">
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/2jssxjhxf80zai1/Filza-iOS-26-27.ipa/file','_blank')">
+‏                <div class="app-icon"><svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">Filza iOS 26-27</span><div class="app-meta"><span>📦 IPA</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/91j014gmw3zez56/FilzaJailed.ipa/file','_blank')">
+‏                <div class="app-icon icon-red"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">Filza Jailed</span><div class="app-meta"><span>📦 IPA</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/o2rr473iu06ocxs/Filza.ipa/file','_blank')">
+‏                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">Filza</span><div class="app-meta"><span>📦 IPA</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/qukjj032uo1njxj/Filza_V4.ipa/file','_blank')">
+‏                <div class="app-icon icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8l7.5 14.2H4.5L12 5.8z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">Filza V4</span><div class="app-meta"><span>📦 IPA</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/kut6mi01lph8rsw/FILZA_SANDBOX_APPLY.dylib/file','_blank')">
+‏                <div class="app-icon icon-gray"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">FILZA SANDBOX APPLY</span><div class="app-meta"><span>📦 dylib</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/jma0r53oqhn9l09/Filza_Mod_4.0_1786666141.ipa/file','_blank')">
+‏                <div class="app-icon"><svg viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">Filza Mod 4.0</span><div class="app-meta"><span>📦 IPA</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/swp72v19x0garbn/FilzaSlop-v1.0.1-unsigned.ipa/file','_blank')">
+‏                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">FilzaSlop v1.0.1</span><div class="app-meta"><span>📦 IPA</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏        </div>
 
-        <!-- ===== إعلان وسطي ===== -->
-        <div class="ad-banner" onclick="openAdDirect('https://omg10.com/4/11583683')">
-            ⚡ <a href="#" onclick="event.preventDefault(); openAdDirect('https://omg10.com/4/11583683')">تحديثات إضافية - روابط سريعة</a>
-        </div>
+‏        <div class="ad-banner" onclick="window.open('https://omg10.com/4/11583683','_blank')">
+            ⚡ تحديثات إضافية - روابط سريعة
+‏        </div>
 
-        <!-- ===== 2. السكريبتات وملفات OBB (16 ملف) ===== -->
-        <div class="nav-button" onclick="toggleMenu('scripts-dropdown', this)">
-            <div class="btn-content"><div class="icon-box">⚡</div><span>السكريبتات وملفات OBB (16 ملف)</span></div>
-            <span class="arrow">←</span>
-        </div>
+        <!-- ===== 2. السكريبتات وملفات OBB ===== -->
+‏        <div class="nav-button" onclick="toggleMenu('scripts-dropdown', this)">
+‏            <div class="btn-content"><div class="icon-box">⚡</div><span>السكريبتات وملفات OBB (16 ملف)</span></div>
+‏            <span class="arrow">←</span>
+‏        </div>
 
-        <div class="sub-menu" id="scripts-dropdown">
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/u2yqg6nvmklbk2y/كشف+إمكان++AIM+BOT+85%+.zip/file')">
-                <div class="app-icon icon-red"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
-                <div class="app-details"><span class="app-title">AIM BOT 85%</span><div class="app-meta"><span>📦 Zip</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/s4w64kaz4ve69l3/VIP+⚙️🪄.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file')">
-                <div class="app-icon icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8l7.5 14.2H4.5L12 5.8z"/></svg></div>
-                <div class="app-details"><span class="app-title">VIP Settings</span><div class="app-meta"><span>📦 Config</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/7e0mjrw9w6wdcvs/cache_res+2.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file')">
-                <div class="app-icon icon-gray"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
-                <div class="app-details"><span class="app-title">Cache Res V2</span><div class="app-meta"><span>📦 Cache</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/keom86elamj5ezd/Adem.Zit.VV.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file')">
-                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
-                <div class="app-details"><span class="app-title">Adem Zit VV</span><div class="app-meta"><span>📦 Config</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/ic2ker2yxdpoaiw/cache_res.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file')">
-                <div class="app-icon icon-red"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg></div>
-                <div class="app-details"><span class="app-title">Cache Res V1</span><div class="app-meta"><span>📦 Cache</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/3cukb3p6mita611/cache_res+3.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file')">
-                <div class="app-icon icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8l7.5 14.2H4.5L12 5.8z"/></svg></div>
-                <div class="app-details"><span class="app-title">Cache Res V3</span><div class="app-meta"><span>📦 Cache</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/23xs8xgra00w07x/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D+2/file')">
-                <div class="app-icon icon-gray"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
-                <div class="app-details"><span class="app-title">Cache Res ODVY+2</span><div class="app-meta"><span>📦 Cache</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/c9uw9o8igl0ox2j/3D.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D/file')">
-                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z"/></svg></div>
-                <div class="app-details"><span class="app-title">3D Config</span><div class="app-meta"><span>📦 Config</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/c4t52290jp0r6yo/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D/file')">
-                <div class="app-icon icon-red"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
-                <div class="app-details"><span class="app-title">Cache Res ODVY</span><div class="app-meta"><span>📦 Cache</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/n2c3g52hqtruy3z/Aimlock+v10.mobileconfig/file')">
-                <div class="app-icon icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8l7.5 14.2H4.5L12 5.8z"/></svg></div>
-                <div class="app-details"><span class="app-title">Aimlock v10</span><div class="app-meta"><span>📦 mobileconfig</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/a315csklqijsk9s/VIP.+🗿🪄assetindexer.PENojQAQf9a1l6Dzjs0n1Z3rtVU~3D/file')">
-                <div class="app-icon icon-gray"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
-                <div class="app-details"><span class="app-title">VIP Assetindexer</span><div class="app-meta"><span>📦 Config</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/33l4v8ii1vd6c3d/assetindexer+2.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file')">
-                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z"/></svg></div>
-                <div class="app-details"><span class="app-title">Assetindexer H5ak 2</span><div class="app-meta"><span>📦 Config</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/zlxp3tmme9lpt28/assetindexer.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file')">
-                <div class="app-icon icon-red"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg></div>
-                <div class="app-details"><span class="app-title">Assetindexer H5ak</span><div class="app-meta"><span>📦 Config</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/ynwgltfbf3rmuq3/assetindexer+3.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file')">
-                <div class="app-icon icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8l7.5 14.2H4.5L12 5.8z"/></svg></div>
-                <div class="app-details"><span class="app-title">Assetindexer H5ak 3</span><div class="app-meta"><span>📦 Config</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/eflddee5yabiozt/Aimlock+v10.zip/file')">
-                <div class="app-icon icon-gray"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
-                <div class="app-details"><span class="app-title">Aimlock v10 Zip</span><div class="app-meta"><span>📦 Zip</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-            <div class="app-card" onclick="startDownload('https://www.mediafire.com/file/62sqlv4i75371lt/AIMBOT+CUELLO.confg.txt/file')">
-                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z"/></svg></div>
-                <div class="app-details"><span class="app-title">AIMBOT CUELLO</span><div class="app-meta"><span>📦 Config</span></div></div>
-                <div class="download-btn">تحميل</div>
-            </div>
-        </div>
+‏        <div class="sub-menu" id="scripts-dropdown">
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/u2yqg6nvmklbk2y/كشف+إمكان++AIM+BOT+85%+.zip/file','_blank')">
+‏                <div class="app-icon icon-red"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">AIM BOT 85%</span><div class="app-meta"><span>📦 Zip</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/s4w64kaz4ve69l3/VIP+⚙️🪄.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file','_blank')">
+‏                <div class="app-icon icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8l7.5 14.2H4.5L12 5.8z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">VIP Settings</span><div class="app-meta"><span>📦 Config</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/7e0mjrw9w6wdcvs/cache_res+2.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file','_blank')">
+‏                <div class="app-icon icon-gray"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">Cache Res V2</span><div class="app-meta"><span>📦 Cache</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/keom86elamj5ezd/Adem.Zit.VV.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file','_blank')">
+‏                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">Adem Zit VV</span><div class="app-meta"><span>📦 Config</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/ic2ker2yxdpoaiw/cache_res.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file','_blank')">
+‏                <div class="app-icon icon-red"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">Cache Res V1</span><div class="app-meta"><span>📦 Cache</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/3cukb3p6mita611/cache_res+3.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file','_blank')">
+‏                <div class="app-icon icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8l7.5 14.2H4.5L12 5.8z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">Cache Res V3</span><div class="app-meta"><span>📦 Cache</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/23xs8xgra00w07x/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D+2/file','_blank')">
+‏                <div class="app-icon icon-gray"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">Cache Res ODVY+2</span><div class="app-meta"><span>📦 Cache</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/c9uw9o8igl0ox2j/3D.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D/file','_blank')">
+‏                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">3D Config</span><div class="app-meta"><span>📦 Config</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/c4t52290jp0r6yo/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D/file','_blank')">
+‏                <div class="app-icon icon-red"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">Cache Res ODVY</span><div class="app-meta"><span>📦 Cache</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/n2c3g52hqtruy3z/Aimlock+v10.mobileconfig/file','_blank')">
+‏                <div class="app-icon icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8l7.5 14.2H4.5L12 5.8z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">Aimlock v10</span><div class="app-meta"><span>📦 mobileconfig</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/a315csklqijsk9s/VIP.+🗿🪄assetindexer.PENojQAQf9a1l6Dzjs0n1Z3rtVU~3D/file','_blank')">
+‏                <div class="app-icon icon-gray"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">VIP Assetindexer</span><div class="app-meta"><span>📦 Config</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/33l4v8ii1vd6c3d/assetindexer+2.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file','_blank')">
+‏                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">Assetindexer H5ak 2</span><div class="app-meta"><span>📦 Config</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/zlxp3tmme9lpt28/assetindexer.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file','_blank')">
+‏                <div class="app-icon icon-red"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">Assetindexer H5ak</span><div class="app-meta"><span>📦 Config</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/ynwgltfbf3rmuq3/assetindexer+3.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file','_blank')">
+‏                <div class="app-icon icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8l7.5 14.2H4.5L12 5.8z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">Assetindexer H5ak 3</span><div class="app-meta"><span>📦 Config</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/eflddee5yabiozt/Aimlock+v10.zip/file','_blank')">
+‏                <div class="app-icon icon-gray"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">Aimlock v10 Zip</span><div class="app-meta"><span>📦 Zip</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏            <div class="app-card" onclick="window.open('https://www.mediafire.com/file/62sqlv4i75371lt/AIMBOT+CUELLO.confg.txt/file','_blank')">
+‏                <div class="app-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z"/></svg></div>
+‏                <div class="app-details"><span class="app-title">AIMBOT CUELLO</span><div class="app-meta"><span>📦 Config</span></div></div>
+‏                <div class="download-btn">تحميل</div>
+‏            </div>
+‏        </div>
 
-        <!-- ===== 3. الروابط الخارجية: Esign - King Store - TrollStore ===== -->
-        <a href="https://esign.xyz" target="_blank" rel="noopener noreferrer" class="nav-button link-esign">
-            <div class="btn-content">
-                <div class="icon-box">⚡</div>
-                <span>تحميل Esign <span class="badge-text">(توقيع التطبيقات)</span></span>
-            </div>
-            <span class="arrow">→</span>
-        </a>
-
-        <a href="https://khoindvn.io.vn" target="_blank" rel="noopener noreferrer" class="nav-button link-king">
-            <div class="btn-content">
-                <div class="icon-box">👑</div>
-                <span>ESign & KSign <span class="badge-text">(شهادات رسمية - 50k)</span></span>
-            </div>
-            <span class="arrow">→</span>
-        </a>
-
-        <a href="https://trollstore.app" target="_blank" rel="noopener noreferrer" class="nav-button link-troll">
-            <div class="btn-content">
-                <div class="icon-box">🧩</div>
-                <span>TrollStore <span class="badge-text">(تثبيت IPA)</span></span>
-            </div>
-            <span class="arrow">→</span>
-        </a>
+        <!-- ===== 3. متجر التطبيقات الرسمي (Esign / KSign / TrollStore) ===== -->
+‏        <a href="https://khoindvn.io.vn/" target="_blank" rel="noopener noreferrer" class="nav-button link-store">
+‏            <div class="btn-content">
+‏                <div class="icon-box">👑</div>
+‏                <span>متجر التطبيقات <span class="badge-text">(Esign • KSign • TrollStore)</span></span>
+‏            </div>
+‏            <span class="arrow">→</span>
+‏        </a>
 
         <!-- ===== 4. منصات التواصل ===== -->
-        <a href="https://t.me/FreeFire_Settings_DZ" target="_blank" rel="noopener noreferrer" class="nav-button">
-            <div class="btn-content"><div class="icon-box">✈</div><span>قناة التيليجرام</span></div>
-            <span class="arrow">→</span>
-        </a>
+‏        <a href="https://t.me/FreeFire_Settings_DZ" target="_blank" rel="noopener noreferrer" class="nav-button">
+‏            <div class="btn-content"><div class="icon-box">✈</div><span>قناة التيليجرام</span></div>
+‏            <span class="arrow">→</span>
+‏        </a>
 
-        <a href="https://youtube.com/@adem_ar28?si=4OVhIL2CdXbFezeE" target="_blank" rel="noopener noreferrer" class="nav-button">
-            <div class="btn-content"><div class="icon-box">▶️</div><span>قناة اليوتيوب</span></div>
-            <span class="arrow">→</span>
-        </a>
+‏        <a href="https://youtube.com/@adem_ar28?si=4OVhIL2CdXbFezeE" target="_blank" rel="noopener noreferrer" class="nav-button">
+‏            <div class="btn-content"><div class="icon-box">▶️</div><span>قناة اليوتيوب</span></div>
+‏            <span class="arrow">→</span>
+‏        </a>
 
-        <a href="https://www.instagram.com/i7_xx_x?igsh=c2Rlb2p0Mzg3ejBp&utm_source=qr" target="_blank" rel="noopener noreferrer" class="nav-button">
-            <div class="btn-content"><div class="icon-box">📸</div><span>حساب الانستغرام</span></div>
-            <span class="arrow">→</span>
-        </a>
+‏        <a href="https://www.instagram.com/i7_xx_x?igsh=c2Rlb2p0Mzg3ejBp&utm_source=qr" target="_blank" rel="noopener noreferrer" class="nav-button">
+‏            <div class="btn-content"><div class="icon-box">📸</div><span>حساب الانستغرام</span></div>
+‏            <span class="arrow">→</span>
+‏        </a>
 
         <!-- ===== 5. قسم الإعدادات ===== -->
-        <div class="section-block">
-            <div class="section-header">🎮 إعدادات وتعديلات اللعبة</div>
-            <table class="table-custom">
-                <tr><td>No Smoke</td><td><code>FX.MaxCPUParticles...=1</code></td></tr>
-                <tr><td>No Water</td><td><code>water.heightScale=0</code></td></tr>
-                <tr><td>Aimbot</td><td><code>SystemAimAssistSettings</code></td></tr>
-            </table>
-        </div>
+‏        <div class="section-block">
+‏            <div class="section-header">🎮 إعدادات وتعديلات اللعبة</div>
+‏            <table class="table-custom">
+‏                <tr><td>No Smoke</td><td><code>FX.MaxCPUParticles...=1</code></td></tr>
+‏                <tr><td>No Water</td><td><code>water.heightScale=0</code></td></tr>
+‏                <tr><td>Aimbot</td><td><code>SystemAimAssistSettings</code></td></tr>
+‏            </table>
+‏        </div>
 
-    </div>
+‏    </div>
 
-    <!-- ===== روابط التواصل الإضافية ===== -->
-    <div class="social-row">
-        <a href="https://t.me/FreeFire_Settings_DZ" target="_blank">✈️ تيليجرام</a>
-        <a href="https://youtube.com/@adem_ar28" target="_blank">▶️ يوتيوب</a>
-        <a href="https://www.instagram.com/i7_xx_x" target="_blank">📸 انستغرام</a>
-    </div>
+‏    <div class="social-row">
+‏        <a href="https://t.me/FreeFire_Settings_DZ" target="_blank">✈️ تيليجرام</a>
+‏        <a href="https://youtube.com/@adem_ar28" target="_blank">▶️ يوتيوب</a>
+‏        <a href="https://www.instagram.com/i7_xx_x" target="_blank">📸 انستغرام</a>
+‏    </div>
 
-</div>
+‏    <p class="footer-note">Adem_Settings_DZ — إعدادات فري فاير، تطبيقات Filza، Esign، King Store، سكريبتات وملفات OBB</p>
 
-<script>
+‏</div>
+
+‏<script>
     // ============================================================
-    // 1. إعلانات Monetag
+    // 1. القوائم المنسدلة
     // ============================================================
-    const adPool = [
-        "https://omg10.com/4/11583670",
-        "https://omg10.com/4/11582772",
-        "https://omg10.com/4/11583690",
-        "https://omg10.com/4/11583686",
-        "https://omg10.com/4/11583683",
-        "https://omg10.com/4/11583677",
-        "https://omg10.com/4/11583681",
-        "https://omg10.com/4/11583688",
-        "https://omg10.com/4/11579405",
-        "https://omg10.com/4/11578028"
-    ];
-
-    let recentAds = [];
-    let targetUrl = "";
-    let isProcessing = false;
-
-    // اختيار إعلان عشوائي (منع التكرار)
-    function getRandomAd() {
-        let available = adPool.filter(ad => !recentAds.includes(ad));
-        if (available.length === 0) {
-            recentAds = [];
-            available = adPool;
-        }
-        let selected = available[Math.floor(Math.random() * available.length)];
-        recentAds.push(selected);
-        if (recentAds.length > 3) recentAds.shift();
-        return selected;
-    }
-
-    // ============================================================
-    // 2. حماية ضد النوافذ العشوائية
-    // ============================================================
-    document.addEventListener('click', function(e) {
-        e.stopPropagation();
-    }, true);
-
-    // التحكم بفتح النوافذ
-    const originalOpen = window.open;
-    window.open = function(url, name, features) {
-        if (url && (url.includes('omg10.com') || url.includes('mediafire.com'))) {
-            return originalOpen(url, name, features);
-        }
-        console.warn('⛔ تم منع فتح نافذة غير مرغوب فيها:', url);
-        return null;
-    };
-
-    // ============================================================
-    // 3. القوائم المنسدلة
-    // ============================================================
-    function toggleMenu(id, element) {
-        const menu = document.getElementById(id);
-        document.querySelectorAll('.sub-menu').forEach(m => {
-            if (m.id !== id) {
-                m.classList.remove('open');
-                if (m.previousElementSibling) m.previousElementSibling.classList.remove('open');
+‏    function toggleMenu(id, element) {
+‏        const menu = document.getElementById(id);
+        // إغلاق جميع القوائم الأخرى
+‏        document.querySelectorAll('.sub-menu').forEach(m => {
+‏            if (m.id !== id) {
+‏                m.classList.remove('open');
+‏                if (m.previousElementSibling) m.previousElementSibling.classList.remove('open');
             }
         });
-        menu.classList.toggle('open');
-        element.classList.toggle('open');
+        // تبديل القائمة المطلوبة
+‏        menu.classList.toggle('open');
+‏        element.classList.toggle('open');
     }
 
-    // ============================================================
-    // 4. نظام التحميل (خطوة واحدة)
-    // ============================================================
-    function startDownload(url) {
-        if (isProcessing) return;
-        isProcessing = true;
+‏    console.log('✅ Adem_Settings_DZ - جاهز للعمل!');
+‏    console.log('📦 إجمالي الروابط: 7 Filza + 16 سكريبتات');
+‏</script>
 
-        targetUrl = url;
-        document.getElementById('modalTitle').innerHTML = '⏳ جارٍ تجهيز التحميل';
-        document.getElementById('modalDesc').innerHTML = 'سيتم فتح الإعلان ورابط التحميل معاً';
-        document.getElementById('stepModal').classList.add('active');
-
-        setTimeout(() => {
-            isProcessing = false;
-        }, 3000);
-    }
-
-    function processDownload() {
-        if (targetUrl) {
-            // فتح إعلان
-            let ad = getRandomAd();
-            if (ad) window.open(ad, '_blank');
-
-            // فتح رابط التحميل
-            window.open(targetUrl, '_blank');
-
-            closeModal();
-        }
-    }
-
-    function closeModal() {
-        document.getElementById('stepModal').classList.remove('active');
-        targetUrl = "";
-        isProcessing = false;
-    }
-
-    // إغلاق النافذة بالضغط خارجها
-    document.getElementById('stepModal').addEventListener('click', function(e) {
-        if (e.target === this) closeModal();
-    });
-
-    // ============================================================
-    // 5. فتح الإعلانات الداخلية مباشرة
-    // ============================================================
-    function openAdDirect(url) {
-        if (url) {
-            window.open(url, '_blank');
-        }
-    }
-
-    console.log('✅ Adem_Settings_DZ - جاهز للنشر!');
-    console.log('📦 إجمالي الروابط: 8 Filza + 16 سكريبتات + 3 روابط خارجية');
-    console.log('🔒 الحماية ضد الإعلانات المزعجة مفعلة');
-</script>
-
-</body>
-</html>
+‏</body>
+‏</html>
