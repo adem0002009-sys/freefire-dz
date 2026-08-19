@@ -64,7 +64,7 @@
             gap: 16px;
         }
 
-        /* ===== TOP BAR (Lang + Theme + Share) ===== */
+        /* ===== TOP BAR ===== */
         .top-bar {
             display: flex;
             flex-wrap: wrap;
@@ -242,7 +242,7 @@
             display: flex;
         }
 
-        /* ===== APP CARD (for items) ===== */
+        /* ===== APP CARD ===== */
         .app-card {
             background: var(--bg-card);
             border: 1px solid var(--border-card);
@@ -327,7 +327,7 @@
             color: #fff;
         }
 
-        /* ===== SHORTCUT GRID (بانل التسهيلات) ===== */
+        /* ===== SHORTCUT GRID ===== */
         .shortcut-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -379,7 +379,7 @@
             gap: 10px;
         }
 
-        /* ===== SECTION BLOCK (جدول الإعدادات) ===== */
+        /* ===== SECTION BLOCK ===== */
         .section-block {
             width: 100%;
             background: var(--bg-card);
@@ -514,28 +514,22 @@
         <span class="left"><span class="icon-box">📱</span> <span data-i18n="filzaTitle">تطبيقات Filza (7 نسخ)</span></span>
         <span class="arrow">←</span>
     </div>
-    <div class="sub-menu" id="filzaMenu">
-        <!-- سيتم تعبئتها بواسطة JavaScript -->
-    </div>
+    <div class="sub-menu" id="filzaMenu"></div>
 
     <!-- ===== SCRIPTS SECTION ===== -->
     <div class="nav-btn" onclick="toggleMenu('scriptsMenu', this)">
         <span class="left"><span class="icon-box">⚡</span> <span data-i18n="scriptsTitle">السكريبتات والملفات (16 ملفاً)</span></span>
         <span class="arrow">←</span>
     </div>
-    <div class="sub-menu" id="scriptsMenu">
-        <!-- سيتم تعبئتها بواسطة JavaScript -->
-    </div>
+    <div class="sub-menu" id="scriptsMenu"></div>
 
-    <!-- ===== SHORTCUTS PANEL (بانل التسهيلات) ===== -->
+    <!-- ===== SHORTCUTS PANEL ===== -->
     <div class="nav-btn" onclick="toggleMenu('shortcutsMenu', this)">
         <span class="left"><span class="icon-box">🛠️</span> <span data-i18n="shortcutsTitle">بانل تسهيلات الاستخدام</span></span>
         <span class="arrow">←</span>
     </div>
     <div class="sub-menu" id="shortcutsMenu">
-        <div class="shortcut-grid" id="shortcutGrid">
-            <!-- سيتم تعبئتها بواسطة JavaScript -->
-        </div>
+        <div class="shortcut-grid" id="shortcutGrid"></div>
     </div>
 
     <!-- ===== SOCIAL ===== -->
@@ -571,7 +565,7 @@
     //  DATA
     // ============================================================
 
-    // -------- قائمة روابط الإعلانات (10 روابط) --------
+    // قائمة روابط الإعلانات (10 روابط)
     const adLinks = [
         'https://omg10.com/4/11583670',
         'https://omg10.com/4/11582772',
@@ -585,10 +579,14 @@
         'https://omg10.com/4/11578028'
     ];
 
-    // -------- متغير لتتبع ترتيب الإعلانات (يبدأ من 0) --------
+    // مؤشر دوري للإعلانات
     let adIndex = 0;
 
-    // -------- Filza items (7) --------
+    // ===== تخزين حالة النقرات لكل ملف =====
+    // المفتاح: اسم الملف (url) ، القيمة: true/false (تمت النقرة الأولى أم لا)
+    const clickState = new Map();
+
+    // ===== البيانات =====
     const filzaItems = [
         { name: 'Filza iOS 26-27', url: 'https://www.mediafire.com/file/2jssxjhxf80zai1/Filza-iOS-26-27.ipa/file', icon: '📁', meta: 'IPA • رئيسي' },
         { name: 'Filza Jailed', url: 'https://www.mediafire.com/file/91j014gmw3zez56/FilzaJailed.ipa/file', icon: '🔒', meta: 'IPA • آمن' },
@@ -599,7 +597,6 @@
         { name: 'Filza Mod 4.0', url: 'https://www.mediafire.com/file/jma0r53oqhn9l09/Filza_Mod_4.0_1786666141.ipa/file', icon: '⭐', meta: 'IPA • معدل', badge: 'حصري 🔥' }
     ];
 
-    // -------- Scripts items (16) --------
     const scriptsItems = [
         { name: 'كشف أماكن AIM BOT 85%', url: 'https://www.mediafire.com/file/u2yqg6nvmklbk2y/%E2%80%8E%D9%83%D8%B4%D9%81+%D8%A7%D9%95%D9%85%D9%83%D8%A7%D9%86++AIM+BOT+85%25+%E2%81%A9.zip/file', icon: '🎯', meta: 'Zip • VIP' },
         { name: 'VIP ⚙️🪄', url: 'https://www.mediafire.com/file/s4w64kaz4ve69l3/VIP+%E2%9A%99%EF%B8%8F%F0%9F%AA%84.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '👑', meta: 'Config • VIP' },
@@ -619,7 +616,6 @@
         { name: 'AIMBOT CUELLO.confg', url: 'https://www.mediafire.com/file/62sqlv4i75371lt/AIMBOT+CUELLO.confg.txt/file', icon: '🎯', meta: 'Config • نصي', badge: 'حصري 🔥' }
     ];
 
-    // -------- Shortcuts (5 items) --------
     const shortcuts = [
         { name: 'Aimbot Headtrick 78%', url: 'https://www.icloud.com/shortcuts/da0a85deb2054496995c6772b06b973c', icon: '🎯' },
         { name: 'AimxDrag 90% Hs', url: 'https://www.icloud.com/shortcuts/8a899ee7ed2140e89889515462e09c91', icon: '🔥' },
@@ -642,7 +638,7 @@
         return 80000 + Math.floor(Math.random() * 870000);
     }
 
-    function renderItems(containerId, items, badgeMap) {
+    function renderItems(containerId, items) {
         const container = document.getElementById(containerId);
         if (!container) return;
         container.innerHTML = '';
@@ -653,6 +649,7 @@
             const card = document.createElement('div');
             card.className = 'app-card';
             card.setAttribute('data-name', item.name.toLowerCase());
+            card.setAttribute('data-url', item.url);
             card.innerHTML = `
                 <div class="app-icon">${item.icon}</div>
                 <div class="app-info">
@@ -666,7 +663,8 @@
             `;
             card.addEventListener('click', function(e) {
                 e.stopPropagation();
-                prepareDownload(item.url);
+                const url = this.getAttribute('data-url');
+                handleDownload(url);
             });
             container.appendChild(card);
         });
@@ -688,6 +686,38 @@
             `;
             grid.appendChild(div);
         });
+    }
+
+    // ============================================================
+    //  CORE DOWNLOAD LOGIC (الآلية الجديدة)
+    // ============================================================
+
+    function handleDownload(mediafireUrl) {
+        // 1. التحقق من حالة هذا الملف
+        const isFirstClick = clickState.get(mediafireUrl) || false;
+
+        if (!isFirstClick) {
+            // ===== النقرة الأولى: إعلان فقط =====
+            const ad = adLinks[adIndex % adLinks.length];
+            window.open(ad, '_blank');
+            adIndex = (adIndex + 1) % adLinks.length;
+
+            // تسجيل أن النقرة الأولى تمت لهذا الملف
+            clickState.set(mediafireUrl, true);
+        } else {
+            // ===== النقرة الثانية: إعلان + التوجيه إلى MediaFire =====
+            const ad = adLinks[adIndex % adLinks.length];
+            window.open(ad, '_blank');
+            adIndex = (adIndex + 1) % adLinks.length;
+
+            // التوجيه إلى MediaFire بعد 800ms لضمان فتح الإعلان أولاً
+            setTimeout(() => {
+                window.location.href = mediafireUrl;
+            }, 800);
+
+            // إعادة تعيين حالة الملف بعد التحميل
+            clickState.set(mediafireUrl, false);
+        }
     }
 
     // ============================================================
@@ -720,41 +750,6 @@
             menu.classList.add('open');
             if (btn) btn.classList.add('open');
         }
-    }
-
-    // ============================================================
-    //  DOWNLOAD SYSTEM (بدون مودال)
-    // ============================================================
-
-    /**
-     * الدالة الرئيسية للتحميل
-     * - تأخذ رابطين متتاليين من مصفوفة الإعلانات (مع إعادة التدوير)
-     * - تفتح الإعلان الأول بعد 100ms
-     * - تفتح الإعلان الثاني بعد 800ms
-     * - تفتح رابط MediaFire بعد 1300ms
-     */
-    function prepareDownload(mediafireUrl) {
-        // 1. الحصول على رابطين متتاليين
-        const ad1 = adLinks[adIndex % adLinks.length];
-        const ad2 = adLinks[(adIndex + 1) % adLinks.length];
-
-        // 2. تحديث المؤشر بمقدار 2 للدورة التالية
-        adIndex = (adIndex + 2) % adLinks.length;
-
-        // 3. فتح الإعلان الأول (بعد تأخير بسيط جداً)
-        setTimeout(() => {
-            window.open(ad1, '_blank');
-        }, 100);
-
-        // 4. فتح الإعلان الثاني (بعد 800ms)
-        setTimeout(() => {
-            window.open(ad2, '_blank');
-        }, 800);
-
-        // 5. فتح رابط MediaFire (بعد 1300ms)
-        setTimeout(() => {
-            window.location.href = mediafireUrl;
-        }, 1300);
     }
 
     // ============================================================
@@ -912,10 +907,8 @@
         renderShortcuts();
         applyLanguage();
 
-        // بحث لحظي
         document.getElementById('searchInput').addEventListener('input', filterItems);
 
-        // إغلاق القوائم عند النقر خارجها
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.nav-btn') && !e.target.closest('.sub-menu')) {
                 document.querySelectorAll('.sub-menu').forEach(m => m.classList.remove('open'));
