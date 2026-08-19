@@ -444,68 +444,6 @@
             display: flex;
         }
 
-        /* ===== MODAL ===== */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .modal.active {
-            display: flex;
-        }
-        .modal-box {
-            background: var(--bg-card);
-            border: 2px solid var(--green-accent);
-            border-radius: 24px;
-            padding: 28px 24px;
-            max-width: 380px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-        }
-        .modal-box h3 {
-            color: var(--green-accent);
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-        }
-        .modal-box p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
-        .modal-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, var(--green-accent), #059669);
-            border: none;
-            border-radius: 14px;
-            color: #fff;
-            font-weight: 800;
-            font-size: 1.05rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .modal-btn:hover {
-            opacity: 0.9;
-        }
-        .modal-close {
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            margin-top: 14px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
         /* ===== RESPONSIVE ===== */
         @media (max-width: 420px) {
             .top-bar {
@@ -534,16 +472,6 @@
     </style>
 </head>
 <body>
-
-<!-- ========== MODAL ========== -->
-<div class="modal" id="downloadModal">
-    <div class="modal-box">
-        <h3 id="modalTitle">⚡ جاهز للتحميل</h3>
-        <p id="modalDesc">سيتم فتح الإعلان في تبويب جديد، ثم توجيهك مباشرة إلى ملف التحميل</p>
-        <button class="modal-btn" id="modalConfirmBtn">متابعة</button>
-        <button class="modal-close" id="modalCloseBtn">إلغاء</button>
-    </div>
-</div>
 
 <!-- ========== SCROLL TO TOP ========== -->
 <button id="scrollTopBtn" aria-label="العودة للأعلى">⬆</button>
@@ -643,6 +571,23 @@
     //  DATA
     // ============================================================
 
+    // -------- قائمة روابط الإعلانات (10 روابط) --------
+    const adLinks = [
+        'https://omg10.com/4/11583670',
+        'https://omg10.com/4/11582772',
+        'https://omg10.com/4/11583690',
+        'https://omg10.com/4/11583686',
+        'https://omg10.com/4/11583683',
+        'https://omg10.com/4/11583677',
+        'https://omg10.com/4/11583681',
+        'https://omg10.com/4/11583688',
+        'https://omg10.com/4/11579405',
+        'https://omg10.com/4/11578028'
+    ];
+
+    // -------- متغير لتتبع ترتيب الإعلانات (يبدأ من 0) --------
+    let adIndex = 0;
+
     // -------- Filza items (7) --------
     const filzaItems = [
         { name: 'Filza iOS 26-27', url: 'https://www.mediafire.com/file/2jssxjhxf80zai1/Filza-iOS-26-27.ipa/file', icon: '📁', meta: 'IPA • رئيسي' },
@@ -683,33 +628,17 @@
         { name: '911', url: 'https://www.icloud.com/shortcuts/6be1cc2efe8b44d9b29faf3896028791', icon: '🆘' }
     ];
 
-    // -------- Ad pool (10) --------
-    const adPool = [
-        'https://omg10.com/4/11583670',
-        'https://omg10.com/4/11582772',
-        'https://omg10.com/4/11583690',
-        'https://omg10.com/4/11583686',
-        'https://omg10.com/4/11583683',
-        'https://omg10.com/4/11583677',
-        'https://omg10.com/4/11583681',
-        'https://omg10.com/4/11583688',
-        'https://omg10.com/4/11579405',
-        'https://omg10.com/4/11578028'
-    ];
-
     // ============================================================
     //  STATE
     // ============================================================
     let currentLang = localStorage.getItem('adem_lang') || 'ar';
     let currentTheme = localStorage.getItem('adem_theme') || 'dark';
-    let targetUrl = '';
 
     // ============================================================
     //  RENDER FUNCTIONS
     // ============================================================
 
     function generateRandomCount() {
-        // ثابت لكل اسم ملف عبر hash بسيط
         return 80000 + Math.floor(Math.random() * 870000);
     }
 
@@ -768,12 +697,10 @@
         const query = document.getElementById('searchInput').value.toLowerCase().trim();
         const allCards = document.querySelectorAll('.app-card');
         const allShortcuts = document.querySelectorAll('.shortcut-item');
-        // فلتر البطاقات
         allCards.forEach(card => {
             const name = card.getAttribute('data-name') || '';
             card.style.display = name.includes(query) ? 'flex' : 'none';
         });
-        // فلتر الاختصارات
         allShortcuts.forEach(item => {
             const name = item.querySelector('.shortcut-name')?.textContent?.toLowerCase() || '';
             item.style.display = name.includes(query) ? 'flex' : 'none';
@@ -787,7 +714,6 @@
         const menu = document.getElementById(id);
         if (!menu) return;
         const isOpen = menu.classList.contains('open');
-        // close all
         document.querySelectorAll('.sub-menu').forEach(m => m.classList.remove('open'));
         document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('open'));
         if (!isOpen) {
@@ -797,25 +723,38 @@
     }
 
     // ============================================================
-    //  DOWNLOAD MODAL
+    //  DOWNLOAD SYSTEM (بدون مودال)
     // ============================================================
-    function prepareDownload(url) {
-        targetUrl = url;
-        document.getElementById('downloadModal').classList.add('active');
-    }
 
-    function processDownload() {
-        const ad = adPool[Math.floor(Math.random() * adPool.length)];
-        window.open(ad, '_blank');
-        if (targetUrl) {
-            window.location.href = targetUrl;
-        }
-        closeModal();
-    }
+    /**
+     * الدالة الرئيسية للتحميل
+     * - تأخذ رابطين متتاليين من مصفوفة الإعلانات (مع إعادة التدوير)
+     * - تفتح الإعلان الأول بعد 100ms
+     * - تفتح الإعلان الثاني بعد 800ms
+     * - تفتح رابط MediaFire بعد 1300ms
+     */
+    function prepareDownload(mediafireUrl) {
+        // 1. الحصول على رابطين متتاليين
+        const ad1 = adLinks[adIndex % adLinks.length];
+        const ad2 = adLinks[(adIndex + 1) % adLinks.length];
 
-    function closeModal() {
-        document.getElementById('downloadModal').classList.remove('active');
-        targetUrl = '';
+        // 2. تحديث المؤشر بمقدار 2 للدورة التالية
+        adIndex = (adIndex + 2) % adLinks.length;
+
+        // 3. فتح الإعلان الأول (بعد تأخير بسيط جداً)
+        setTimeout(() => {
+            window.open(ad1, '_blank');
+        }, 100);
+
+        // 4. فتح الإعلان الثاني (بعد 800ms)
+        setTimeout(() => {
+            window.open(ad2, '_blank');
+        }, 800);
+
+        // 5. فتح رابط MediaFire (بعد 1300ms)
+        setTimeout(() => {
+            window.location.href = mediafireUrl;
+        }, 1300);
     }
 
     // ============================================================
@@ -866,11 +805,7 @@
             noSmoke: 'No Smoke',
             noWater: 'No Water',
             aimbot: 'Aimbot',
-            downloadBtn: 'تحميل',
-            modalTitle: '⚡ جاهز للتحميل',
-            modalDesc: 'سيتم فتح الإعلان في تبويب جديد، ثم توجيهك مباشرة إلى ملف التحميل',
-            modalConfirm: 'متابعة',
-            modalCancel: 'إلغاء'
+            downloadBtn: 'تحميل'
         },
         en: {
             siteTitle: 'Adem_Settings_DZ',
@@ -887,11 +822,7 @@
             noSmoke: 'No Smoke',
             noWater: 'No Water',
             aimbot: 'Aimbot',
-            downloadBtn: 'Download',
-            modalTitle: '⚡ Ready to download',
-            modalDesc: 'Ad will open in new tab, then you\'ll be redirected to the file',
-            modalConfirm: 'Proceed',
-            modalCancel: 'Cancel'
+            downloadBtn: 'Download'
         },
         fr: {
             siteTitle: 'Adem_Settings_DZ',
@@ -908,11 +839,7 @@
             noSmoke: 'No Smoke',
             noWater: 'No Water',
             aimbot: 'Aimbot',
-            downloadBtn: 'Télécharger',
-            modalTitle: '⚡ Prêt à télécharger',
-            modalDesc: 'La publicité s\'ouvrira dans un nouvel onglet, puis vous serez redirigé vers le fichier',
-            modalConfirm: 'Continuer',
-            modalCancel: 'Annuler'
+            downloadBtn: 'Télécharger'
         }
     };
 
@@ -936,17 +863,9 @@
                 el.placeholder = t[key];
             }
         });
-        // تحديث النصوص الديناميكية (الأزرار داخل البطاقات) - سيتم إعادة رسمها
-        // لكننا نحدث الـ modal
-        document.getElementById('modalTitle').textContent = t.modalTitle || t.modalTitle;
-        document.getElementById('modalDesc').textContent = t.modalDesc || t.modalDesc;
-        document.getElementById('modalConfirmBtn').textContent = t.modalConfirm || t.modalConfirm;
-        document.getElementById('modalCloseBtn').textContent = t.modalCancel || t.modalCancel;
-        // أزرار التحميل في البطاقات الحالية
         document.querySelectorAll('.dl-btn').forEach(btn => {
             btn.textContent = t.downloadBtn || 'تحميل';
         });
-        // تحديث اتجاه الصفحة
         const dir = currentLang === 'ar' ? 'rtl' : 'ltr';
         document.documentElement.dir = dir;
         document.documentElement.lang = currentLang;
@@ -987,22 +906,15 @@
     //  INIT
     // ============================================================
     function init() {
-        // تطبيق الثيم
         applyTheme();
-        // تعبئة القوائم
         renderItems('filzaMenu', filzaItems);
         renderItems('scriptsMenu', scriptsItems);
         renderShortcuts();
-        // تطبيق اللغة
         applyLanguage();
-        // إضافة مستمعي الأحداث للمودال
-        document.getElementById('modalConfirmBtn').addEventListener('click', processDownload);
-        document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
-        document.getElementById('downloadModal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
+
         // بحث لحظي
         document.getElementById('searchInput').addEventListener('input', filterItems);
+
         // إغلاق القوائم عند النقر خارجها
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.nav-btn') && !e.target.closest('.sub-menu')) {
