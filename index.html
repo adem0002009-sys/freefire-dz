@@ -1,1558 +1,924 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Adem_Settings_DZ</title>
-    
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
-    <style>
-        :root {
-            --bg-main: #080c14;
-            --bg-card: #101726;
-            --border-card: #1d2a40;
-            --bg-hover: #141e33;
-            --bg-icon: #182338;
-            --text-main: #f1f5f9;
-            --text-secondary: #8d9bb0;
-            --blue-accent: #38bdf8;
-            --green-accent: #10b981;
-            --shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-            --radius: 18px;
-            --transition: 0.3s ease;
-            --font: 'Cairo', sans-serif;
+‏<!DOCTYPE html>
+‏<html lang="ar" dir="rtl">
+‏<head>
+‏    <meta charset="UTF-8" />
+‏    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+‏    <title>Adem_Settings_DZ</title>
+‏    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+‏    <style>
+‏        /* ===== ROOT VARIABLES ===== */
+‏        :root {
+‏            --bg-main: #080c14;
+‏            --bg-card: #101726;
+‏            --border-card: #1d2a40;
+‏            --bg-hover: #141e33;
+‏            --bg-icon: #182338;
+‏            --text-main: #f1f5f9;
+‏            --text-secondary: #8d9bb0;
+‏            --blue-accent: #38bdf8;
+‏            --green-accent: #10b981;
+‏            --shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+‏            --radius: 18px;
+‏            --transition: 0.3s ease;
+‏            --font: 'Cairo', sans-serif;
         }
 
-        [data-theme="light"] {
-            --bg-main: #f1f5f9;
-            --bg-card: #ffffff;
-            --border-card: #d1d9e6;
-            --bg-hover: #e9edf3;
-            --bg-icon: #e2e8f0;
-            --text-main: #0b1a2b;
-            --text-secondary: #4a5a72;
-            --blue-accent: #2563eb;
-            --green-accent: #059669;
-            --shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+‏        /* Light Mode */
+‏        [data-theme="light"] {
+‏            --bg-main: #f1f5f9;
+‏            --bg-card: #ffffff;
+‏            --border-card: #d1d9e6;
+‏            --bg-hover: #e9edf3;
+‏            --bg-icon: #e2e8f0;
+‏            --text-main: #0b1a2b;
+‏            --text-secondary: #4a5a72;
+‏            --blue-accent: #2563eb;
+‏            --green-accent: #059669;
+‏            --shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: var(--font);
-            -webkit-tap-highlight-color: transparent;
+‏            margin: 0;
+‏            padding: 0;
+‏            box-sizing: border-box;
+‏            font-family: var(--font);
+‏            -webkit-tap-highlight-color: transparent;
         }
 
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            padding: 20px 12px 40px;
-            min-height: 100vh;
-            transition: background-color var(--transition), color var(--transition);
+‏        body {
+‏            background-color: var(--bg-main);
+‏            color: var(--text-main);
+‏            display: flex;
+‏            justify-content: center;
+‏            padding: 20px 12px 40px;
+‏            min-height: 100vh;
+‏            transition: background-color var(--transition), color var(--transition);
         }
 
-        .container {
-            width: 100%;
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
+‏        .container {
+‏            width: 100%;
+‏            max-width: 500px;
+‏            display: flex;
+‏            flex-direction: column;
+‏            align-items: center;
+‏            gap: 16px;
         }
 
-        .login-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-            padding: 20px;
-        }
-        .login-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .login-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: 24px;
-            padding: 40px 30px;
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-            box-shadow: var(--shadow);
-            animation: slideUp 0.5s ease;
-        }
-        @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .login-box .logo {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-        .login-box h2 {
-            font-size: 1.5rem;
-            margin-bottom: 6px;
-        }
-        .login-box p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 24px;
-        }
-        .login-btn {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid var(--border-card);
-            border-radius: 14px;
-            background: var(--bg-hover);
-            color: var(--text-main);
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-        .login-btn:hover {
-            border-color: var(--blue-accent);
-            transform: translateY(-2px);
-        }
-        .login-btn.google {
-            background: #fff;
-            color: #000;
-        }
-        .login-btn.google:hover {
-            background: #f1f1f1;
-        }
-        .login-btn.icloud {
-            background: #1a1a2e;
-            color: #fff;
-            border-color: #3a3a5a;
-        }
-        .login-btn.icloud:hover {
-            background: #2a2a4e;
-        }
-        .login-btn .icon {
-            font-size: 1.4rem;
-        }
-        .login-divider {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 16px 0;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-        }
-        .login-divider::before,
-        .login-divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border-card);
-        }
-        .user-info {
-            display: none;
-            align-items: center;
-            gap: 12px;
-            background: var(--bg-card);
-            padding: 12px 16px;
-            border-radius: 60px;
-            border: 1px solid var(--border-card);
-            width: 100%;
-        }
-        .user-info.show {
-            display: flex;
-        }
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--blue-accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #fff;
-            flex-shrink: 0;
-        }
-        .user-name {
-            flex: 1;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        .user-email {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-        .logout-btn {
-            background: transparent;
-            border: 1px solid #ef4444;
-            color: #ef4444;
-            padding: 4px 14px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 0.75rem;
-            font-weight: 700;
-            transition: var(--transition);
-        }
-        .logout-btn:hover {
-            background: #ef4444;
-            color: #fff;
-        }
-        .dev-badge {
-            background: var(--blue-accent);
-            color: #fff;
-            font-size: 0.6rem;
-            padding: 2px 10px;
-            border-radius: 20px;
-            margin-right: 4px;
+‏        /* ===== TOP BAR ===== */
+‏        .top-bar {
+‏            display: flex;
+‏            flex-wrap: wrap;
+‏            justify-content: center;
+‏            align-items: center;
+‏            gap: 8px;
+‏            width: 100%;
+‏            padding: 8px 4px;
+‏            background: var(--bg-card);
+‏            border-radius: 60px;
+‏            border: 1px solid var(--border-card);
+‏            box-shadow: var(--shadow);
+‏            transition: background var(--transition), border var(--transition);
         }
 
-        .top-bar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            width: 100%;
-            padding: 8px 4px;
-            background: var(--bg-card);
-            border-radius: 60px;
-            border: 1px solid var(--border-card);
-            box-shadow: var(--shadow);
-            transition: background var(--transition), border var(--transition);
+‏        .top-btn {
+‏            background: transparent;
+‏            border: none;
+‏            color: var(--text-secondary);
+‏            font-size: 1.1rem;
+‏            padding: 6px 12px;
+‏            border-radius: 40px;
+‏            cursor: pointer;
+‏            display: flex;
+‏            align-items: center;
+‏            gap: 4px;
+‏            font-weight: 700;
+‏            transition: var(--transition);
+        }
+‏        .top-btn:hover {
+‏            background: var(--bg-hover);
+‏            color: var(--text-main);
+        }
+‏        .top-btn.active {
+‏            background: var(--blue-accent);
+‏            color: #fff;
+        }
+‏        .top-btn.lang-btn {
+‏            font-size: 0.9rem;
+‏            padding: 4px 10px;
+        }
+‏        .theme-btn {
+‏            font-size: 1.3rem;
+‏            padding: 4px 10px;
+        }
+‏        .share-btn {
+‏            font-size: 1.1rem;
         }
 
-        .top-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            padding: 6px 12px;
-            border-radius: 40px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            font-weight: 700;
-            transition: var(--transition);
+‏        /* ===== HEADER ===== */
+‏        .header {
+‏            display: flex;
+‏            flex-direction: column;
+‏            align-items: center;
+‏            text-align: center;
+‏            width: 100%;
         }
-        .top-btn:hover {
-            background: var(--bg-hover);
-            color: var(--text-main);
+‏        .logo-box {
+‏            width: 85px;
+‏            height: 85px;
+‏            background: #fff;
+‏            border-radius: 22px;
+‏            display: flex;
+‏            align-items: center;
+‏            justify-content: center;
+‏            box-shadow: var(--shadow);
+‏            overflow: hidden;
+‏            position: relative;
+‏            margin-bottom: 10px;
         }
-        .top-btn.active {
-            background: var(--blue-accent);
-            color: #fff;
+‏        .logo-box img {
+‏            width: 100%;
+‏            height: 100%;
+‏            object-fit: cover;
+‏            position: absolute;
+‏            z-index: 2;
         }
-        .top-btn.lang-btn {
-            font-size: 0.9rem;
-            padding: 4px 10px;
+‏        .logo-fallback {
+‏            font-size: 2.2rem;
+‏            font-weight: 800;
+‏            color: #000;
+‏            z-index: 1;
         }
-        .theme-btn {
-            font-size: 1.3rem;
-            padding: 4px 10px;
+‏        .title {
+‏            font-size: 1.5rem;
+‏            font-weight: 800;
+‏            letter-spacing: 0.5px;
         }
-        .share-btn {
-            font-size: 1.1rem;
-        }
-
-        .header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 100%;
-        }
-        .logo-box {
-            width: 85px;
-            height: 85px;
-            background: #fff;
-            border-radius: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            position: relative;
-            margin-bottom: 10px;
-        }
-        .logo-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            z-index: 2;
-        }
-        .logo-fallback {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #000;
-            z-index: 1;
-        }
-        .title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        }
-        .subtitle {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin-top: 2px;
+‏        .subtitle {
+‏            font-size: 0.95rem;
+‏            color: var(--text-secondary);
+‏            margin-top: 2px;
         }
 
-        .search-box {
-            width: 100%;
-            position: relative;
+‏        /* ===== SEARCH BAR ===== */
+‏        .search-box {
+‏            width: 100%;
+‏            position: relative;
         }
-        .search-box input {
-            width: 100%;
-            padding: 14px 20px;
-            border-radius: 60px;
-            border: 1px solid var(--border-card);
-            background: var(--bg-card);
-            color: var(--text-main);
-            font-size: 1rem;
-            outline: none;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
+‏        .search-box input {
+‏            width: 100%;
+‏            padding: 14px 20px;
+‏            border-radius: 60px;
+‏            border: 1px solid var(--border-card);
+‏            background: var(--bg-card);
+‏            color: var(--text-main);
+‏            font-size: 1rem;
+‏            outline: none;
+‏            transition: var(--transition);
+‏            box-shadow: var(--shadow);
         }
-        .search-box input::placeholder {
-            color: var(--text-secondary);
+‏        .search-box input::placeholder {
+‏            color: var(--text-secondary);
         }
-        .search-box input:focus {
-            border-color: var(--blue-accent);
-        }
-
-        .nav-btn {
-            width: 100%;
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: var(--radius);
-            padding: 14px 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: var(--text-main);
-            text-decoration: none;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-        }
-        .nav-btn:hover {
-            border-color: var(--blue-accent);
-            background: var(--bg-hover);
-        }
-        .nav-btn .left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 700;
-            font-size: 1.05rem;
-        }
-        .icon-box {
-            width: 38px;
-            height: 38px;
-            background: var(--bg-icon);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-        .arrow {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            transition: transform var(--transition);
-        }
-        .nav-btn.open .arrow {
-            transform: rotate(-90deg);
+‏        .search-box input:focus {
+‏            border-color: var(--blue-accent);
         }
 
-        .sub-menu {
-            display: none;
-            flex-direction: column;
-            gap: 10px;
-            padding: 6px 0;
-            width: 100%;
+‏        /* ===== NAV BUTTONS ===== */
+‏        .nav-btn {
+‏            width: 100%;
+‏            background: var(--bg-card);
+‏            border: 1px solid var(--border-card);
+‏            border-radius: var(--radius);
+‏            padding: 14px 18px;
+‏            display: flex;
+‏            align-items: center;
+‏            justify-content: space-between;
+‏            color: var(--text-main);
+‏            text-decoration: none;
+‏            cursor: pointer;
+‏            transition: var(--transition);
+‏            box-shadow: var(--shadow);
         }
-        .sub-menu.open {
-            display: flex;
+‏        .nav-btn:hover {
+‏            border-color: var(--blue-accent);
+‏            background: var(--bg-hover);
         }
-
-        .app-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: 16px;
-            padding: 12px 14px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            position: relative;
+‏        .nav-btn .left {
+‏            display: flex;
+‏            align-items: center;
+‏            gap: 12px;
+‏            font-weight: 700;
+‏            font-size: 1.05rem;
         }
-        .app-card:hover {
-            border-color: var(--blue-accent);
-            background: var(--bg-hover);
+‏        .icon-box {
+‏            width: 38px;
+‏            height: 38px;
+‏            background: var(--bg-icon);
+‏            border-radius: 12px;
+‏            display: flex;
+‏            align-items: center;
+‏            justify-content: center;
+‏            font-size: 1.2rem;
+‏            flex-shrink: 0;
         }
-        .app-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            background: var(--blue-accent);
-            font-size: 1.5rem;
+‏        .arrow {
+‏            font-size: 1.1rem;
+‏            color: var(--text-secondary);
+‏            transition: transform var(--transition);
         }
-        .app-info {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .app-name {
-            font-weight: 700;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-        .app-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px 14px;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            margin-top: 4px;
-        }
-        .badge {
-            font-size: 0.65rem;
-            background: var(--green-accent);
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 30px;
-            font-weight: 700;
-        }
-        .badge.hot {
-            background: #ef4444;
-        }
-        .dl-count {
-            font-weight: 600;
-            color: var(--blue-accent);
-            font-size: 0.75rem;
-        }
-        .dl-btn {
-            background: var(--bg-icon);
-            padding: 6px 12px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--blue-accent);
-            white-space: nowrap;
-            transition: var(--transition);
-        }
-        .app-card:hover .dl-btn {
-            background: var(--blue-accent);
-            color: #fff;
+‏        .nav-btn.open .arrow {
+‏            transform: rotate(-90deg);
         }
 
-        .shortcut-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            width: 100%;
-            padding: 8px 0;
+‏        /* ===== SUB MENU ===== */
+‏        .sub-menu {
+‏            display: none;
+‏            flex-direction: column;
+‏            gap: 10px;
+‏            padding: 6px 0;
+‏            width: 100%;
         }
-        .shortcut-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: 18px;
-            padding: 16px 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            color: var(--text-main);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        }
-        .shortcut-item:hover {
-            transform: translateY(-3px);
-            border-color: var(--blue-accent);
-            background: var(--bg-hover);
-        }
-        .shortcut-icon {
-            font-size: 2.4rem;
-            margin-bottom: 6px;
-        }
-        .shortcut-name {
-            font-size: 0.8rem;
-            font-weight: 700;
-            line-height: 1.2;
+‏        .sub-menu.open {
+‏            display: flex;
         }
 
-        .social-row {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: 100%;
+‏        /* ===== APP CARD ===== */
+‏        .app-card {
+‏            background: var(--bg-card);
+‏            border: 1px solid var(--border-card);
+‏            border-radius: 16px;
+‏            padding: 12px 14px;
+‏            display: flex;
+‏            align-items: center;
+‏            gap: 12px;
+‏            cursor: pointer;
+‏            transition: var(--transition);
+‏            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+‏            position: relative;
         }
-        .social-row .nav-btn {
-            justify-content: center;
+‏        .app-card:hover {
+‏            border-color: var(--blue-accent);
+‏            background: var(--bg-hover);
         }
-        .social-row .nav-btn .left {
-            gap: 10px;
+‏        .app-icon {
+‏            width: 48px;
+‏            height: 48px;
+‏            border-radius: 12px;
+‏            display: flex;
+‏            align-items: center;
+‏            justify-content: center;
+‏            flex-shrink: 0;
+‏            background: var(--blue-accent);
         }
-
-        .section-block {
-            width: 100%;
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: var(--radius);
-            padding: 16px;
-            box-shadow: var(--shadow);
+‏        .app-icon svg {
+‏            width: 28px;
+‏            height: 28px;
+‏            fill: #fff;
         }
-        .section-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--blue-accent);
-            border-bottom: 1px solid var(--border-card);
-            padding-bottom: 8px;
-            margin-bottom: 12px;
+‏        .app-info {
+‏            flex: 1;
+‏            display: flex;
+‏            flex-direction: column;
         }
-        .settings-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
+‏        .app-name {
+‏            font-weight: 700;
+‏            font-size: 0.95rem;
+‏            display: flex;
+‏            align-items: center;
+‏            gap: 6px;
+‏            flex-wrap: wrap;
         }
-        .settings-table td {
-            padding: 8px 4px;
-            border-bottom: 1px solid var(--border-card);
+‏        .app-meta {
+‏            display: flex;
+‏            flex-wrap: wrap;
+‏            gap: 8px 14px;
+‏            font-size: 0.7rem;
+‏            color: var(--text-secondary);
+‏            margin-top: 4px;
         }
-        .settings-table code {
-            background: var(--bg-icon);
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-family: monospace;
-            color: var(--blue-accent);
-            unicode-bidi: embed;
-            direction: ltr;
-            display: inline-block;
-            font-size: 0.8rem;
+‏        .badge {
+‏            font-size: 0.65rem;
+‏            background: var(--green-accent);
+‏            color: #fff;
+‏            padding: 2px 8px;
+‏            border-radius: 30px;
+‏            font-weight: 700;
         }
-
-        .dev-dashboard {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-main);
-            z-index: 10000;
-            padding: 20px;
-            overflow-y: auto;
-            animation: fadeIn 0.4s ease;
+‏        .badge.hot {
+‏            background: #ef4444;
         }
-        .dev-dashboard.show {
-            display: block;
+‏        .dl-count {
+‏            font-weight: 600;
+‏            color: var(--blue-accent);
+‏            font-size: 0.75rem;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+‏        .dl-btn {
+‏            background: var(--bg-icon);
+‏            padding: 6px 12px;
+‏            border-radius: 30px;
+‏            font-size: 0.8rem;
+‏            font-weight: 700;
+‏            color: var(--blue-accent);
+‏            white-space: nowrap;
+‏            transition: var(--transition);
         }
-        .dev-dashboard .close-dev {
-            position: sticky;
-            top: 10px;
-            float: left;
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            color: var(--text-main);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            z-index: 10;
-        }
-        .dev-dashboard .close-dev:hover {
-            background: var(--bg-hover);
-            border-color: var(--blue-accent);
-        }
-        .dev-dashboard .dev-header {
-            text-align: center;
-            padding: 20px 0;
-            border-bottom: 1px solid var(--border-card);
-            margin-bottom: 20px;
-        }
-        .dev-dashboard .dev-header h2 {
-            font-size: 1.8rem;
-            color: var(--blue-accent);
-        }
-        .dev-dashboard .dev-header p {
-            color: var(--text-secondary);
-        }
-        .dev-stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 12px;
-            margin: 16px 0 24px;
-        }
-        .dev-stat-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: 14px;
-            padding: 16px;
-            text-align: center;
-        }
-        .dev-stat-card .number {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--blue-accent);
-        }
-        .dev-stat-card .label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
+‏        .app-card:hover .dl-btn {
+‏            background: var(--blue-accent);
+‏            color: #fff;
         }
 
-        .users-table-wrap {
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: 14px;
-            overflow: hidden;
-            margin-top: 16px;
+‏        /* ===== SHORTCUT GRID ===== */
+‏        .shortcut-grid {
+‏            display: grid;
+‏            grid-template-columns: 1fr 1fr;
+‏            gap: 14px;
+‏            width: 100%;
+‏            padding: 8px 0;
         }
-        .users-table-wrap h3 {
-            padding: 14px 16px;
-            border-bottom: 1px solid var(--border-card);
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+‏        .shortcut-item {
+‏            background: var(--bg-card);
+‏            border: 1px solid var(--border-card);
+‏            border-radius: 18px;
+‏            padding: 16px 10px;
+‏            display: flex;
+‏            flex-direction: column;
+‏            align-items: center;
+‏            text-align: center;
+‏            cursor: pointer;
+‏            transition: var(--transition);
+‏            text-decoration: none;
+‏            color: var(--text-main);
+‏            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
         }
-        .users-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.8rem;
+‏        .shortcut-item:hover {
+‏            transform: translateY(-3px);
+‏            border-color: var(--blue-accent);
+‏            background: var(--bg-hover);
         }
-        .users-table th {
-            background: var(--bg-hover);
-            padding: 10px 12px;
-            text-align: right;
-            font-weight: 700;
-            color: var(--text-secondary);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            border-bottom: 1px solid var(--border-card);
+‏        .shortcut-icon {
+‏            font-size: 2.4rem;
+‏            margin-bottom: 6px;
         }
-        .users-table td {
-            padding: 10px 12px;
-            border-bottom: 1px solid var(--border-card);
-        }
-        .users-table tr:last-child td {
-            border-bottom: none;
-        }
-        .users-table .user-avatar-small {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: var(--blue-accent);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            color: #fff;
-            margin-left: 8px;
-        }
-        .users-table .provider-badge {
-            font-size: 0.6rem;
-            padding: 2px 10px;
-            border-radius: 20px;
-            background: var(--bg-icon);
-            color: var(--text-secondary);
-        }
-        .users-table .provider-badge.google {
-            background: #fff;
-            color: #000;
-        }
-        .users-table .provider-badge.icloud {
-            background: #1a1a2e;
-            color: #fff;
-        }
-        .users-table .provider-badge.guest {
-            background: var(--bg-icon);
-            color: var(--text-secondary);
-        }
-        .no-users {
-            padding: 30px;
-            text-align: center;
-            color: var(--text-secondary);
+‏        .shortcut-name {
+‏            font-size: 0.8rem;
+‏            font-weight: 700;
+‏            line-height: 1.2;
         }
 
-        .loading-spinner {
-            display: none;
-            text-align: center;
-            padding: 20px;
+‏        /* ===== SOCIAL ROW ===== */
+‏        .social-row {
+‏            display: flex;
+‏            flex-direction: column;
+‏            gap: 10px;
+‏            width: 100%;
         }
-        .loading-spinner.show {
-            display: block;
+‏        .social-row .nav-btn {
+‏            justify-content: center;
         }
-        .spinner {
-            border: 4px solid var(--border-card);
-            border-top: 4px solid var(--blue-accent);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+‏        .social-row .nav-btn .left {
+‏            gap: 10px;
         }
 
-        #scrollTopBtn {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--blue-accent);
-            color: #fff;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
-            transition: var(--transition);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 999;
+‏        /* ===== SECTION BLOCK ===== */
+‏        .section-block {
+‏            width: 100%;
+‏            background: var(--bg-card);
+‏            border: 1px solid var(--border-card);
+‏            border-radius: var(--radius);
+‏            padding: 16px;
+‏            box-shadow: var(--shadow);
         }
-        #scrollTopBtn:hover {
-            transform: scale(1.1);
+‏        .section-title {
+‏            font-size: 1.05rem;
+‏            font-weight: 700;
+‏            color: var(--blue-accent);
+‏            border-bottom: 1px solid var(--border-card);
+‏            padding-bottom: 8px;
+‏            margin-bottom: 12px;
         }
-        #scrollTopBtn.show {
-            display: flex;
+‏        .settings-table {
+‏            width: 100%;
+‏            border-collapse: collapse;
+‏            font-size: 0.85rem;
+        }
+‏        .settings-table td {
+‏            padding: 8px 4px;
+‏            border-bottom: 1px solid var(--border-card);
+        }
+‏        .settings-table code {
+‏            background: var(--bg-icon);
+‏            padding: 2px 8px;
+‏            border-radius: 6px;
+‏            font-family: monospace;
+‏            color: var(--blue-accent);
+‏            unicode-bidi: embed;
+‏            direction: ltr;
+‏            display: inline-block;
+‏            font-size: 0.8rem;
         }
 
-        @media (max-width: 420px) {
-            .top-bar {
-                gap: 4px;
-                padding: 6px 8px;
-                border-radius: 40px;
+‏        /* ===== SCROLL TO TOP ===== */
+‏        #scrollTopBtn {
+‏            position: fixed;
+‏            bottom: 28px;
+‏            right: 28px;
+‏            width: 48px;
+‏            height: 48px;
+‏            border-radius: 50%;
+‏            background: var(--blue-accent);
+‏            color: #fff;
+‏            border: none;
+‏            font-size: 1.5rem;
+‏            cursor: pointer;
+‏            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+‏            transition: var(--transition);
+‏            display: none;
+‏            align-items: center;
+‏            justify-content: center;
+‏            z-index: 999;
+        }
+‏        #scrollTopBtn:hover {
+‏            transform: scale(1.1);
+        }
+‏        #scrollTopBtn.show {
+‏            display: flex;
+        }
+
+‏        /* ===== RESPONSIVE ===== */
+‏        @media (max-width: 420px) {
+‏            .top-bar {
+‏                gap: 4px;
+‏                padding: 6px 8px;
+‏                border-radius: 40px;
             }
-            .top-btn {
-                font-size: 0.8rem;
-                padding: 4px 8px;
+‏            .top-btn {
+‏                font-size: 0.8rem;
+‏                padding: 4px 8px;
             }
-            .title {
-                font-size: 1.2rem;
+‏            .title {
+‏                font-size: 1.2rem;
             }
-            .logo-box {
-                width: 70px;
-                height: 70px;
+‏            .logo-box {
+‏                width: 70px;
+‏                height: 70px;
             }
-            .shortcut-grid {
-                gap: 10px;
+‏            .shortcut-grid {
+‏                gap: 10px;
             }
-            .shortcut-icon {
-                font-size: 2rem;
-            }
-            .login-box {
-                padding: 30px 20px;
-            }
-            .dev-stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .users-table th,
-            .users-table td {
-                padding: 8px 8px;
-                font-size: 0.7rem;
+‏            .shortcut-icon {
+‏                font-size: 2rem;
             }
         }
-    </style>
-</head>
-<body>
+‏    </style>
+‏</head>
+‏<body>
 
-<!-- ========== LOADING ========== -->
-<div class="loading-spinner" id="loadingSpinner">
-    <div class="spinner"></div>
-    <p style="margin-top:10px;color:var(--text-secondary);">جاري التحميل...</p>
-</div>
+‏<!-- ========== SCROLL TO TOP ========== -->
+‏<button id="scrollTopBtn" aria-label="العودة للأعلى">⬆</button>
 
-<!-- ========== LOGIN OVERLAY ========== -->
-<div class="login-overlay" id="loginOverlay">
-    <div class="login-box">
-        <div class="logo">🎮</div>
-        <h2>مرحباً بك</h2>
-        <p>سجل دخولك للوصول إلى المحتوى الحصري</p>
-        
-        <button class="login-btn google" onclick="loginWithGoogle()">
-            <span class="icon">🔴</span> Google
-        </button>
-        <button class="login-btn icloud" onclick="loginWithiCloud()">
-            <span class="icon">☁️</span> iCloud
-        </button>
-        
-        <div class="login-divider">
-            <span>أو تابع كزائر</span>
-        </div>
-        
-        <button class="login-btn" onclick="loginAsGuest()" style="background: var(--bg-icon); border-color: var(--border-card);">
-            <span class="icon">👤</span> دخول كزائر
-        </button>
-    </div>
-</div>
+‏<!-- ========== MAIN CONTAINER ========== -->
+‏<div class="container" id="appContainer">
 
-<!-- ========== DEVELOPER DASHBOARD ========== -->
-<div class="dev-dashboard" id="devDashboard">
-    <button class="close-dev" onclick="closeDevDashboard()">✕</button>
-    
-    <div class="dev-header">
-        <h2>👨‍💻 لوحة تحكم المطور</h2>
-        <p>عرض جميع المستخدمين المسجلين (مخزنة في Firebase)</p>
-    </div>
+‏    <!-- TOP BAR -->
+‏    <div class="top-bar">
+‏        <button class="top-btn lang-btn" data-lang="ar" onclick="setLang('ar')">🇸🇦 عربي</button>
+‏        <button class="top-btn lang-btn" data-lang="en" onclick="setLang('en')">🇬🇧 EN</button>
+‏        <button class="top-btn lang-btn" data-lang="fr" onclick="setLang('fr')">🇫🇷 FR</button>
+‏        <button class="top-btn theme-btn" onclick="toggleTheme()" id="themeToggle">🌙</button>
+‏        <button class="top-btn share-btn" onclick="sharePage()">📤</button>
+‏    </div>
 
-    <div class="dev-stats-grid">
-        <div class="dev-stat-card">
-            <div class="number" id="totalUsersDev">0</div>
-            <div class="label">👥 إجمالي المستخدمين</div>
-        </div>
-        <div class="dev-stat-card">
-            <div class="number" id="totalDownloadsDev">0</div>
-            <div class="label">⬇️ إجمالي التحميلات</div>
-        </div>
-        <div class="dev-stat-card">
-            <div class="number" id="totalFilesDev">23</div>
-            <div class="label">📁 إجمالي الملفات</div>
-        </div>
-        <div class="dev-stat-card">
-            <div class="number" id="activeUsersDev">0</div>
-            <div class="label">🟢 مستخدمين نشطين</div>
-        </div>
-    </div>
+‏    <!-- HEADER -->
+‏    <div class="header">
+‏        <div class="logo-box">
+‏            <div class="logo-fallback">LA</div>
+‏            <img src="https://i.ibb.co/bjbknNxL/IMG-3210.jpg" alt="Adem Settings DZ" onerror="this.style.display='none';" />
+‏        </div>
+‏        <h1 class="title" data-i18n="siteTitle">Adem_Settings_DZ</h1>
+‏        <p class="subtitle" data-i18n="siteSub">محتوى إعدادات الألعاب والتطبيقات الحصرية 🎮</p>
+‏    </div>
 
-    <div class="users-table-wrap">
-        <h3>📋 قائمة المستخدمين المسجلين</h3>
-        <div id="usersListContainer">
-            <div class="no-users">جاري تحميل البيانات...</div>
-        </div>
-    </div>
+‏    <!-- SEARCH -->
+‏    <div class="search-box">
+‏        <input type="text" id="searchInput" placeholder="🔍 ابحث عن ملف..." data-i18n-placeholder="searchPlaceholder" oninput="filterItems()" />
+‏    </div>
 
-    <div style="margin-top: 16px; text-align: center; font-size: 0.8rem; color: var(--text-secondary);">
-‎        🔒 هذه البيانات مخزنة في Firebase وتظهر لك فقط كمطور
-    </div>
-</div>
+‏    <!-- OFFICIAL SITE BUTTON -->
+‏    <a href="https://khoindvn.io.vn/" target="_blank" rel="noopener" class="nav-btn" style="border-color: var(--blue-accent); justify-content: center;">
+‏        <span class="left"><span class="icon-box">🌐</span> <span data-i18n="officialSite">الموقع الرسمي</span></span>
+‏        <span class="arrow">→</span>
+‏    </a>
 
-<!-- ========== MAIN CONTAINER ========== -->
-<div class="container" id="appContainer">
+‏    <!-- ===== FILZA SECTION ===== -->
+‏    <div class="nav-btn" onclick="toggleMenu('filzaMenu', this)">
+‏        <span class="left"><span class="icon-box">📱</span> <span data-i18n="filzaTitle">تطبيقات Filza (7 نسخ)</span></span>
+‏        <span class="arrow">←</span>
+‏    </div>
+‏    <div class="sub-menu" id="filzaMenu"></div>
 
-    <!-- TOP BAR -->
-    <div class="top-bar">
-        <button class="top-btn lang-btn" data-lang="ar" onclick="setLang('ar')">🇸🇦 عربي</button>
-        <button class="top-btn lang-btn" data-lang="en" onclick="setLang('en')">🇬🇧 EN</button>
-        <button class="top-btn lang-btn" data-lang="fr" onclick="setLang('fr')">🇫🇷 FR</button>
-        <button class="top-btn theme-btn" onclick="toggleTheme()" id="themeToggle">🌙</button>
-        <button class="top-btn share-btn" onclick="sharePage()">📤</button>
-        <button class="top-btn" onclick="openDevDashboard()" style="color: var(--blue-accent); display: none;" id="devDashboardBtn">
-            👨‍💻 <span class="dev-badge">مطور</span>
-        </button>
-    </div>
+‏    <!-- ===== SCRIPTS SECTION ===== -->
+‏    <div class="nav-btn" onclick="toggleMenu('scriptsMenu', this)">
+‏        <span class="left"><span class="icon-box">⚡</span> <span data-i18n="scriptsTitle">السكريبتات والملفات (16 ملفاً)</span></span>
+‏        <span class="arrow">←</span>
+‏    </div>
+‏    <div class="sub-menu" id="scriptsMenu"></div>
 
-    <!-- USER INFO -->
-    <div class="user-info" id="userInfo">
-        <div class="user-avatar" id="userAvatar">👤</div>
-        <div>
-            <div class="user-name" id="userName">زائر</div>
-            <div class="user-email" id="userEmail">guest@adem.com</div>
-        </div>
-        <button class="logout-btn" onclick="logout()">🚪 خروج</button>
-    </div>
+‏    <!-- ===== SHORTCUTS PANEL ===== -->
+‏    <div class="nav-btn" onclick="toggleMenu('shortcutsMenu', this)">
+‏        <span class="left"><span class="icon-box">🛠️</span> <span data-i18n="shortcutsTitle">بانل تسهيلات الاستخدام</span></span>
+‏        <span class="arrow">←</span>
+‏    </div>
+‏    <div class="sub-menu" id="shortcutsMenu">
+‏        <div class="shortcut-grid" id="shortcutGrid"></div>
+‏    </div>
 
-    <!-- HEADER -->
-    <div class="header">
-        <div class="logo-box">
-            <div class="logo-fallback">LA</div>
-            <img src="https://i.ibb.co/bjbknNxL/IMG-3210.jpg" alt="Adem Settings DZ" onerror="this.style.display='none';" />
-        </div>
-        <h1 class="title">Adem_Settings_DZ</h1>
-        <p class="subtitle">محتوى إعدادات الألعاب والتطبيقات الحصرية 🎮</p>
-    </div>
+‏    <!-- ===== SOCIAL ===== -->
+‏    <div class="social-row">
+‏        <a href="https://youtube.com/@adem_ar28?si=4OVhIL2CdXbFezeE" target="_blank" rel="noopener" class="nav-btn" style="border-color:#ff0033;">
+‏            <span class="left"><span class="icon-box">▶️</span> <span data-i18n="youtube">يوتيوب</span></span>
+‏            <span class="arrow">→</span>
+‏        </a>
+‏        <a href="https://t.me/FreeFire_Settings_DZ" target="_blank" rel="noopener" class="nav-btn" style="border-color:#0088cc;">
+‏            <span class="left"><span class="icon-box">✈️</span> <span data-i18n="telegram">تيليجرام</span></span>
+‏            <span class="arrow">→</span>
+‏        </a>
+‏        <a href="https://www.instagram.com/i7_xx_x?igsh=c2Rlb2p0Mzg3ejBp&utm_source=qr" target="_blank" rel="noopener" class="nav-btn" style="border-color:#e4405f;">
+‏            <span class="left"><span class="icon-box">📷</span> <span data-i18n="instagram">إنستغرام</span></span>
+‏            <span class="arrow">→</span>
+‏        </a>
+‏    </div>
 
-    <!-- SEARCH -->
-    <div class="search-box">
-        <input type="text" id="searchInput" placeholder="🔍 ابحث عن ملف..." oninput="filterItems()" />
-    </div>
+‏    <!-- ===== SETTINGS TABLE ===== -->
+‏    <div class="section-block">
+‏        <div class="section-title" data-i18n="settingsTitle">🎮 إعدادات وتعديلات اللعبة</div>
+‏        <table class="settings-table">
+‏            <tr><td data-i18n="noSmoke">No Smoke</td><td><code>FX.MaxCPUParticles...=1</code></td></tr>
+‏            <tr><td data-i18n="noWater">No Water</td><td><code>water.heightScale=0</code></td></tr>
+‏            <tr><td data-i18n="aimbot">Aimbot</td><td><code>SystemAimAssistSettings</code></td></tr>
+‏        </table>
+‏    </div>
 
-    <!-- OFFICIAL SITE BUTTON -->
-    <a href="https://khoindvn.io.vn/" target="_blank" rel="noopener" class="nav-btn" style="border-color: var(--blue-accent); justify-content: center;">
-        <span class="left"><span class="icon-box">🌐</span> <span>الموقع الرسمي</span></span>
-        <span class="arrow">→</span>
-    </a>
+‏</div>
 
-    <!-- ===== FILZA SECTION ===== -->
-    <div class="nav-btn" onclick="toggleMenu('filzaMenu', this)">
-        <span class="left"><span class="icon-box">📱</span> <span>تطبيقات Filza (7 نسخ)</span></span>
-        <span class="arrow">←</span>
-    </div>
-    <div class="sub-menu" id="filzaMenu"></div>
-
-    <!-- ===== SCRIPTS SECTION ===== -->
-    <div class="nav-btn" onclick="toggleMenu('scriptsMenu', this)">
-        <span class="left"><span class="icon-box">⚡</span> <span>السكريبتات والملفات (16 ملفاً)</span></span>
-        <span class="arrow">←</span>
-    </div>
-    <div class="sub-menu" id="scriptsMenu"></div>
-
-    <!-- ===== SHORTCUTS PANEL ===== -->
-    <div class="nav-btn" onclick="toggleMenu('shortcutsMenu', this)">
-        <span class="left"><span class="icon-box">🛠️</span> <span>بانل تسهيلات الاستخدام</span></span>
-        <span class="arrow">←</span>
-    </div>
-    <div class="sub-menu" id="shortcutsMenu">
-        <div class="shortcut-grid" id="shortcutGrid"></div>
-    </div>
-
-    <!-- ===== SOCIAL ===== -->
-    <div class="social-row">
-        <a href="https://youtube.com/@adem_ar28?si=4OVhIL2CdXbFezeE" target="_blank" rel="noopener" class="nav-btn" style="border-color:#ff0033;">
-            <span class="left"><span class="icon-box">▶️</span> <span>يوتيوب</span></span>
-            <span class="arrow">→</span>
-        </a>
-        <a href="https://t.me/FreeFire_Settings_DZ" target="_blank" rel="noopener" class="nav-btn" style="border-color:#0088cc;">
-            <span class="left"><span class="icon-box">✈️</span> <span>تيليجرام</span></span>
-            <span class="arrow">→</span>
-        </a>
-        <a href="https://www.instagram.com/i7_xx_x?igsh=c2Rlb2p0Mzg3ejBp&utm_source=qr" target="_blank" rel="noopener" class="nav-btn" style="border-color:#e4405f;">
-            <span class="left"><span class="icon-box">📷</span> <span>إنستغرام</span></span>
-            <span class="arrow">→</span>
-        </a>
-    </div>
-
-    <!-- ===== SETTINGS TABLE ===== -->
-    <div class="section-block">
-        <div class="section-title">🎮 إعدادات وتعديلات اللعبة</div>
-        <table class="settings-table">
-            <tr><td>No Smoke</td><td><code>FX.MaxCPUParticles...=1</code></td></tr>
-            <tr><td>No Water</td><td><code>water.heightScale=0</code></td></tr>
-            <tr><td>Aimbot</td><td><code>SystemAimAssistSettings</code></td></tr>
-        </table>
-    </div>
-
-</div>
-
-<script>
+‏<script>
     // ============================================================
-    //  🔥 FIREBASE CONFIG - استبدل هذه القيم بقيم مشروعك
-    // ============================================================
-    const firebaseConfig = {
-        apiKey: "AIzaSyD...",  // 👈 استبدل بمفتاح API الخاص بك
-        authDomain: "adem-settings-dz.firebaseapp.com",
-        databaseURL: "https://adem-settings-dz-default-rtdb.firebaseio.com/",
-        projectId: "adem-settings-dz",
-        storageBucket: "adem-settings-dz.appspot.com",
-        messagingSenderId: "123456789",
-        appId: "1:123456789:web:abcdef"
-    };
-
-    // ============================================================
-    //  INIT FIREBASE
-    // ============================================================
-    firebase.initializeApp(firebaseConfig);
-    const database = firebase.database();
-
-    // ============================================================
-    //  DATA
+‏    //  DATA
     // ============================================================
 
-    const adLinks = [
-        'https://omg10.com/4/11583670',
-        'https://omg10.com/4/11582772',
-        'https://omg10.com/4/11583690',
-        'https://omg10.com/4/11583686',
-        'https://omg10.com/4/11583683',
-        'https://omg10.com/4/11583677',
-        'https://omg10.com/4/11583681',
-        'https://omg10.com/4/11583688',
-        'https://omg10.com/4/11579405',
-        'https://omg10.com/4/11578028'
+    // قائمة روابط الإعلانات (10 روابط)
+‏    const adLinks = [
+‏        'https://omg10.com/4/11583670',
+‏        'https://omg10.com/4/11582772',
+‏        'https://omg10.com/4/11583690',
+‏        'https://omg10.com/4/11583686',
+‏        'https://omg10.com/4/11583683',
+‏        'https://omg10.com/4/11583677',
+‏        'https://omg10.com/4/11583681',
+‏        'https://omg10.com/4/11583688',
+‏        'https://omg10.com/4/11579405',
+‏        'https://omg10.com/4/11578028'
     ];
 
-    let adIndex = 0;
-    const clickState = new Map();
-    let currentUser = null;
-    let isDeveloper = false;
+    // مؤشر دوري للإعلانات
+‏    let adIndex = 0;
 
-    const DEV_EMAIL = 'admin@adem.com';
+    // ===== تخزين حالة النقرات لكل ملف =====
+    // المفتاح: اسم الملف (url) ، القيمة: true/false (تمت النقرة الأولى أم لا)
+‏    const clickState = new Map();
 
-    const filzaItems = [
-        { name: 'Filza iOS 26-27', url: 'https://www.mediafire.com/file/2jssxjhxf80zai1/Filza-iOS-26-27.ipa/file', icon: '📁', meta: 'IPA • رئيسي' },
-        { name: 'Filza Jailed', url: 'https://www.mediafire.com/file/91j014gmw3zez56/FilzaJailed.ipa/file', icon: '🔒', meta: 'IPA • آمن' },
-        { name: 'Filza Standard', url: 'https://www.mediafire.com/file/o2rr473iu06ocxs/Filza.ipa/file', icon: '📂', meta: 'IPA • عادي' },
-        { name: 'Filza iOS 26-27 (نسخة 2)', url: 'https://www.mediafire.com/file/2jssxjhxf80zai1/Filza-iOS-26-27.ipa/file', icon: '📁', meta: 'IPA • مكرر' },
-        { name: 'Filza V4', url: 'https://www.mediafire.com/file/qukjj032uo1njxj/Filza_V4.ipa/file', icon: '📦', meta: 'IPA • محدث' },
-        { name: 'Filza Sandbox Apply', url: 'https://www.mediafire.com/file/kut6mi01lph8rsw/FILZA_SANDBOX_APPLY.dylib/file', icon: '🧩', meta: 'dylib • أداة' },
-        { name: 'Filza Mod 4.0', url: 'https://www.mediafire.com/file/jma0r53oqhn9l09/Filza_Mod_4.0_1786666141.ipa/file', icon: '⭐', meta: 'IPA • معدل', badge: 'حصري 🔥' }
+    // ===== البيانات =====
+‏    const filzaItems = [
+‏        { name: 'Filza iOS 26-27', url: 'https://www.mediafire.com/file/2jssxjhxf80zai1/Filza-iOS-26-27.ipa/file', icon: '📁', meta: 'IPA • رئيسي' },
+‏        { name: 'Filza Jailed', url: 'https://www.mediafire.com/file/91j014gmw3zez56/FilzaJailed.ipa/file', icon: '🔒', meta: 'IPA • آمن' },
+‏        { name: 'Filza Standard', url: 'https://www.mediafire.com/file/o2rr473iu06ocxs/Filza.ipa/file', icon: '📂', meta: 'IPA • عادي' },
+‏        { name: 'Filza iOS 26-27 (نسخة 2)', url: 'https://www.mediafire.com/file/2jssxjhxf80zai1/Filza-iOS-26-27.ipa/file', icon: '📁', meta: 'IPA • مكرر' },
+‏        { name: 'Filza V4', url: 'https://www.mediafire.com/file/qukjj032uo1njxj/Filza_V4.ipa/file', icon: '📦', meta: 'IPA • محدث' },
+‏        { name: 'Filza Sandbox Apply', url: 'https://www.mediafire.com/file/kut6mi01lph8rsw/FILZA_SANDBOX_APPLY.dylib/file', icon: '🧩', meta: 'dylib • أداة' },
+‏        { name: 'Filza Mod 4.0', url: 'https://www.mediafire.com/file/jma0r53oqhn9l09/Filza_Mod_4.0_1786666141.ipa/file', icon: '⭐', meta: 'IPA • معدل', badge: 'حصري 🔥' }
     ];
 
-    const scriptsItems = [
-        { name: 'كشف أماكن AIM BOT 85%', url: 'https://www.mediafire.com/file/u2yqg6nvmklbk2y/%E2%80%8E%D9%83%D8%B4%D9%81+%D8%A7%D9%95%D9%85%D9%83%D8%A7%D9%86++AIM+BOT+85%25+%E2%81%A9.zip/file', icon: '🎯', meta: 'Zip • VIP' },
-        { name: 'VIP ⚙️🪄', url: 'https://www.mediafire.com/file/s4w64kaz4ve69l3/VIP+%E2%9A%99%EF%B8%8F%F0%9F%AA%84.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '👑', meta: 'Config • VIP' },
-        { name: 'cache_res 2', url: 'https://www.mediafire.com/file/7e0mjrw9w6wdcvs/cache_res+2.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '📦', meta: 'Cache • V2' },
-        { name: 'Adem.Zit.VV', url: 'https://www.mediafire.com/file/keom86elamj5ezd/Adem.Zit.VV.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '⚡', meta: 'Config • خاص' },
-        { name: 'cache_res (V1)', url: 'https://www.mediafire.com/file/ic2ker2yxdpoaiw/cache_res.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '🗂️', meta: 'Cache • عادي' },
-        { name: 'cache_res 3', url: 'https://www.mediafire.com/file/3cukb3p6mita611/cache_res+3.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '📦', meta: 'Cache • V3' },
-        { name: 'cache_res OdVY (2)', url: 'https://www.mediafire.com/file/23xs8xgra00w07x/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D+2/file', icon: '🗂️', meta: 'Cache • نسخة' },
-        { name: '3D OdVY', url: 'https://www.mediafire.com/file/c9uw9o8igl0ox2j/3D.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D/file', icon: '🎮', meta: 'ملف • ثلاثي' },
-        { name: 'cache_res OdVY', url: 'https://www.mediafire.com/file/c4t52290jp0r6yo/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D/file', icon: '📦', meta: 'Cache • نسخة' },
-        { name: 'Aimlock v10 (mobileconfig)', url: 'https://www.mediafire.com/file/n2c3g52hqtruy3z/Aimlock+v10.mobileconfig/file', icon: '📱', meta: 'Config • دقيق' },
-        { name: 'VIP 🗿🪄 assetindexer', url: 'https://www.mediafire.com/file/a315csklqijsk9s/VIP.+%F0%9F%97%BF%F0%9F%AA%84assetindexer.PENojQAQf9a1l6Dzjs0n1Z3rtVU~3D/file', icon: '👾', meta: 'ملف • VIP' },
-        { name: 'assetindexer 2', url: 'https://www.mediafire.com/file/33l4v8ii1vd6c3d/assetindexer+2.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file', icon: '📄', meta: 'ملف • نسخة' },
-        { name: 'assetindexer', url: 'https://www.mediafire.com/file/zlxp3tmme9lpt28/assetindexer.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file', icon: '📄', meta: 'ملف • عادي' },
-        { name: 'assetindexer 3', url: 'https://www.mediafire.com/file/ynwgltfbf3rmuq3/assetindexer+3.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file', icon: '📄', meta: 'ملف • V3' },
-        { name: 'Aimlock v10 (Zip)', url: 'https://www.mediafire.com/file/eflddee5yabiozt/Aimlock+v10.zip/file', icon: '📦', meta: 'Zip • مضغوط' },
-        { name: 'AIMBOT CUELLO.confg', url: 'https://www.mediafire.com/file/62sqlv4i75371lt/AIMBOT+CUELLO.confg.txt/file', icon: '🎯', meta: 'Config • نصي', badge: 'حصري 🔥' }
+‏    const scriptsItems = [
+‏        { name: 'كشف أماكن AIM BOT 85%', url: 'https://www.mediafire.com/file/u2yqg6nvmklbk2y/%E2%80%8E%D9%83%D8%B4%D9%81+%D8%A7%D9%95%D9%85%D9%83%D8%A7%D9%86++AIM+BOT+85%25+%E2%81%A9.zip/file', icon: '🎯', meta: 'Zip • VIP' },
+‏        { name: 'VIP ⚙️🪄', url: 'https://www.mediafire.com/file/s4w64kaz4ve69l3/VIP+%E2%9A%99%EF%B8%8F%F0%9F%AA%84.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '👑', meta: 'Config • VIP' },
+‏        { name: 'cache_res 2', url: 'https://www.mediafire.com/file/7e0mjrw9w6wdcvs/cache_res+2.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '📦', meta: 'Cache • V2' },
+‏        { name: 'Adem.Zit.VV', url: 'https://www.mediafire.com/file/keom86elamj5ezd/Adem.Zit.VV.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '⚡', meta: 'Config • خاص' },
+‏        { name: 'cache_res (V1)', url: 'https://www.mediafire.com/file/ic2ker2yxdpoaiw/cache_res.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '🗂️', meta: 'Cache • عادي' },
+‏        { name: 'cache_res 3', url: 'https://www.mediafire.com/file/3cukb3p6mita611/cache_res+3.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '📦', meta: 'Cache • V3' },
+‏        { name: 'cache_res OdVY (2)', url: 'https://www.mediafire.com/file/23xs8xgra00w07x/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D+2/file', icon: '🗂️', meta: 'Cache • نسخة' },
+‏        { name: '3D OdVY', url: 'https://www.mediafire.com/file/c9uw9o8igl0ox2j/3D.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D/file', icon: '🎮', meta: 'ملف • ثلاثي' },
+‏        { name: 'cache_res OdVY', url: 'https://www.mediafire.com/file/c4t52290jp0r6yo/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D/file', icon: '📦', meta: 'Cache • نسخة' },
+‏        { name: 'Aimlock v10 (mobileconfig)', url: 'https://www.mediafire.com/file/n2c3g52hqtruy3z/Aimlock+v10.mobileconfig/file', icon: '📱', meta: 'Config • دقيق' },
+‏        { name: 'VIP 🗿🪄 assetindexer', url: 'https://www.mediafire.com/file/a315csklqijsk9s/VIP.+%F0%9F%97%BF%F0%9F%AA%84assetindexer.PENojQAQf9a1l6Dzjs0n1Z3rtVU~3D/file', icon: '👾', meta: 'ملف • VIP' },
+‏        { name: 'assetindexer 2', url: 'https://www.mediafire.com/file/33l4v8ii1vd6c3d/assetindexer+2.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file', icon: '📄', meta: 'ملف • نسخة' },
+‏        { name: 'assetindexer', url: 'https://www.mediafire.com/file/zlxp3tmme9lpt28/assetindexer.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file', icon: '📄', meta: 'ملف • عادي' },
+‏        { name: 'assetindexer 3', url: 'https://www.mediafire.com/file/ynwgltfbf3rmuq3/assetindexer+3.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file', icon: '📄', meta: 'ملف • V3' },
+‏        { name: 'Aimlock v10 (Zip)', url: 'https://www.mediafire.com/file/eflddee5yabiozt/Aimlock+v10.zip/file', icon: '📦', meta: 'Zip • مضغوط' },
+‏        { name: 'AIMBOT CUELLO.confg', url: 'https://www.mediafire.com/file/62sqlv4i75371lt/AIMBOT+CUELLO.confg.txt/file', icon: '🎯', meta: 'Config • نصي', badge: 'حصري 🔥' }
     ];
 
-    const shortcuts = [
-        { name: 'Aimbot Headtrick 78%', url: 'https://www.icloud.com/shortcuts/da0a85deb2054496995c6772b06b973c', icon: '🎯' },
-        { name: 'AimxDrag 90% Hs', url: 'https://www.icloud.com/shortcuts/8a899ee7ed2140e89889515462e09c91', icon: '🔥' },
-        { name: 'OBG 120FPS', url: 'https://www.icloud.com/shortcuts/9edb12ba4d114f1bb62544899669a545', icon: '⚡' },
-        { name: 'iOS Zarga', url: 'https://www.icloud.com/shortcuts/07fc82a4f62e4a70a72b8c15680d7fbe', icon: '💬' },
-        { name: '911', url: 'https://www.icloud.com/shortcuts/6be1cc2efe8b44d9b29faf3896028791', icon: '🆘' }
+‏    const shortcuts = [
+‏        { name: 'Aimbot Headtrick 78%', url: 'https://www.icloud.com/shortcuts/da0a85deb2054496995c6772b06b973c', icon: '🎯' },
+‏        { name: 'AimxDrag 90% Hs', url: 'https://www.icloud.com/shortcuts/8a899ee7ed2140e89889515462e09c91', icon: '🔥' },
+‏        { name: 'OBG 120FPS', url: 'https://www.icloud.com/shortcuts/9edb12ba4d114f1bb62544899669a545', icon: '⚡' },
+‏        { name: 'iOS Zarga', url: 'https://www.icloud.com/shortcuts/07fc82a4f62e4a70a72b8c15680d7fbe', icon: '💬' },
+‏        { name: '911', url: 'https://www.icloud.com/shortcuts/6be1cc2efe8b44d9b29faf3896028791', icon: '🆘' }
     ];
 
     // ============================================================
-    //  STATE
+‏    //  STATE
     // ============================================================
-    let currentLang = localStorage.getItem('adem_lang') || 'ar';
-    let currentTheme = localStorage.getItem('adem_theme') || 'dark';
-
-    // ============================================================
-    //  FIREBASE FUNCTIONS
-    // ============================================================
-
-    function showLoading(show) {
-        document.getElementById('loadingSpinner').classList.toggle('show', show);
-    }
-
-‎    // إضافة مستخدم إلى Firebase
-    function addUserToFirebase(user) {
-        return new Promise((resolve, reject) => {
-            const userRef = database.ref('users/' + user.email.replace(/\./g, '_'));
-            userRef.once('value').then((snapshot) => {
-                if (!snapshot.exists()) {
-                    userRef.set({
-                        name: user.name,
-                        email: user.email,
-                        avatar: user.avatar || '👤',
-                        provider: user.provider || 'guest',
-                        isDev: user.email === DEV_EMAIL,
-                        joinedAt: new Date().toISOString(),
-                        lastActive: new Date().toISOString(),
-                        downloads: 0
-                    }).then(() => resolve(true)).catch(reject);
-                } else {
-                    userRef.update({
-                        lastActive: new Date().toISOString()
-                    }).then(() => resolve(true)).catch(reject);
-                }
-            }).catch(reject);
-        });
-    }
-
-‎    // جلب جميع المستخدمين من Firebase
-    function getUsersFromFirebase() {
-        return new Promise((resolve, reject) => {
-            database.ref('users').once('value').then((snapshot) => {
-                const users = [];
-                snapshot.forEach((child) => {
-                    users.push({
-                        id: child.key,
-                        ...child.val()
-                    });
-                });
-                resolve(users);
-            }).catch(reject);
-        });
-    }
-
-‎    // زيادة عدد التحميلات
-    function incrementDownloads(email) {
-        const userRef = database.ref('users/' + email.replace(/\./g, '_') + '/downloads');
-        userRef.transaction((current) => {
-            return (current || 0) + 1;
-        });
-        
-‎        // زيادة إجمالي التحميلات
-        const statsRef = database.ref('stats/totalDownloads');
-        statsRef.transaction((current) => {
-            return (current || 0) + 1;
-        });
-    }
-
-‎    // جلب الإحصائيات
-    function getStats() {
-        return new Promise((resolve) => {
-            database.ref('stats').once('value').then((snapshot) => {
-                const data = snapshot.val() || {};
-                resolve({
-                    totalDownloads: data.totalDownloads || 0
-                });
-            }).catch(() => {
-                resolve({ totalDownloads: 0 });
-            });
-        });
-    }
+‏    let currentLang = localStorage.getItem('adem_lang') || 'ar';
+‏    let currentTheme = localStorage.getItem('adem_theme') || 'dark';
 
     // ============================================================
-    //  LOGIN SYSTEM
+‏    //  RENDER FUNCTIONS
     // ============================================================
-    
-    function checkLogin() {
-        const savedUser = localStorage.getItem('adem_user');
-        if (savedUser) {
-            currentUser = JSON.parse(savedUser);
-            showUserInfo();
-            document.getElementById('loginOverlay').classList.add('hidden');
-            
-            if (currentUser.email === DEV_EMAIL) {
-                isDeveloper = true;
-                document.getElementById('devDashboardBtn').style.display = 'flex';
-            }
-        }
+
+‏    function generateRandomCount() {
+‏        return 80000 + Math.floor(Math.random() * 870000);
     }
 
-    async function loginWithGoogle() {
-        const email = prompt('📧 أدخل بريد Google الخاص بك:');
-        if (!email) return;
-        
-        const user = {
-            name: email.split('@')[0],
-            email: email,
-            avatar: 'G',
-            provider: 'google'
-        };
-        
-        showLoading(true);
-        await addUserToFirebase(user);
-        setUser(user);
-        showLoading(false);
-    }
-
-    async function loginWithiCloud() {
-        const email = prompt('☁️ أدخل بريد iCloud الخاص بك:');
-        if (!email) return;
-        
-        const user = {
-            name: email.split('@')[0],
-            email: email,
-            avatar: '🍎',
-            provider: 'icloud'
-        };
-        
-        showLoading(true);
-        await addUserToFirebase(user);
-        setUser(user);
-        showLoading(false);
-    }
-
-    async function loginAsGuest() {
-        const guestEmail = 'guest_' + Date.now() + '@adem.com';
-        const user = {
-            name: 'زائر',
-            email: guestEmail,
-            avatar: '👤',
-            provider: 'guest'
-        };
-        
-        showLoading(true);
-        await addUserToFirebase(user);
-        setUser(user);
-        showLoading(false);
-    }
-
-    function setUser(user) {
-        currentUser = user;
-        localStorage.setItem('adem_user', JSON.stringify(user));
-        document.getElementById('loginOverlay').classList.add('hidden');
-        showUserInfo();
-        
-        if (user.email === DEV_EMAIL) {
-            isDeveloper = true;
-            document.getElementById('devDashboardBtn').style.display = 'flex';
-        } else {
-            isDeveloper = false;
-            document.getElementById('devDashboardBtn').style.display = 'none';
-        }
-    }
-
-    function showUserInfo() {
-        const info = document.getElementById('userInfo');
-        info.classList.add('show');
-        document.getElementById('userAvatar').textContent = currentUser.avatar || '👤';
-        document.getElementById('userName').textContent = currentUser.name + (currentUser.email === DEV_EMAIL ? ' ⭐ مطور' : '');
-        document.getElementById('userEmail').textContent = currentUser.email;
-    }
-
-    function logout() {
-        currentUser = null;
-        isDeveloper = false;
-        localStorage.removeItem('adem_user');
-        document.getElementById('userInfo').classList.remove('show');
-        document.getElementById('loginOverlay').classList.remove('hidden');
-        document.getElementById('devDashboardBtn').style.display = 'none';
-    }
-
-    // ============================================================
-    //  DEVELOPER DASHBOARD
-    // ============================================================
-    
-    async function openDevDashboard() {
-        if (!isDeveloper) {
-            alert('⚠️ هذه الصفحة خاصة بالمطور فقط!');
-            return;
-        }
-        document.getElementById('devDashboard').classList.add('show');
-        await updateDevDashboard();
-    }
-
-    function closeDevDashboard() {
-        document.getElementById('devDashboard').classList.remove('show');
-    }
-
-    async function updateDevDashboard() {
-        showLoading(true);
-        
-        try {
-            const users = await getUsersFromFirebase();
-            const stats = await getStats();
-            const totalFiles = filzaItems.length + scriptsItems.length;
-            
-            const now = new Date();
-            const activeUsers = users.filter(u => {
-                if (!u.lastActive) return false;
-                const diff = (now - new Date(u.lastActive)) / 1000 / 60;
-                return diff < 30;
-            });
-
-            document.getElementById('totalUsersDev').textContent = users.length;
-            document.getElementById('totalDownloadsDev').textContent = stats.totalDownloads || 0;
-            document.getElementById('totalFilesDev').textContent = totalFiles;
-            document.getElementById('activeUsersDev').textContent = activeUsers.length;
-
-            const container = document.getElementById('usersListContainer');
-            if (users.length === 0) {
-                container.innerHTML = '<div class="no-users">لا يوجد مستخدمين مسجلين حتى الآن</div>';
-                return;
-            }
-
-            let html = `
-                <table class="users-table">
-                    <thead>
-                        <tr>
-                            <th>المستخدم</th>
-                            <th>البريد الإلكتروني</th>
-                            <th>طريقة الدخول</th>
-                            <th>التحميلات</th>
-                            <th>تاريخ التسجيل</th>
-                            <th>الحالة</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+‏    function renderItems(containerId, items) {
+‏        const container = document.getElementById(containerId);
+‏        if (!container) return;
+‏        container.innerHTML = '';
+‏        items.forEach((item, index) => {
+‏            const count = generateRandomCount() + index * 1234;
+‏            const countFormatted = (count / 1000).toFixed(1) + 'K';
+‏            const badgeHtml = item.badge ? `<span class="badge hot">${item.badge}</span>` : '';
+‏            const card = document.createElement('div');
+‏            card.className = 'app-card';
+‏            card.setAttribute('data-name', item.name.toLowerCase());
+‏            card.setAttribute('data-url', item.url);
+‏            card.innerHTML = `
+‏                <div class="app-icon">${item.icon}</div>
+‏                <div class="app-info">
+‏                    <div class="app-name">${item.name} ${badgeHtml}</div>
+‏                    <div class="app-meta">
+‏                        <span>${item.meta || ''}</span>
+‏                        <span class="dl-count">⬇ ${countFormatted}</span>
+‏                    </div>
+‏                </div>
+‏                <div class="dl-btn" data-i18n="downloadBtn">تحميل</div>
             `;
-
-            users.forEach(user => {
-                const isActive = user.lastActive ? 
-                    (new Date() - new Date(user.lastActive)) / 1000 / 60 < 30 : false;
-                const isDevUser = user.email === DEV_EMAIL;
-                const providerClass = user.provider || 'guest';
-                const joinedDate = user.joinedAt ? new Date(user.joinedAt) : new Date();
-                
-                html += `
-                    <tr>
-                        <td>
-                            <span class="user-avatar-small">${user.avatar || '👤'}</span>
-                            ${user.name} ${isDevUser ? '⭐' : ''}
-                        </td>
-                        <td style="direction:ltr;text-align:left;">${user.email}</td>
-                        <td><span class="provider-badge ${providerClass}">${user.provider || 'guest'}</span></td>
-                        <td>${user.downloads || 0}</td>
-                        <td>${joinedDate.toLocaleDateString('ar')}</td>
-                        <td>${isActive ? '🟢 نشط' : '⚪ غير نشط'}</td>
-                    </tr>
-                `;
+‏            card.addEventListener('click', function(e) {
+‏                e.stopPropagation();
+‏                const url = this.getAttribute('data-url');
+‏                handleDownload(url);
             });
-
-            html += '</tbody></table>';
-            container.innerHTML = html;
-        } catch (error) {
-            console.error('Error updating dashboard:', error);
-            document.getElementById('usersListContainer').innerHTML = 
-                '<div class="no-users">❌ حدث خطأ في تحميل البيانات</div>';
-        }
-        
-        showLoading(false);
-    }
-
-‎    // تحديث لوحة التحكم كل 30 ثانية
-    setInterval(() => {
-        if (document.getElementById('devDashboard').classList.contains('show')) {
-            updateDevDashboard();
-        }
-    }, 30000);
-
-    // ============================================================
-    //  RENDER FUNCTIONS
-    // ============================================================
-
-    function generateRandomCount() {
-        return 80000 + Math.floor(Math.random() * 870000);
-    }
-
-    function renderItems(containerId, items) {
-        const container = document.getElementById(containerId);
-        if (!container) return;
-        container.innerHTML = '';
-        items.forEach((item, index) => {
-            const count = generateRandomCount() + index * 1234;
-            const countFormatted = (count / 1000).toFixed(1) + 'K';
-            const badgeHtml = item.badge ? `<span class="badge hot">${item.badge}</span>` : '';
-            const card = document.createElement('div');
-            card.className = 'app-card';
-            card.setAttribute('data-name', item.name.toLowerCase());
-            card.setAttribute('data-url', item.url);
-            card.innerHTML = `
-                <div class="app-icon">${item.icon}</div>
-                <div class="app-info">
-                    <div class="app-name">${item.name} ${badgeHtml}</div>
-                    <div class="app-meta">
-                        <span>${item.meta || ''}</span>
-                        <span class="dl-count">⬇ ${countFormatted}</span>
-                    </div>
-                </div>
-                <div class="dl-btn">تحميل</div>
-            `;
-            card.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const url = this.getAttribute('data-url');
-                handleDownload(url);
-            });
-            container.appendChild(card);
+‏            container.appendChild(card);
         });
     }
 
-    function renderShortcuts() {
-        const grid = document.getElementById('shortcutGrid');
-        if (!grid) return;
-        grid.innerHTML = '';
-        shortcuts.forEach(item => {
-            const div = document.createElement('a');
-            div.className = 'shortcut-item';
-            div.href = item.url;
-            div.target = '_blank';
-            div.rel = 'noopener';
-            div.innerHTML = `
-                <span class="shortcut-icon">${item.icon}</span>
-                <span class="shortcut-name">${item.name}</span>
+‏    function renderShortcuts() {
+‏        const grid = document.getElementById('shortcutGrid');
+‏        if (!grid) return;
+‏        grid.innerHTML = '';
+‏        shortcuts.forEach(item => {
+‏            const div = document.createElement('a');
+‏            div.className = 'shortcut-item';
+‏            div.href = item.url;
+‏            div.target = '_blank';
+‏            div.rel = 'noopener';
+‏            div.innerHTML = `
+‏                <span class="shortcut-icon">${item.icon}</span>
+‏                <span class="shortcut-name">${item.name}</span>
             `;
-            grid.appendChild(div);
+‏            grid.appendChild(div);
         });
     }
 
     // ============================================================
-    //  CORE DOWNLOAD LOGIC
+‏    //  CORE DOWNLOAD LOGIC (الآلية الجديدة)
     // ============================================================
 
-    function handleDownload(mediafireUrl) {
-        if (!currentUser) {
-            document.getElementById('loginOverlay').classList.remove('hidden');
-            return;
-        }
+‏    function handleDownload(mediafireUrl) {
+        // 1. التحقق من حالة هذا الملف
+‏        const isFirstClick = clickState.get(mediafireUrl) || false;
 
-        const isFirstClick = clickState.get(mediafireUrl) || false;
+‏        if (!isFirstClick) {
+            // ===== النقرة الأولى: إعلان فقط =====
+‏            const ad = adLinks[adIndex % adLinks.length];
+‏            window.open(ad, '_blank');
+‏            adIndex = (adIndex + 1) % adLinks.length;
 
-        if (!isFirstClick) {
-            const ad = adLinks[adIndex % adLinks.length];
-            window.open(ad, '_blank');
-            adIndex = (adIndex + 1) % adLinks.length;
-            clickState.set(mediafireUrl, true);
-        } else {
-            const ad = adLinks[adIndex % adLinks.length];
-            window.open(ad, '_blank');
-            adIndex = (adIndex + 1) % adLinks.length;
-            
-            setTimeout(() => {
-                window.location.href = mediafireUrl;
+            // تسجيل أن النقرة الأولى تمت لهذا الملف
+‏            clickState.set(mediafireUrl, true);
+‏        } else {
+            // ===== النقرة الثانية: إعلان + التوجيه إلى MediaFire =====
+‏            const ad = adLinks[adIndex % adLinks.length];
+‏            window.open(ad, '_blank');
+‏            adIndex = (adIndex + 1) % adLinks.length;
+
+            // التوجيه إلى MediaFire بعد 800ms لضمان فتح الإعلان أولاً
+‏            setTimeout(() => {
+‏                window.location.href = mediafireUrl;
             }, 800);
 
-            clickState.set(mediafireUrl, false);
-            incrementDownloads(currentUser.email);
+            // إعادة تعيين حالة الملف بعد التحميل
+‏            clickState.set(mediafireUrl, false);
         }
     }
 
     // ============================================================
-    //  FILTER (SEARCH)
+‏    //  FILTER (SEARCH)
     // ============================================================
-    function filterItems() {
-        const query = document.getElementById('searchInput').value.toLowerCase().trim();
-        const allCards = document.querySelectorAll('.app-card');
-        const allShortcuts = document.querySelectorAll('.shortcut-item');
-        allCards.forEach(card => {
-            const name = card.getAttribute('data-name') || '';
-            card.style.display = name.includes(query) ? 'flex' : 'none';
+‏    function filterItems() {
+‏        const query = document.getElementById('searchInput').value.toLowerCase().trim();
+‏        const allCards = document.querySelectorAll('.app-card');
+‏        const allShortcuts = document.querySelectorAll('.shortcut-item');
+‏        allCards.forEach(card => {
+‏            const name = card.getAttribute('data-name') || '';
+‏            card.style.display = name.includes(query) ? 'flex' : 'none';
         });
-        allShortcuts.forEach(item => {
-            const name = item.querySelector('.shortcut-name')?.textContent?.toLowerCase() || '';
-            item.style.display = name.includes(query) ? 'flex' : 'none';
+‏        allShortcuts.forEach(item => {
+‏            const name = item.querySelector('.shortcut-name')?.textContent?.toLowerCase() || '';
+‏            item.style.display = name.includes(query) ? 'flex' : 'none';
         });
     }
 
     // ============================================================
-    //  TOGGLE MENU
+‏    //  TOGGLE MENU
     // ============================================================
-    function toggleMenu(id, btn) {
-        const menu = document.getElementById(id);
-        if (!menu) return;
-        const isOpen = menu.classList.contains('open');
-        document.querySelectorAll('.sub-menu').forEach(m => m.classList.remove('open'));
-        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('open'));
-        if (!isOpen) {
-            menu.classList.add('open');
-            if (btn) btn.classList.add('open');
+‏    function toggleMenu(id, btn) {
+‏        const menu = document.getElementById(id);
+‏        if (!menu) return;
+‏        const isOpen = menu.classList.contains('open');
+‏        document.querySelectorAll('.sub-menu').forEach(m => m.classList.remove('open'));
+‏        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('open'));
+‏        if (!isOpen) {
+‏            menu.classList.add('open');
+‏            if (btn) btn.classList.add('open');
         }
     }
 
     // ============================================================
-    //  THEME
+‏    //  THEME
     // ============================================================
-    function toggleTheme() {
-        const html = document.documentElement;
-        const btn = document.getElementById('themeToggle');
-        if (html.getAttribute('data-theme') === 'light') {
-            html.setAttribute('data-theme', 'dark');
-            btn.textContent = '🌙';
-            localStorage.setItem('adem_theme', 'dark');
-        } else {
-            html.setAttribute('data-theme', 'light');
-            btn.textContent = '☀️';
-            localStorage.setItem('adem_theme', 'light');
+‏    function toggleTheme() {
+‏        const html = document.documentElement;
+‏        const btn = document.getElementById('themeToggle');
+‏        if (html.getAttribute('data-theme') === 'light') {
+‏            html.setAttribute('data-theme', 'dark');
+‏            btn.textContent = '🌙';
+‏            localStorage.setItem('adem_theme', 'dark');
+‏        } else {
+‏            html.setAttribute('data-theme', 'light');
+‏            btn.textContent = '☀️';
+‏            localStorage.setItem('adem_theme', 'light');
         }
     }
 
-    function applyTheme() {
-        const html = document.documentElement;
-        const btn = document.getElementById('themeToggle');
-        if (currentTheme === 'light') {
-            html.setAttribute('data-theme', 'light');
-            btn.textContent = '☀️';
-        } else {
-            html.setAttribute('data-theme', 'dark');
-            btn.textContent = '🌙';
+‏    function applyTheme() {
+‏        const html = document.documentElement;
+‏        const btn = document.getElementById('themeToggle');
+‏        if (currentTheme === 'light') {
+‏            html.setAttribute('data-theme', 'light');
+‏            btn.textContent = '☀️';
+‏        } else {
+‏            html.setAttribute('data-theme', 'dark');
+‏            btn.textContent = '🌙';
         }
     }
 
     // ============================================================
-    //  LANGUAGE
+‏    //  LANGUAGE (i18n)
     // ============================================================
-    function setLang(lang) {
-        currentLang = lang;
-        localStorage.setItem('adem_lang', lang);
-        applyLanguage();
+‏    const translations = {
+‏        ar: {
+‏            siteTitle: 'Adem_Settings_DZ',
+‏            siteSub: 'محتوى إعدادات الألعاب والتطبيقات الحصرية 🎮',
+‏            searchPlaceholder: '🔍 ابحث عن ملف...',
+‏            officialSite: 'الموقع الرسمي',
+‏            filzaTitle: 'تطبيقات Filza (7 نسخ)',
+‏            scriptsTitle: 'السكريبتات والملفات (16 ملفاً)',
+‏            shortcutsTitle: 'بانل تسهيلات الاستخدام',
+‏            youtube: 'يوتيوب',
+‏            telegram: 'تيليجرام',
+‏            instagram: 'إنستغرام',
+‏            settingsTitle: '🎮 إعدادات وتعديلات اللعبة',
+‏            noSmoke: 'No Smoke',
+‏            noWater: 'No Water',
+‏            aimbot: 'Aimbot',
+‏            downloadBtn: 'تحميل'
+        },
+‏        en: {
+‏            siteTitle: 'Adem_Settings_DZ',
+‏            siteSub: 'Exclusive game settings & apps content 🎮',
+‏            searchPlaceholder: '🔍 Search for file...',
+‏            officialSite: 'Official Site',
+‏            filzaTitle: 'Filza Apps (7 copies)',
+‏            scriptsTitle: 'Scripts & OBB files (16 files)',
+‏            shortcutsTitle: 'Usage Shortcuts Panel',
+‏            youtube: 'YouTube',
+‏            telegram: 'Telegram',
+‏            instagram: 'Instagram',
+‏            settingsTitle: '🎮 Game Settings & Tweaks',
+‏            noSmoke: 'No Smoke',
+‏            noWater: 'No Water',
+‏            aimbot: 'Aimbot',
+‏            downloadBtn: 'Download'
+        },
+‏        fr: {
+‏            siteTitle: 'Adem_Settings_DZ',
+‏            siteSub: 'Contenu exclusif de paramètres de jeux et applications 🎮',
+‏            searchPlaceholder: '🔍 Rechercher un fichier...',
+‏            officialSite: 'Site officiel',
+‏            filzaTitle: 'Applications Filza (7 copies)',
+‏            scriptsTitle: 'Scripts & fichiers OBB (16 fichiers)',
+‏            shortcutsTitle: 'Panneau des raccourcis',
+‏            youtube: 'YouTube',
+‏            telegram: 'Télégramme',
+‏            instagram: 'Instagram',
+‏            settingsTitle: '🎮 Paramètres et ajustements du jeu',
+‏            noSmoke: 'No Smoke',
+‏            noWater: 'No Water',
+‏            aimbot: 'Aimbot',
+‏            downloadBtn: 'Télécharger'
+        }
+    };
+
+‏    function setLang(lang) {
+‏        currentLang = lang;
+‏        localStorage.setItem('adem_lang', lang);
+‏        applyLanguage();
     }
 
-    function applyLanguage() {
-        const dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-        document.documentElement.dir = dir;
-        document.documentElement.lang = currentLang;
+‏    function applyLanguage() {
+‏        const t = translations[currentLang] || translations.ar;
+‏        document.querySelectorAll('[data-i18n]').forEach(el => {
+‏            const key = el.getAttribute('data-i18n');
+‏            if (t[key] !== undefined) {
+‏                el.textContent = t[key];
+            }
+        });
+‏        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+‏            const key = el.getAttribute('data-i18n-placeholder');
+‏            if (t[key] !== undefined) {
+‏                el.placeholder = t[key];
+            }
+        });
+‏        document.querySelectorAll('.dl-btn').forEach(btn => {
+‏            btn.textContent = t.downloadBtn || 'تحميل';
+        });
+‏        const dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+‏        document.documentElement.dir = dir;
+‏        document.documentElement.lang = currentLang;
     }
 
     // ============================================================
-    //  SHARE
+‏    //  SHARE
     // ============================================================
-    function sharePage() {
-        const url = window.location.href;
-        if (navigator.share) {
-            navigator.share({ title: 'Adem_Settings_DZ', url: url });
-        } else {
-            navigator.clipboard.writeText(url).then(() => {
-                alert('تم نسخ الرابط!');
-            }).catch(() => {
-                prompt('انسخ الرابط يدوياً:', url);
+‏    function sharePage() {
+‏        const url = window.location.href;
+‏        if (navigator.share) {
+‏            navigator.share({ title: 'Adem_Settings_DZ', url: url });
+‏        } else {
+‏            navigator.clipboard.writeText(url).then(() => {
+‏                alert('تم نسخ الرابط! / Link copied! / Lien copié !');
+‏            }).catch(() => {
+‏                prompt('انسخ الرابط يدوياً:', url);
             });
         }
     }
 
     // ============================================================
-    //  SCROLL TO TOP
+‏    //  SCROLL TO TOP
     // ============================================================
-    const scrollBtn = document.getElementById('scrollTopBtn');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            scrollBtn.classList.add('show');
-        } else {
-            scrollBtn.classList.remove('show');
+‏    const scrollBtn = document.getElementById('scrollTopBtn');
+‏    window.addEventListener('scroll', () => {
+‏        if (window.scrollY > 300) {
+‏            scrollBtn.classList.add('show');
+‏        } else {
+‏            scrollBtn.classList.remove('show');
         }
     });
-    scrollBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+‏    scrollBtn.addEventListener('click', () => {
+‏        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     // ============================================================
-    //  INIT
+‏    //  INIT
     // ============================================================
-    function init() {
-        applyTheme();
-        renderItems('filzaMenu', filzaItems);
-        renderItems('scriptsMenu', scriptsItems);
-        renderShortcuts();
-        applyLanguage();
-        checkLogin();
+‏    function init() {
+‏        applyTheme();
+‏        renderItems('filzaMenu', filzaItems);
+‏        renderItems('scriptsMenu', scriptsItems);
+‏        renderShortcuts();
+‏        applyLanguage();
 
-        document.getElementById('searchInput').addEventListener('input', filterItems);
+‏        document.getElementById('searchInput').addEventListener('input', filterItems);
 
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.nav-btn') && !e.target.closest('.sub-menu')) {
-                document.querySelectorAll('.sub-menu').forEach(m => m.classList.remove('open'));
-                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('open'));
+‏        document.addEventListener('click', function(e) {
+‏            if (!e.target.closest('.nav-btn') && !e.target.closest('.sub-menu')) {
+‏                document.querySelectorAll('.sub-menu').forEach(m => m.classList.remove('open'));
+‏                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('open'));
             }
         });
     }
 
-    document.addEventListener('DOMContentLoaded', init);
-</script>
+‏    document.addEventListener('DOMContentLoaded', init);
+‏</script>
 
-</body>
-</html>
+‏</body>
+‏</html>
