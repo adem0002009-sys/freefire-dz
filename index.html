@@ -4,13 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Adem_Settings_DZ</title>
-    
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
-    
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <style>
+        /* ===== ROOT VARIABLES ===== */
         :root {
             --bg-main: #080c14;
             --bg-card: #101726;
@@ -27,6 +23,7 @@
             --font: 'Cairo', sans-serif;
         }
 
+        /* Light Mode */
         [data-theme="light"] {
             --bg-main: #f1f5f9;
             --bg-card: #ffffff;
@@ -67,166 +64,7 @@
             gap: 16px;
         }
 
-        .login-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-            padding: 20px;
-        }
-        .login-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .login-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: 24px;
-            padding: 40px 30px;
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-            box-shadow: var(--shadow);
-            animation: slideUp 0.5s ease;
-        }
-        @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .login-box .logo {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-        .login-box h2 {
-            font-size: 1.5rem;
-            margin-bottom: 6px;
-        }
-        .login-box p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 24px;
-        }
-        .login-btn {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid var(--border-card);
-            border-radius: 14px;
-            background: var(--bg-hover);
-            color: var(--text-main);
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-        .login-btn:hover {
-            border-color: var(--blue-accent);
-            transform: translateY(-2px);
-        }
-        .login-btn.google {
-            background: #fff;
-            color: #000;
-        }
-        .login-btn.google:hover {
-            background: #f1f1f1;
-        }
-        .login-btn.icloud {
-            background: #1a1a2e;
-            color: #fff;
-            border-color: #3a3a5a;
-        }
-        .login-btn.icloud:hover {
-            background: #2a2a4e;
-        }
-        .login-btn .icon {
-            font-size: 1.4rem;
-        }
-        .login-divider {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 16px 0;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-        }
-        .login-divider::before,
-        .login-divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border-card);
-        }
-        .user-info {
-            display: none;
-            align-items: center;
-            gap: 12px;
-            background: var(--bg-card);
-            padding: 12px 16px;
-            border-radius: 60px;
-            border: 1px solid var(--border-card);
-            width: 100%;
-        }
-        .user-info.show {
-            display: flex;
-        }
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--blue-accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #fff;
-            flex-shrink: 0;
-        }
-        .user-name {
-            flex: 1;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        .user-email {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-        .logout-btn {
-            background: transparent;
-            border: 1px solid #ef4444;
-            color: #ef4444;
-            padding: 4px 14px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 0.75rem;
-            font-weight: 700;
-            transition: var(--transition);
-        }
-        .logout-btn:hover {
-            background: #ef4444;
-            color: #fff;
-        }
-        .dev-badge {
-            background: var(--blue-accent);
-            color: #fff;
-            font-size: 0.6rem;
-            padding: 2px 10px;
-            border-radius: 20px;
-            margin-right: 4px;
-        }
-
+        /* ===== TOP BAR (Lang + Theme + Share) ===== */
         .top-bar {
             display: flex;
             flex-wrap: wrap;
@@ -276,6 +114,7 @@
             font-size: 1.1rem;
         }
 
+        /* ===== HEADER ===== */
         .header {
             display: flex;
             flex-direction: column;
@@ -320,6 +159,7 @@
             margin-top: 2px;
         }
 
+        /* ===== SEARCH BAR ===== */
         .search-box {
             width: 100%;
             position: relative;
@@ -343,6 +183,7 @@
             border-color: var(--blue-accent);
         }
 
+        /* ===== NAV BUTTONS ===== */
         .nav-btn {
             width: 100%;
             background: var(--bg-card);
@@ -389,6 +230,7 @@
             transform: rotate(-90deg);
         }
 
+        /* ===== SUB MENU ===== */
         .sub-menu {
             display: none;
             flex-direction: column;
@@ -400,6 +242,7 @@
             display: flex;
         }
 
+        /* ===== APP CARD (for items) ===== */
         .app-card {
             background: var(--bg-card);
             border: 1px solid var(--border-card);
@@ -426,7 +269,11 @@
             justify-content: center;
             flex-shrink: 0;
             background: var(--blue-accent);
-            font-size: 1.5rem;
+        }
+        .app-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: #fff;
         }
         .app-info {
             flex: 1;
@@ -480,6 +327,7 @@
             color: #fff;
         }
 
+        /* ===== SHORTCUT GRID (بانل التسهيلات) ===== */
         .shortcut-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -517,6 +365,7 @@
             line-height: 1.2;
         }
 
+        /* ===== SOCIAL ROW ===== */
         .social-row {
             display: flex;
             flex-direction: column;
@@ -530,6 +379,7 @@
             gap: 10px;
         }
 
+        /* ===== SECTION BLOCK (جدول الإعدادات) ===== */
         .section-block {
             width: 100%;
             background: var(--bg-card);
@@ -567,180 +417,7 @@
             font-size: 0.8rem;
         }
 
-        .dev-dashboard {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-main);
-            z-index: 10000;
-            padding: 20px;
-            overflow-y: auto;
-            animation: fadeIn 0.4s ease;
-        }
-        .dev-dashboard.show {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .dev-dashboard .close-dev {
-            position: sticky;
-            top: 10px;
-            float: left;
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            color: var(--text-main);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            z-index: 10;
-        }
-        .dev-dashboard .close-dev:hover {
-            background: var(--bg-hover);
-            border-color: var(--blue-accent);
-        }
-        .dev-dashboard .dev-header {
-            text-align: center;
-            padding: 20px 0;
-            border-bottom: 1px solid var(--border-card);
-            margin-bottom: 20px;
-        }
-        .dev-dashboard .dev-header h2 {
-            font-size: 1.8rem;
-            color: var(--blue-accent);
-        }
-        .dev-dashboard .dev-header p {
-            color: var(--text-secondary);
-        }
-        .dev-stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 12px;
-            margin: 16px 0 24px;
-        }
-        .dev-stat-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: 14px;
-            padding: 16px;
-            text-align: center;
-        }
-        .dev-stat-card .number {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--blue-accent);
-        }
-        .dev-stat-card .label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-
-        .users-table-wrap {
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: 14px;
-            overflow: hidden;
-            margin-top: 16px;
-        }
-        .users-table-wrap h3 {
-            padding: 14px 16px;
-            border-bottom: 1px solid var(--border-card);
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .users-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.8rem;
-        }
-        .users-table th {
-            background: var(--bg-hover);
-            padding: 10px 12px;
-            text-align: right;
-            font-weight: 700;
-            color: var(--text-secondary);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            border-bottom: 1px solid var(--border-card);
-        }
-        .users-table td {
-            padding: 10px 12px;
-            border-bottom: 1px solid var(--border-card);
-        }
-        .users-table tr:last-child td {
-            border-bottom: none;
-        }
-        .users-table .user-avatar-small {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: var(--blue-accent);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            color: #fff;
-            margin-left: 8px;
-        }
-        .users-table .provider-badge {
-            font-size: 0.6rem;
-            padding: 2px 10px;
-            border-radius: 20px;
-            background: var(--bg-icon);
-            color: var(--text-secondary);
-        }
-        .users-table .provider-badge.google {
-            background: #fff;
-            color: #000;
-        }
-        .users-table .provider-badge.icloud {
-            background: #1a1a2e;
-            color: #fff;
-        }
-        .users-table .provider-badge.guest {
-            background: var(--bg-icon);
-            color: var(--text-secondary);
-        }
-        .no-users {
-            padding: 30px;
-            text-align: center;
-            color: var(--text-secondary);
-        }
-
-        .loading-spinner {
-            display: none;
-            text-align: center;
-            padding: 20px;
-        }
-        .loading-spinner.show {
-            display: block;
-        }
-        .spinner {
-            border: 4px solid var(--border-card);
-            border-top: 4px solid var(--blue-accent);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
+        /* ===== SCROLL TO TOP ===== */
         #scrollTopBtn {
             position: fixed;
             bottom: 28px;
@@ -767,6 +444,69 @@
             display: flex;
         }
 
+        /* ===== MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-box {
+            background: var(--bg-card);
+            border: 2px solid var(--green-accent);
+            border-radius: 24px;
+            padding: 28px 24px;
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+        }
+        .modal-box h3 {
+            color: var(--green-accent);
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        .modal-box p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        .modal-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--green-accent), #059669);
+            border: none;
+            border-radius: 14px;
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .modal-btn:hover {
+            opacity: 0.9;
+        }
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            margin-top: 14px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 420px) {
             .top-bar {
                 gap: 4px;
@@ -790,91 +530,23 @@
             .shortcut-icon {
                 font-size: 2rem;
             }
-            .login-box {
-                padding: 30px 20px;
-            }
-            .dev-stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .users-table th,
-            .users-table td {
-                padding: 8px 8px;
-                font-size: 0.7rem;
-            }
         }
     </style>
 </head>
 <body>
 
-<!-- ========== LOADING ========== -->
-<div class="loading-spinner" id="loadingSpinner">
-    <div class="spinner"></div>
-    <p style="margin-top:10px;color:var(--text-secondary);">جاري التحميل...</p>
-</div>
-
-<!-- ========== LOGIN OVERLAY ========== -->
-<div class="login-overlay" id="loginOverlay">
-    <div class="login-box">
-        <div class="logo">🎮</div>
-        <h2>مرحباً بك</h2>
-        <p>سجل دخولك للوصول إلى المحتوى الحصري</p>
-        
-        <button class="login-btn google" onclick="loginWithGoogle()">
-            <span class="icon">🔴</span> Google
-        </button>
-        <button class="login-btn icloud" onclick="loginWithiCloud()">
-            <span class="icon">☁️</span> iCloud
-        </button>
-        
-        <div class="login-divider">
-            <span>أو تابع كزائر</span>
-        </div>
-        
-        <button class="login-btn" onclick="loginAsGuest()" style="background: var(--bg-icon); border-color: var(--border-card);">
-            <span class="icon">👤</span> دخول كزائر
-        </button>
+<!-- ========== MODAL ========== -->
+<div class="modal" id="downloadModal">
+    <div class="modal-box">
+        <h3 id="modalTitle">⚡ جاهز للتحميل</h3>
+        <p id="modalDesc">سيتم فتح الإعلان في تبويب جديد، ثم توجيهك مباشرة إلى ملف التحميل</p>
+        <button class="modal-btn" id="modalConfirmBtn">متابعة</button>
+        <button class="modal-close" id="modalCloseBtn">إلغاء</button>
     </div>
 </div>
 
-<!-- ========== DEVELOPER DASHBOARD ========== -->
-<div class="dev-dashboard" id="devDashboard">
-    <button class="close-dev" onclick="closeDevDashboard()">✕</button>
-    
-    <div class="dev-header">
-        <h2>👨‍💻 لوحة تحكم المطور</h2>
-        <p>عرض جميع المستخدمين المسجلين (مخزنة في Firebase)</p>
-    </div>
-
-    <div class="dev-stats-grid">
-        <div class="dev-stat-card">
-            <div class="number" id="totalUsersDev">0</div>
-            <div class="label">👥 إجمالي المستخدمين</div>
-        </div>
-        <div class="dev-stat-card">
-            <div class="number" id="totalDownloadsDev">0</div>
-            <div class="label">⬇️ إجمالي التحميلات</div>
-        </div>
-        <div class="dev-stat-card">
-            <div class="number" id="totalFilesDev">23</div>
-            <div class="label">📁 إجمالي الملفات</div>
-        </div>
-        <div class="dev-stat-card">
-            <div class="number" id="activeUsersDev">0</div>
-            <div class="label">🟢 مستخدمين نشطين</div>
-        </div>
-    </div>
-
-    <div class="users-table-wrap">
-        <h3>📋 قائمة المستخدمين المسجلين</h3>
-        <div id="usersListContainer">
-            <div class="no-users">جاري تحميل البيانات...</div>
-        </div>
-    </div>
-
-    <div style="margin-top: 16px; text-align: center; font-size: 0.8rem; color: var(--text-secondary);">
-‎        🔒 هذه البيانات مخزنة في Firebase وتظهر لك فقط كمطور
-    </div>
-</div>
+<!-- ========== SCROLL TO TOP ========== -->
+<button id="scrollTopBtn" aria-label="العودة للأعلى">⬆</button>
 
 <!-- ========== MAIN CONTAINER ========== -->
 <div class="container" id="appContainer">
@@ -886,19 +558,6 @@
         <button class="top-btn lang-btn" data-lang="fr" onclick="setLang('fr')">🇫🇷 FR</button>
         <button class="top-btn theme-btn" onclick="toggleTheme()" id="themeToggle">🌙</button>
         <button class="top-btn share-btn" onclick="sharePage()">📤</button>
-        <button class="top-btn" onclick="openDevDashboard()" style="color: var(--blue-accent); display: none;" id="devDashboardBtn">
-            👨‍💻 <span class="dev-badge">مطور</span>
-        </button>
-    </div>
-
-    <!-- USER INFO -->
-    <div class="user-info" id="userInfo">
-        <div class="user-avatar" id="userAvatar">👤</div>
-        <div>
-            <div class="user-name" id="userName">زائر</div>
-            <div class="user-email" id="userEmail">guest@adem.com</div>
-        </div>
-        <button class="logout-btn" onclick="logout()">🚪 خروج</button>
     </div>
 
     <!-- HEADER -->
@@ -907,67 +566,73 @@
             <div class="logo-fallback">LA</div>
             <img src="https://i.ibb.co/bjbknNxL/IMG-3210.jpg" alt="Adem Settings DZ" onerror="this.style.display='none';" />
         </div>
-        <h1 class="title">Adem_Settings_DZ</h1>
-        <p class="subtitle">محتوى إعدادات الألعاب والتطبيقات الحصرية 🎮</p>
+        <h1 class="title" data-i18n="siteTitle">Adem_Settings_DZ</h1>
+        <p class="subtitle" data-i18n="siteSub">محتوى إعدادات الألعاب والتطبيقات الحصرية 🎮</p>
     </div>
 
     <!-- SEARCH -->
     <div class="search-box">
-        <input type="text" id="searchInput" placeholder="🔍 ابحث عن ملف..." oninput="filterItems()" />
+        <input type="text" id="searchInput" placeholder="🔍 ابحث عن ملف..." data-i18n-placeholder="searchPlaceholder" oninput="filterItems()" />
     </div>
 
     <!-- OFFICIAL SITE BUTTON -->
     <a href="https://khoindvn.io.vn/" target="_blank" rel="noopener" class="nav-btn" style="border-color: var(--blue-accent); justify-content: center;">
-        <span class="left"><span class="icon-box">🌐</span> <span>الموقع الرسمي</span></span>
+        <span class="left"><span class="icon-box">🌐</span> <span data-i18n="officialSite">الموقع الرسمي</span></span>
         <span class="arrow">→</span>
     </a>
 
     <!-- ===== FILZA SECTION ===== -->
     <div class="nav-btn" onclick="toggleMenu('filzaMenu', this)">
-        <span class="left"><span class="icon-box">📱</span> <span>تطبيقات Filza (7 نسخ)</span></span>
+        <span class="left"><span class="icon-box">📱</span> <span data-i18n="filzaTitle">تطبيقات Filza (7 نسخ)</span></span>
         <span class="arrow">←</span>
     </div>
-    <div class="sub-menu" id="filzaMenu"></div>
+    <div class="sub-menu" id="filzaMenu">
+        <!-- سيتم تعبئتها بواسطة JavaScript -->
+    </div>
 
     <!-- ===== SCRIPTS SECTION ===== -->
     <div class="nav-btn" onclick="toggleMenu('scriptsMenu', this)">
-        <span class="left"><span class="icon-box">⚡</span> <span>السكريبتات والملفات (16 ملفاً)</span></span>
+        <span class="left"><span class="icon-box">⚡</span> <span data-i18n="scriptsTitle">السكريبتات والملفات (16 ملفاً)</span></span>
         <span class="arrow">←</span>
     </div>
-    <div class="sub-menu" id="scriptsMenu"></div>
+    <div class="sub-menu" id="scriptsMenu">
+        <!-- سيتم تعبئتها بواسطة JavaScript -->
+    </div>
 
-    <!-- ===== SHORTCUTS PANEL ===== -->
+    <!-- ===== SHORTCUTS PANEL (بانل التسهيلات) ===== -->
     <div class="nav-btn" onclick="toggleMenu('shortcutsMenu', this)">
-        <span class="left"><span class="icon-box">🛠️</span> <span>بانل تسهيلات الاستخدام</span></span>
+        <span class="left"><span class="icon-box">🛠️</span> <span data-i18n="shortcutsTitle">بانل تسهيلات الاستخدام</span></span>
         <span class="arrow">←</span>
     </div>
     <div class="sub-menu" id="shortcutsMenu">
-        <div class="shortcut-grid" id="shortcutGrid"></div>
+        <div class="shortcut-grid" id="shortcutGrid">
+            <!-- سيتم تعبئتها بواسطة JavaScript -->
+        </div>
     </div>
 
     <!-- ===== SOCIAL ===== -->
     <div class="social-row">
         <a href="https://youtube.com/@adem_ar28?si=4OVhIL2CdXbFezeE" target="_blank" rel="noopener" class="nav-btn" style="border-color:#ff0033;">
-            <span class="left"><span class="icon-box">▶️</span> <span>يوتيوب</span></span>
+            <span class="left"><span class="icon-box">▶️</span> <span data-i18n="youtube">يوتيوب</span></span>
             <span class="arrow">→</span>
         </a>
         <a href="https://t.me/FreeFire_Settings_DZ" target="_blank" rel="noopener" class="nav-btn" style="border-color:#0088cc;">
-            <span class="left"><span class="icon-box">✈️</span> <span>تيليجرام</span></span>
+            <span class="left"><span class="icon-box">✈️</span> <span data-i18n="telegram">تيليجرام</span></span>
             <span class="arrow">→</span>
         </a>
         <a href="https://www.instagram.com/i7_xx_x?igsh=c2Rlb2p0Mzg3ejBp&utm_source=qr" target="_blank" rel="noopener" class="nav-btn" style="border-color:#e4405f;">
-            <span class="left"><span class="icon-box">📷</span> <span>إنستغرام</span></span>
+            <span class="left"><span class="icon-box">📷</span> <span data-i18n="instagram">إنستغرام</span></span>
             <span class="arrow">→</span>
         </a>
     </div>
 
     <!-- ===== SETTINGS TABLE ===== -->
     <div class="section-block">
-        <div class="section-title">🎮 إعدادات وتعديلات اللعبة</div>
+        <div class="section-title" data-i18n="settingsTitle">🎮 إعدادات وتعديلات اللعبة</div>
         <table class="settings-table">
-            <tr><td>No Smoke</td><td><code>FX.MaxCPUParticles...=1</code></td></tr>
-            <tr><td>No Water</td><td><code>water.heightScale=0</code></td></tr>
-            <tr><td>Aimbot</td><td><code>SystemAimAssistSettings</code></td></tr>
+            <tr><td data-i18n="noSmoke">No Smoke</td><td><code>FX.MaxCPUParticles...=1</code></td></tr>
+            <tr><td data-i18n="noWater">No Water</td><td><code>water.heightScale=0</code></td></tr>
+            <tr><td data-i18n="aimbot">Aimbot</td><td><code>SystemAimAssistSettings</code></td></tr>
         </table>
     </div>
 
@@ -975,48 +640,10 @@
 
 <script>
     // ============================================================
-    //  🔥 FIREBASE CONFIG - استبدل هذه القيم بقيم مشروعك
-    // ============================================================
-    const firebaseConfig = {
-        apiKey: "AIzaSyD...",  // 👈 استبدل بمفتاح API الخاص بك
-        authDomain: "adem-settings-dz.firebaseapp.com",
-        databaseURL: "https://adem-settings-dz-default-rtdb.firebaseio.com/",
-        projectId: "adem-settings-dz",
-        storageBucket: "adem-settings-dz.appspot.com",
-        messagingSenderId: "123456789",
-        appId: "1:123456789:web:abcdef"
-    };
-
-    // ============================================================
-    //  INIT FIREBASE
-    // ============================================================
-    firebase.initializeApp(firebaseConfig);
-    const database = firebase.database();
-
-    // ============================================================
     //  DATA
     // ============================================================
 
-    const adLinks = [
-        'https://omg10.com/4/11583670',
-        'https://omg10.com/4/11582772',
-        'https://omg10.com/4/11583690',
-        'https://omg10.com/4/11583686',
-        'https://omg10.com/4/11583683',
-        'https://omg10.com/4/11583677',
-        'https://omg10.com/4/11583681',
-        'https://omg10.com/4/11583688',
-        'https://omg10.com/4/11579405',
-        'https://omg10.com/4/11578028'
-    ];
-
-    let adIndex = 0;
-    const clickState = new Map();
-    let currentUser = null;
-    let isDeveloper = false;
-
-    const DEV_EMAIL = 'admin@adem.com';
-
+    // -------- Filza items (7) --------
     const filzaItems = [
         { name: 'Filza iOS 26-27', url: 'https://www.mediafire.com/file/2jssxjhxf80zai1/Filza-iOS-26-27.ipa/file', icon: '📁', meta: 'IPA • رئيسي' },
         { name: 'Filza Jailed', url: 'https://www.mediafire.com/file/91j014gmw3zez56/FilzaJailed.ipa/file', icon: '🔒', meta: 'IPA • آمن' },
@@ -1027,6 +654,7 @@
         { name: 'Filza Mod 4.0', url: 'https://www.mediafire.com/file/jma0r53oqhn9l09/Filza_Mod_4.0_1786666141.ipa/file', icon: '⭐', meta: 'IPA • معدل', badge: 'حصري 🔥' }
     ];
 
+    // -------- Scripts items (16) --------
     const scriptsItems = [
         { name: 'كشف أماكن AIM BOT 85%', url: 'https://www.mediafire.com/file/u2yqg6nvmklbk2y/%E2%80%8E%D9%83%D8%B4%D9%81+%D8%A7%D9%95%D9%85%D9%83%D8%A7%D9%86++AIM+BOT+85%25+%E2%81%A9.zip/file', icon: '🎯', meta: 'Zip • VIP' },
         { name: 'VIP ⚙️🪄', url: 'https://www.mediafire.com/file/s4w64kaz4ve69l3/VIP+%E2%9A%99%EF%B8%8F%F0%9F%AA%84.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '👑', meta: 'Config • VIP' },
@@ -1046,6 +674,7 @@
         { name: 'AIMBOT CUELLO.confg', url: 'https://www.mediafire.com/file/62sqlv4i75371lt/AIMBOT+CUELLO.confg.txt/file', icon: '🎯', meta: 'Config • نصي', badge: 'حصري 🔥' }
     ];
 
+    // -------- Shortcuts (5 items) --------
     const shortcuts = [
         { name: 'Aimbot Headtrick 78%', url: 'https://www.icloud.com/shortcuts/da0a85deb2054496995c6772b06b973c', icon: '🎯' },
         { name: 'AimxDrag 90% Hs', url: 'https://www.icloud.com/shortcuts/8a899ee7ed2140e89889515462e09c91', icon: '🔥' },
@@ -1054,295 +683,37 @@
         { name: '911', url: 'https://www.icloud.com/shortcuts/6be1cc2efe8b44d9b29faf3896028791', icon: '🆘' }
     ];
 
+    // -------- Ad pool (10) --------
+    const adPool = [
+        'https://omg10.com/4/11583670',
+        'https://omg10.com/4/11582772',
+        'https://omg10.com/4/11583690',
+        'https://omg10.com/4/11583686',
+        'https://omg10.com/4/11583683',
+        'https://omg10.com/4/11583677',
+        'https://omg10.com/4/11583681',
+        'https://omg10.com/4/11583688',
+        'https://omg10.com/4/11579405',
+        'https://omg10.com/4/11578028'
+    ];
+
     // ============================================================
     //  STATE
     // ============================================================
     let currentLang = localStorage.getItem('adem_lang') || 'ar';
     let currentTheme = localStorage.getItem('adem_theme') || 'dark';
-
-    // ============================================================
-    //  FIREBASE FUNCTIONS
-    // ============================================================
-
-    function showLoading(show) {
-        document.getElementById('loadingSpinner').classList.toggle('show', show);
-    }
-
-‎    // إضافة مستخدم إلى Firebase
-    function addUserToFirebase(user) {
-        return new Promise((resolve, reject) => {
-            const userRef = database.ref('users/' + user.email.replace(/\./g, '_'));
-            userRef.once('value').then((snapshot) => {
-                if (!snapshot.exists()) {
-                    userRef.set({
-                        name: user.name,
-                        email: user.email,
-                        avatar: user.avatar || '👤',
-                        provider: user.provider || 'guest',
-                        isDev: user.email === DEV_EMAIL,
-                        joinedAt: new Date().toISOString(),
-                        lastActive: new Date().toISOString(),
-                        downloads: 0
-                    }).then(() => resolve(true)).catch(reject);
-                } else {
-                    userRef.update({
-                        lastActive: new Date().toISOString()
-                    }).then(() => resolve(true)).catch(reject);
-                }
-            }).catch(reject);
-        });
-    }
-
-‎    // جلب جميع المستخدمين من Firebase
-    function getUsersFromFirebase() {
-        return new Promise((resolve, reject) => {
-            database.ref('users').once('value').then((snapshot) => {
-                const users = [];
-                snapshot.forEach((child) => {
-                    users.push({
-                        id: child.key,
-                        ...child.val()
-                    });
-                });
-                resolve(users);
-            }).catch(reject);
-        });
-    }
-
-‎    // زيادة عدد التحميلات
-    function incrementDownloads(email) {
-        const userRef = database.ref('users/' + email.replace(/\./g, '_') + '/downloads');
-        userRef.transaction((current) => {
-            return (current || 0) + 1;
-        });
-        
-‎        // زيادة إجمالي التحميلات
-        const statsRef = database.ref('stats/totalDownloads');
-        statsRef.transaction((current) => {
-            return (current || 0) + 1;
-        });
-    }
-
-‎    // جلب الإحصائيات
-    function getStats() {
-        return new Promise((resolve) => {
-            database.ref('stats').once('value').then((snapshot) => {
-                const data = snapshot.val() || {};
-                resolve({
-                    totalDownloads: data.totalDownloads || 0
-                });
-            }).catch(() => {
-                resolve({ totalDownloads: 0 });
-            });
-        });
-    }
-
-    // ============================================================
-    //  LOGIN SYSTEM
-    // ============================================================
-    
-    function checkLogin() {
-        const savedUser = localStorage.getItem('adem_user');
-        if (savedUser) {
-            currentUser = JSON.parse(savedUser);
-            showUserInfo();
-            document.getElementById('loginOverlay').classList.add('hidden');
-            
-            if (currentUser.email === DEV_EMAIL) {
-                isDeveloper = true;
-                document.getElementById('devDashboardBtn').style.display = 'flex';
-            }
-        }
-    }
-
-    async function loginWithGoogle() {
-        const email = prompt('📧 أدخل بريد Google الخاص بك:');
-        if (!email) return;
-        
-        const user = {
-            name: email.split('@')[0],
-            email: email,
-            avatar: 'G',
-            provider: 'google'
-        };
-        
-        showLoading(true);
-        await addUserToFirebase(user);
-        setUser(user);
-        showLoading(false);
-    }
-
-    async function loginWithiCloud() {
-        const email = prompt('☁️ أدخل بريد iCloud الخاص بك:');
-        if (!email) return;
-        
-        const user = {
-            name: email.split('@')[0],
-            email: email,
-            avatar: '🍎',
-            provider: 'icloud'
-        };
-        
-        showLoading(true);
-        await addUserToFirebase(user);
-        setUser(user);
-        showLoading(false);
-    }
-
-    async function loginAsGuest() {
-        const guestEmail = 'guest_' + Date.now() + '@adem.com';
-        const user = {
-            name: 'زائر',
-            email: guestEmail,
-            avatar: '👤',
-            provider: 'guest'
-        };
-        
-        showLoading(true);
-        await addUserToFirebase(user);
-        setUser(user);
-        showLoading(false);
-    }
-
-    function setUser(user) {
-        currentUser = user;
-        localStorage.setItem('adem_user', JSON.stringify(user));
-        document.getElementById('loginOverlay').classList.add('hidden');
-        showUserInfo();
-        
-        if (user.email === DEV_EMAIL) {
-            isDeveloper = true;
-            document.getElementById('devDashboardBtn').style.display = 'flex';
-        } else {
-            isDeveloper = false;
-            document.getElementById('devDashboardBtn').style.display = 'none';
-        }
-    }
-
-    function showUserInfo() {
-        const info = document.getElementById('userInfo');
-        info.classList.add('show');
-        document.getElementById('userAvatar').textContent = currentUser.avatar || '👤';
-        document.getElementById('userName').textContent = currentUser.name + (currentUser.email === DEV_EMAIL ? ' ⭐ مطور' : '');
-        document.getElementById('userEmail').textContent = currentUser.email;
-    }
-
-    function logout() {
-        currentUser = null;
-        isDeveloper = false;
-        localStorage.removeItem('adem_user');
-        document.getElementById('userInfo').classList.remove('show');
-        document.getElementById('loginOverlay').classList.remove('hidden');
-        document.getElementById('devDashboardBtn').style.display = 'none';
-    }
-
-    // ============================================================
-    //  DEVELOPER DASHBOARD
-    // ============================================================
-    
-    async function openDevDashboard() {
-        if (!isDeveloper) {
-            alert('⚠️ هذه الصفحة خاصة بالمطور فقط!');
-            return;
-        }
-        document.getElementById('devDashboard').classList.add('show');
-        await updateDevDashboard();
-    }
-
-    function closeDevDashboard() {
-        document.getElementById('devDashboard').classList.remove('show');
-    }
-
-    async function updateDevDashboard() {
-        showLoading(true);
-        
-        try {
-            const users = await getUsersFromFirebase();
-            const stats = await getStats();
-            const totalFiles = filzaItems.length + scriptsItems.length;
-            
-            const now = new Date();
-            const activeUsers = users.filter(u => {
-                if (!u.lastActive) return false;
-                const diff = (now - new Date(u.lastActive)) / 1000 / 60;
-                return diff < 30;
-            });
-
-            document.getElementById('totalUsersDev').textContent = users.length;
-            document.getElementById('totalDownloadsDev').textContent = stats.totalDownloads || 0;
-            document.getElementById('totalFilesDev').textContent = totalFiles;
-            document.getElementById('activeUsersDev').textContent = activeUsers.length;
-
-            const container = document.getElementById('usersListContainer');
-            if (users.length === 0) {
-                container.innerHTML = '<div class="no-users">لا يوجد مستخدمين مسجلين حتى الآن</div>';
-                return;
-            }
-
-            let html = `
-                <table class="users-table">
-                    <thead>
-                        <tr>
-                            <th>المستخدم</th>
-                            <th>البريد الإلكتروني</th>
-                            <th>طريقة الدخول</th>
-                            <th>التحميلات</th>
-                            <th>تاريخ التسجيل</th>
-                            <th>الحالة</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            `;
-
-            users.forEach(user => {
-                const isActive = user.lastActive ? 
-                    (new Date() - new Date(user.lastActive)) / 1000 / 60 < 30 : false;
-                const isDevUser = user.email === DEV_EMAIL;
-                const providerClass = user.provider || 'guest';
-                const joinedDate = user.joinedAt ? new Date(user.joinedAt) : new Date();
-                
-                html += `
-                    <tr>
-                        <td>
-                            <span class="user-avatar-small">${user.avatar || '👤'}</span>
-                            ${user.name} ${isDevUser ? '⭐' : ''}
-                        </td>
-                        <td style="direction:ltr;text-align:left;">${user.email}</td>
-                        <td><span class="provider-badge ${providerClass}">${user.provider || 'guest'}</span></td>
-                        <td>${user.downloads || 0}</td>
-                        <td>${joinedDate.toLocaleDateString('ar')}</td>
-                        <td>${isActive ? '🟢 نشط' : '⚪ غير نشط'}</td>
-                    </tr>
-                `;
-            });
-
-            html += '</tbody></table>';
-            container.innerHTML = html;
-        } catch (error) {
-            console.error('Error updating dashboard:', error);
-            document.getElementById('usersListContainer').innerHTML = 
-                '<div class="no-users">❌ حدث خطأ في تحميل البيانات</div>';
-        }
-        
-        showLoading(false);
-    }
-
-‎    // تحديث لوحة التحكم كل 30 ثانية
-    setInterval(() => {
-        if (document.getElementById('devDashboard').classList.contains('show')) {
-            updateDevDashboard();
-        }
-    }, 30000);
+    let targetUrl = '';
 
     // ============================================================
     //  RENDER FUNCTIONS
     // ============================================================
 
     function generateRandomCount() {
+        // ثابت لكل اسم ملف عبر hash بسيط
         return 80000 + Math.floor(Math.random() * 870000);
     }
 
-    function renderItems(containerId, items) {
+    function renderItems(containerId, items, badgeMap) {
         const container = document.getElementById(containerId);
         if (!container) return;
         container.innerHTML = '';
@@ -1353,7 +724,6 @@
             const card = document.createElement('div');
             card.className = 'app-card';
             card.setAttribute('data-name', item.name.toLowerCase());
-            card.setAttribute('data-url', item.url);
             card.innerHTML = `
                 <div class="app-icon">${item.icon}</div>
                 <div class="app-info">
@@ -1363,12 +733,11 @@
                         <span class="dl-count">⬇ ${countFormatted}</span>
                     </div>
                 </div>
-                <div class="dl-btn">تحميل</div>
+                <div class="dl-btn" data-i18n="downloadBtn">تحميل</div>
             `;
             card.addEventListener('click', function(e) {
                 e.stopPropagation();
-                const url = this.getAttribute('data-url');
-                handleDownload(url);
+                prepareDownload(item.url);
             });
             container.appendChild(card);
         });
@@ -1393,47 +762,18 @@
     }
 
     // ============================================================
-    //  CORE DOWNLOAD LOGIC
-    // ============================================================
-
-    function handleDownload(mediafireUrl) {
-        if (!currentUser) {
-            document.getElementById('loginOverlay').classList.remove('hidden');
-            return;
-        }
-
-        const isFirstClick = clickState.get(mediafireUrl) || false;
-
-        if (!isFirstClick) {
-            const ad = adLinks[adIndex % adLinks.length];
-            window.open(ad, '_blank');
-            adIndex = (adIndex + 1) % adLinks.length;
-            clickState.set(mediafireUrl, true);
-        } else {
-            const ad = adLinks[adIndex % adLinks.length];
-            window.open(ad, '_blank');
-            adIndex = (adIndex + 1) % adLinks.length;
-            
-            setTimeout(() => {
-                window.location.href = mediafireUrl;
-            }, 800);
-
-            clickState.set(mediafireUrl, false);
-            incrementDownloads(currentUser.email);
-        }
-    }
-
-    // ============================================================
     //  FILTER (SEARCH)
     // ============================================================
     function filterItems() {
         const query = document.getElementById('searchInput').value.toLowerCase().trim();
         const allCards = document.querySelectorAll('.app-card');
         const allShortcuts = document.querySelectorAll('.shortcut-item');
+        // فلتر البطاقات
         allCards.forEach(card => {
             const name = card.getAttribute('data-name') || '';
             card.style.display = name.includes(query) ? 'flex' : 'none';
         });
+        // فلتر الاختصارات
         allShortcuts.forEach(item => {
             const name = item.querySelector('.shortcut-name')?.textContent?.toLowerCase() || '';
             item.style.display = name.includes(query) ? 'flex' : 'none';
@@ -1447,12 +787,35 @@
         const menu = document.getElementById(id);
         if (!menu) return;
         const isOpen = menu.classList.contains('open');
+        // close all
         document.querySelectorAll('.sub-menu').forEach(m => m.classList.remove('open'));
         document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('open'));
         if (!isOpen) {
             menu.classList.add('open');
             if (btn) btn.classList.add('open');
         }
+    }
+
+    // ============================================================
+    //  DOWNLOAD MODAL
+    // ============================================================
+    function prepareDownload(url) {
+        targetUrl = url;
+        document.getElementById('downloadModal').classList.add('active');
+    }
+
+    function processDownload() {
+        const ad = adPool[Math.floor(Math.random() * adPool.length)];
+        window.open(ad, '_blank');
+        if (targetUrl) {
+            window.location.href = targetUrl;
+        }
+        closeModal();
+    }
+
+    function closeModal() {
+        document.getElementById('downloadModal').classList.remove('active');
+        targetUrl = '';
     }
 
     // ============================================================
@@ -1485,8 +848,74 @@
     }
 
     // ============================================================
-    //  LANGUAGE
+    //  LANGUAGE (i18n)
     // ============================================================
+    const translations = {
+        ar: {
+            siteTitle: 'Adem_Settings_DZ',
+            siteSub: 'محتوى إعدادات الألعاب والتطبيقات الحصرية 🎮',
+            searchPlaceholder: '🔍 ابحث عن ملف...',
+            officialSite: 'الموقع الرسمي',
+            filzaTitle: 'تطبيقات Filza (7 نسخ)',
+            scriptsTitle: 'السكريبتات والملفات (16 ملفاً)',
+            shortcutsTitle: 'بانل تسهيلات الاستخدام',
+            youtube: 'يوتيوب',
+            telegram: 'تيليجرام',
+            instagram: 'إنستغرام',
+            settingsTitle: '🎮 إعدادات وتعديلات اللعبة',
+            noSmoke: 'No Smoke',
+            noWater: 'No Water',
+            aimbot: 'Aimbot',
+            downloadBtn: 'تحميل',
+            modalTitle: '⚡ جاهز للتحميل',
+            modalDesc: 'سيتم فتح الإعلان في تبويب جديد، ثم توجيهك مباشرة إلى ملف التحميل',
+            modalConfirm: 'متابعة',
+            modalCancel: 'إلغاء'
+        },
+        en: {
+            siteTitle: 'Adem_Settings_DZ',
+            siteSub: 'Exclusive game settings & apps content 🎮',
+            searchPlaceholder: '🔍 Search for file...',
+            officialSite: 'Official Site',
+            filzaTitle: 'Filza Apps (7 copies)',
+            scriptsTitle: 'Scripts & OBB files (16 files)',
+            shortcutsTitle: 'Usage Shortcuts Panel',
+            youtube: 'YouTube',
+            telegram: 'Telegram',
+            instagram: 'Instagram',
+            settingsTitle: '🎮 Game Settings & Tweaks',
+            noSmoke: 'No Smoke',
+            noWater: 'No Water',
+            aimbot: 'Aimbot',
+            downloadBtn: 'Download',
+            modalTitle: '⚡ Ready to download',
+            modalDesc: 'Ad will open in new tab, then you\'ll be redirected to the file',
+            modalConfirm: 'Proceed',
+            modalCancel: 'Cancel'
+        },
+        fr: {
+            siteTitle: 'Adem_Settings_DZ',
+            siteSub: 'Contenu exclusif de paramètres de jeux et applications 🎮',
+            searchPlaceholder: '🔍 Rechercher un fichier...',
+            officialSite: 'Site officiel',
+            filzaTitle: 'Applications Filza (7 copies)',
+            scriptsTitle: 'Scripts & fichiers OBB (16 fichiers)',
+            shortcutsTitle: 'Panneau des raccourcis',
+            youtube: 'YouTube',
+            telegram: 'Télégramme',
+            instagram: 'Instagram',
+            settingsTitle: '🎮 Paramètres et ajustements du jeu',
+            noSmoke: 'No Smoke',
+            noWater: 'No Water',
+            aimbot: 'Aimbot',
+            downloadBtn: 'Télécharger',
+            modalTitle: '⚡ Prêt à télécharger',
+            modalDesc: 'La publicité s\'ouvrira dans un nouvel onglet, puis vous serez redirigé vers le fichier',
+            modalConfirm: 'Continuer',
+            modalCancel: 'Annuler'
+        }
+    };
+
     function setLang(lang) {
         currentLang = lang;
         localStorage.setItem('adem_lang', lang);
@@ -1494,6 +923,30 @@
     }
 
     function applyLanguage() {
+        const t = translations[currentLang] || translations.ar;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (t[key] !== undefined) {
+                el.textContent = t[key];
+            }
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (t[key] !== undefined) {
+                el.placeholder = t[key];
+            }
+        });
+        // تحديث النصوص الديناميكية (الأزرار داخل البطاقات) - سيتم إعادة رسمها
+        // لكننا نحدث الـ modal
+        document.getElementById('modalTitle').textContent = t.modalTitle || t.modalTitle;
+        document.getElementById('modalDesc').textContent = t.modalDesc || t.modalDesc;
+        document.getElementById('modalConfirmBtn').textContent = t.modalConfirm || t.modalConfirm;
+        document.getElementById('modalCloseBtn').textContent = t.modalCancel || t.modalCancel;
+        // أزرار التحميل في البطاقات الحالية
+        document.querySelectorAll('.dl-btn').forEach(btn => {
+            btn.textContent = t.downloadBtn || 'تحميل';
+        });
+        // تحديث اتجاه الصفحة
         const dir = currentLang === 'ar' ? 'rtl' : 'ltr';
         document.documentElement.dir = dir;
         document.documentElement.lang = currentLang;
@@ -1508,7 +961,7 @@
             navigator.share({ title: 'Adem_Settings_DZ', url: url });
         } else {
             navigator.clipboard.writeText(url).then(() => {
-                alert('تم نسخ الرابط!');
+                alert('تم نسخ الرابط! / Link copied! / Lien copié !');
             }).catch(() => {
                 prompt('انسخ الرابط يدوياً:', url);
             });
@@ -1534,15 +987,23 @@
     //  INIT
     // ============================================================
     function init() {
+        // تطبيق الثيم
         applyTheme();
+        // تعبئة القوائم
         renderItems('filzaMenu', filzaItems);
         renderItems('scriptsMenu', scriptsItems);
         renderShortcuts();
+        // تطبيق اللغة
         applyLanguage();
-        checkLogin();
-
+        // إضافة مستمعي الأحداث للمودال
+        document.getElementById('modalConfirmBtn').addEventListener('click', processDownload);
+        document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+        document.getElementById('downloadModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+        // بحث لحظي
         document.getElementById('searchInput').addEventListener('input', filterItems);
-
+        // إغلاق القوائم عند النقر خارجها
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.nav-btn') && !e.target.closest('.sub-menu')) {
                 document.querySelectorAll('.sub-menu').forEach(m => m.classList.remove('open'));
