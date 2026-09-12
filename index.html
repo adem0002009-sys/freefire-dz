@@ -60,15 +60,11 @@
             overflow-x: hidden;
         }
         .aurora {
-            position: fixed;
-            top: 0; left: 0;
+            position: fixed; top: 0; left: 0;
             width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
+            pointer-events: none; z-index: 0; overflow: hidden;
         }
-        .aurora::before,
-        .aurora::after {
+        .aurora::before, .aurora::after {
             content: '';
             position: absolute;
             width: 500px; height: 500px;
@@ -197,10 +193,7 @@
         .logo-box:hover { transform: rotate(-3deg) scale(1.05); }
         .logo-box img { width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 2; }
         .logo-fallback { font-size: 2.2rem; font-weight: 800; color: #000; z-index: 1; }
-        .title-wrap {
-            display: flex; align-items: center; gap: 6px;
-            justify-content: center;
-        }
+        .title-wrap { display: flex; align-items: center; gap: 6px; justify-content: center; }
         .title { font-size: 1.6rem; font-weight: 800; letter-spacing: 0.5px; }
         .verified-badge {
             width: 22px; height: 22px;
@@ -224,11 +217,7 @@
             font-size: 0.68rem;
             flex-wrap: wrap;
         }
-        .trust-item {
-            display: flex; align-items: center; gap: 4px;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
+        .trust-item { display: flex; align-items: center; gap: 4px; color: var(--text-secondary); font-weight: 600; }
         .trust-item .ico { font-size: 0.9rem; }
         .search-box { width: 100%; position: relative; }
         .search-box input {
@@ -333,21 +322,14 @@
         }
         .copy-btn:hover { opacity: 0.85; }
         .copy-btn.copied { background: var(--green-accent); }
-        .faq-item {
-            border-bottom: 1px solid var(--border-card);
-            padding: 10px 0;
-        }
+        .faq-item { border-bottom: 1px solid var(--border-card); padding: 10px 0; }
         .faq-item:last-child { border-bottom: none; }
         .faq-q {
             display: flex; justify-content: space-between; align-items: center;
             cursor: pointer; font-weight: 700; font-size: 0.9rem;
             padding: 6px 0;
         }
-        .faq-q .plus {
-            color: var(--blue-accent);
-            font-size: 1.3rem;
-            transition: transform 0.3s ease;
-        }
+        .faq-q .plus { color: var(--blue-accent); font-size: 1.3rem; transition: transform 0.3s ease; }
         .faq-item.open .faq-q .plus { transform: rotate(45deg); }
         .faq-a {
             max-height: 0;
@@ -359,23 +341,13 @@
             padding: 0 4px;
         }
         .faq-item.open .faq-a { max-height: 300px; padding: 6px 4px 10px; }
-        .esign-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.78rem;
-            margin-top: 8px;
-        }
-        .esign-table th,
-        .esign-table td {
+        .esign-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; margin-top: 8px; }
+        .esign-table th, .esign-table td {
             padding: 10px 6px;
             text-align: center;
             border: 1px solid var(--border-card);
         }
-        .esign-table th {
-            background: var(--bg-icon);
-            color: var(--blue-accent);
-            font-weight: 700;
-        }
+        .esign-table th { background: var(--bg-icon); color: var(--blue-accent); font-weight: 700; }
         .esign-table tr:nth-child(even) { background: rgba(255,255,255,0.02); }
         .esign-table .price { color: var(--gold-accent); font-weight: 800; }
         .bundle-card {
@@ -384,7 +356,6 @@
             border-radius: 16px;
             padding: 14px;
             margin-bottom: 10px;
-            position: relative;
         }
         .bundle-card h4 {
             color: var(--gold-accent);
@@ -394,12 +365,7 @@
             align-items: center;
             gap: 6px;
         }
-        .bundle-card p {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
+        .bundle-card p { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 10px; }
         .bundle-btn {
             background: var(--gold-accent);
             color: #000;
@@ -531,12 +497,7 @@
             justify-content: center;
             gap: 5px;
         }
-        footer .handle {
-            color: var(--blue-accent);
-            font-weight: 700;
-            direction: ltr;
-            display: inline-block;
-        }
+        footer .handle { color: var(--blue-accent); font-weight: 700; direction: ltr; display: inline-block; }
         footer .dmca {
             display: inline-block;
             margin-top: 10px;
@@ -558,64 +519,6 @@
             .trust-strip { font-size: 0.6rem; }
         }
     </style>
-
-    <!-- ============================================
-         Firebase SDK + Configuration
-         ============================================ -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-        import { getFirestore, doc, getDoc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyCnNXJN8UFNVoLqzfOHfTbVY28BCJjNC0Y",
-            authDomain: "b2-settings.firebaseapp.com",
-            projectId: "b2-settings",
-            storageBucket: "b2-settings.firebasestorage.app",
-            messagingSenderId: "866461414889",
-            appId: "1:866461414889:web:6cc467f14a5d8725294778",
-            measurementId: "G-1S69WZ6RZL"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // دالة لجلب عدد التحميلات من Firebase
-        window.getFirebaseCount = async function(fileName) {
-            try {
-                const safeName = fileName.replace(/[\/\.\s#\[\]]/g, '_');
-                const docRef = doc(db, 'downloads', safeName);
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    return docSnap.data().count || 0;
-                }
-                return 0;
-            } catch (e) {
-                console.warn('Firebase read error:', e);
-                return 0;
-            }
-        };
-
-        // دالة لزيادة عدد التحميلات
-        window.incrementFirebaseCount = async function(fileName) {
-            try {
-                const safeName = fileName.replace(/[\/\.\s#\[\]]/g, '_');
-                const docRef = doc(db, 'downloads', safeName);
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    await updateDoc(docRef, { count: increment(1) });
-                } else {
-                    await setDoc(docRef, { name: fileName, count: 1 });
-                }
-                return true;
-            } catch (e) {
-                console.warn('Firebase write error:', e);
-                return false;
-            }
-        };
-
-        window.firebaseReady = true;
-        console.log('✅ Firebase initialized');
-    </script>
 </head>
 <body>
 
@@ -633,7 +536,7 @@
     <div class="modal-box">
         <h3 id="modalTitle">⚡ جاهز للتحميل</h3>
         <div class="modal-desc" id="modalDesc"></div>
-        <p id="modalInfo">سيتم فتح الإعلان في تبويب جديد، ثم توجيهك مباشرة إلى ملف التحميل</p>
+        <p id="modalInfo">اضغط متابعة لبدء التحميل</p>
         <button class="modal-btn" id="modalConfirmBtn">متابعة</button>
         <button class="modal-close" id="modalCloseBtn">إلغاء</button>
     </div>
@@ -692,7 +595,6 @@
         <div class="loyalty-icon">⭐</div>
     </div>
 
-    <!-- VIP SECTION -->
     <div class="nav-btn" onclick="toggleMenu('vipMenu', this)" style="border-color: var(--gold-accent);">
         <span class="left"><span class="icon-box">👑</span> <span data-i18n="vipTitle">VIP 📥🪄</span></span>
         <span class="arrow">←</span>
@@ -941,22 +843,84 @@ This content is protected by DMCA.
 ==========================================
 -->
 
+<!-- Firebase placeholder -->
 <script>
+    window.firebaseReady = false;
+    window.getFirebaseCount = async function() { return 0; };
+    window.incrementFirebaseCount = async function() { return false; };
+</script>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+    import { getFirestore, doc, getDoc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCnNXJN8UFNVoLqzfOHfTbVY28BCJjNC0Y",
+        authDomain: "b2-settings.firebaseapp.com",
+        projectId: "b2-settings",
+        storageBucket: "b2-settings.firebasestorage.app",
+        messagingSenderId: "866461414889",
+        appId: "1:866461414889:web:6cc467f14a5d8725294778",
+        measurementId: "G-1S69WZ6RZL"
+    };
+
+    try {
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.getFirebaseCount = async function(fileName) {
+            try {
+                const safeName = fileName.replace(/[\/\.\s#\[\]]/g, '_');
+                const docRef = doc(db, 'downloads', safeName);
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) return docSnap.data().count || 0;
+                return 0;
+            } catch (e) {
+                console.warn('Firebase read error:', e);
+                return 0;
+            }
+        };
+
+        window.incrementFirebaseCount = async function(fileName) {
+            try {
+                const safeName = fileName.replace(/[\/\.\s#\[\]]/g, '_');
+                const docRef = doc(db, 'downloads', safeName);
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    await updateDoc(docRef, { count: increment(1) });
+                } else {
+                    await setDoc(docRef, { name: fileName, count: 1 });
+                }
+                return true;
+            } catch (e) {
+                console.warn('Firebase write error:', e);
+                return false;
+            }
+        };
+
+        window.firebaseReady = true;
+        console.log('✅ Firebase initialized');
+    } catch(e) {
+        console.warn('Firebase init failed:', e);
+    }
+</script>
+
+<script>
+    // ============ DATA ============
     const filzaItems = [
-        { name: 'Filza iOS 26-27', url: 'https://www.mediafire.com/file/2jssxjhxf80zai1/Filza-iOS-26-27.ipa/file', icon: '📁', meta: 'IPA • رئيسي', desc: 'النسخة الرئيسية المتوافقة مع iOS 16-17، مثالية للاستخدام العام.' },
-        { name: 'Filza Jailed', url: 'https://www.mediafire.com/file/91j014gmw3zez56/FilzaJailed.ipa/file', icon: '🔒', meta: 'IPA • آمن', desc: 'نسخة آمنة لا تحتاج Jailbreak، تعمل على الأجهزة العادية.' },
-        { name: 'Filza Standard', url: 'https://www.mediafire.com/file/o2rr473iu06ocxs/Filza.ipa/file', icon: '📂', meta: 'IPA • عادي', desc: 'النسخة الكلاسيكية من Filza لتصفح الملفات.' },
+        { name: 'Filza iOS 26-27', url: 'https://www.mediafire.com/file/2jssxjhxf80zai1/Filza-iOS-26-27.ipa/file', icon: '📁', meta: 'IPA • رئيسي', desc: 'النسخة الرئيسية المتوافقة مع iOS 16-17.' },
+        { name: 'Filza Jailed', url: 'https://www.mediafire.com/file/91j014gmw3zez56/FilzaJailed.ipa/file', icon: '🔒', meta: 'IPA • آمن', desc: 'نسخة آمنة لا تحتاج Jailbreak.' },
+        { name: 'Filza Standard', url: 'https://www.mediafire.com/file/o2rr473iu06ocxs/Filza.ipa/file', icon: '📂', meta: 'IPA • عادي', desc: 'النسخة الكلاسيكية من Filza.' },
         { name: 'Filza iOS 26-27 (v2)', url: 'https://www.mediafire.com/file/2jssxjhxf80zai1/Filza-iOS-26-27.ipa/file', icon: '📁', meta: 'IPA • مكرر', desc: 'نسخة احتياطية من Filza iOS 26-27.' },
-        { name: 'Filza V4', url: 'https://www.mediafire.com/file/qukjj032uo1njxj/Filza_V4.ipa/file', icon: '📦', meta: 'IPA • محدث', desc: 'الإصدار الرابع بميزات محسّنة وواجهة محدثة.' },
-        { name: 'Filza Sandbox Apply', url: 'https://www.mediafire.com/file/kut6mi01lph8rsw/FILZA_SANDBOX_APPLY.dylib/file', icon: '🧩', meta: 'dylib • أداة', desc: 'أداة مساعدة لتطبيق Sandbox على Filza.' },
-        { name: 'Filza Mod 4.0', url: 'https://www.mediafire.com/file/jma0r53oqhn9l09/Filza_Mod_4.0_1786666141.ipa/file', icon: '⭐', meta: 'IPA • معدل', badge: 'حصري 🔥', desc: 'نسخة معدلة بميزات إضافية وحصرية.' },
-        { name: 'FilzaSlop v1.2.0', url: 'https://www.mediafire.com/file/l234z09c9n3x5xy/FilzaSlop-v1.2.0-unsigned.ipa/file', icon: '🆕', meta: 'IPA • جديد', badge: 'جديد 🆕', desc: 'أحدث إصدار من FilzaSlop بميزات محسّنة.' }
+        { name: 'Filza V4', url: 'https://www.mediafire.com/file/qukjj032uo1njxj/Filza_V4.ipa/file', icon: '📦', meta: 'IPA • محدث', desc: 'الإصدار الرابع بميزات محسّنة.' },
+        { name: 'Filza Sandbox Apply', url: 'https://www.mediafire.com/file/kut6mi01lph8rsw/FILZA_SANDBOX_APPLY.dylib/file', icon: '🧩', meta: 'dylib • أداة', desc: 'أداة مساعدة لتطبيق Sandbox.' },
+        { name: 'Filza Mod 4.0', url: 'https://www.mediafire.com/file/jma0r53oqhn9l09/Filza_Mod_4.0_1786666141.ipa/file', icon: '⭐', meta: 'IPA • معدل', badge: 'حصري 🔥', desc: 'نسخة معدلة بميزات إضافية.' },
+        { name: 'FilzaSlop v1.2.0', url: 'https://www.mediafire.com/file/l234z09c9n3x5xy/FilzaSlop-v1.2.0-unsigned.ipa/file', icon: '🆕', meta: 'IPA • جديد', badge: 'جديد 🆕', desc: 'أحدث إصدار من FilzaSlop.' }
     ];
 
     const items3105 = [
-        { name: 'تطبيق 3105 (2.0 beta4)', url: 'https://www.mediafire.com/file/cukfm9m5tgp80ug/3105-2.0beta4-build8-unsigned.ipa/file', icon: '🔥', meta: 'IPA • رسمي', badge: 'حصري 🔥', desc: 'التطبيق الرسمي بإصدار 2.0 beta4 مع دعم كامل.' },
-        { name: 'NECK HS FFM 3105', url: 'https://www.mediafire.com/file/0dcrkx0909gfill/NECK+HS+FFM.3105/file', icon: '🎯', meta: 'ملف • 3105', desc: 'ملف تصويب الرقبة والرأس لـ3105.' },
-        { name: 'FFTH AIMCHEST 3105', url: 'https://www.mediafire.com/file/bvofjsdap8zg012/FFTH+AIMCHEST.3105/file', icon: '🎯', meta: 'ملف • 3105', desc: 'ملف تصويب الصدر مع دقة عالية.' },
+        { name: 'تطبيق 3105 (2.0 beta4)', url: 'https://www.mediafire.com/file/cukfm9m5tgp80ug/3105-2.0beta4-build8-unsigned.ipa/file', icon: '🔥', meta: 'IPA • رسمي', badge: 'حصري 🔥', desc: 'التطبيق الرسمي بإصدار 2.0 beta4.' },
+        { name: 'NECK HS FFM 3105', url: 'https://www.mediafire.com/file/0dcrkx0909gfill/NECK+HS+FFM.3105/file', icon: '🎯', meta: 'ملف • 3105', desc: 'ملف تصويب الرقبة والرأس.' },
+        { name: 'FFTH AIMCHEST 3105', url: 'https://www.mediafire.com/file/bvofjsdap8zg012/FFTH+AIMCHEST.3105/file', icon: '🎯', meta: 'ملف • 3105', desc: 'ملف تصويب الصدر بدقة عالية.' },
         { name: 'FFTH AIMBODY 3105', url: 'https://www.mediafire.com/file/xf8sdk64ryx5na7/FFTH+AIMBODY.3105/file', icon: '🎯', meta: 'ملف • 3105', desc: 'ملف تصويب الجسم بالكامل.' },
         { name: 'HS NECK - ANTENNA FFTH 3105', url: 'https://www.mediafire.com/file/bm05s21xsedxgxu/HS+NECK+-+ANTENNA+FFTH.3105/file', icon: '📡', meta: 'ملف • 3105', desc: 'ملف الهيدشوت مع أنتينا الرقبة.' },
         { name: 'FFTH AIM BODY 3105', url: 'https://www.mediafire.com/file/9ic2rdmk2hx9pqg/FFTH+AIM+BODY.3105/file', icon: '🎯', meta: 'ملف • 3105', desc: 'ملف تصويب الجسم الاحترافي.' }
@@ -968,17 +932,17 @@ This content is protected by DMCA.
         { name: 'cache_res 2', url: 'https://www.mediafire.com/file/7e0mjrw9w6wdcvs/cache_res+2.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '📦', meta: 'Cache • V2', desc: 'ملف cache محدّث للنسخة الثانية.' },
         { name: 'Adem.Zit.VV', url: 'https://www.mediafire.com/file/keom86elamj5ezd/Adem.Zit.VV.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '⚡', meta: 'Config • خاص', desc: 'ملف Zit خاص بإعدادات دقيقة.' },
         { name: 'cache_res (V1)', url: 'https://www.mediafire.com/file/ic2ker2yxdpoaiw/cache_res.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '🗂️', meta: 'Cache • عادي', desc: 'ملف cache الأساسي.' },
-        { name: 'cache_res 3', url: 'https://www.mediafire.com/file/3cukb3p6mita611/cache_res+3.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '📦', meta: 'Cache • V3', desc: 'النسخة الثالثة من ملف cache.' },
-        { name: 'cache_res OdVY (2)', url: 'https://www.mediafire.com/file/23xs8xgra00w07x/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D+2/file', icon: '🗂️', meta: 'Cache • نسخة', desc: 'نسخة OdVY من ملف cache.' },
+        { name: 'cache_res 3', url: 'https://www.mediafire.com/file/3cukb3p6mita611/cache_res+3.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '📦', meta: 'Cache • V3', desc: 'النسخة الثالثة من cache.' },
+        { name: 'cache_res OdVY (2)', url: 'https://www.mediafire.com/file/23xs8xgra00w07x/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D+2/file', icon: '🗂️', meta: 'Cache • نسخة', desc: 'نسخة OdVY من cache.' },
         { name: '3D OdVY', url: 'https://www.mediafire.com/file/c9uw9o8igl0ox2j/3D.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D/file', icon: '🎮', meta: 'ملف • ثلاثي', desc: 'ملف 3D لدقة أعلى.' },
-        { name: 'cache_res OdVY', url: 'https://www.mediafire.com/file/c4t52290jp0r6yo/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D/file', icon: '📦', meta: 'Cache • نسخة', desc: 'ملف cache بنسخة OdVY.' },
+        { name: 'cache_res OdVY', url: 'https://www.mediafire.com/file/c4t52290jp0r6yo/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D/file', icon: '📦', meta: 'Cache • نسخة', desc: 'cache بنسخة OdVY.' },
         { name: 'Aimlock v10', url: 'https://www.mediafire.com/file/n2c3g52hqtruy3z/Aimlock+v10.mobileconfig/file', icon: '📱', meta: 'Config • دقيق', desc: 'إعداد Aimlock بدقة عالية.' },
-        { name: 'VIP 🗿🪄 assetindexer', url: 'https://www.mediafire.com/file/a315csklqijsk9s/VIP.+%F0%9F%97%BF%F0%9F%AA%84assetindexer.PENojQAQf9a1l6Dzjs0n1Z3rtVU~3D/file', icon: '👾', meta: 'ملف • VIP', desc: 'ملف assetindexer حصري VIP.' },
+        { name: 'VIP 🗿🪄 assetindexer', url: 'https://www.mediafire.com/file/a315csklqijsk9s/VIP.+%F0%9F%97%BF%F0%9F%AA%84assetindexer.PENojQAQf9a1l6Dzjs0n1Z3rtVU~3D/file', icon: '👾', meta: 'ملف • VIP', desc: 'assetindexer حصري VIP.' },
         { name: 'assetindexer 2', url: 'https://www.mediafire.com/file/33l4v8ii1vd6c3d/assetindexer+2.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file', icon: '📄', meta: 'ملف • نسخة', desc: 'النسخة الثانية من assetindexer.' },
-        { name: 'assetindexer', url: 'https://www.mediafire.com/file/zlxp3tmme9lpt28/assetindexer.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file', icon: '📄', meta: 'ملف • عادي', desc: 'ملف assetindexer الأساسي.' },
+        { name: 'assetindexer', url: 'https://www.mediafire.com/file/zlxp3tmme9lpt28/assetindexer.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file', icon: '📄', meta: 'ملف • عادي', desc: 'assetindexer الأساسي.' },
         { name: 'assetindexer 3', url: 'https://www.mediafire.com/file/ynwgltfbf3rmuq3/assetindexer+3.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file', icon: '📄', meta: 'ملف • V3', desc: 'النسخة الثالثة من assetindexer.' },
-        { name: 'Aimlock v10 (Zip)', url: 'https://www.mediafire.com/file/eflddee5yabiozt/Aimlock+v10.zip/file', icon: '📦', meta: 'Zip • مضغوط', desc: 'نسخة مضغوطة من Aimlock v10.' },
-        { name: 'AIMBOT CUELLO', url: 'https://www.mediafire.com/file/62sqlv4i75371lt/AIMBOT+CUELLO.confg.txt/file', icon: '🎯', meta: 'Config • نصي', badge: 'حصري 🔥', desc: 'إعداد Aim Bot للرقبة (Cuello).' }
+        { name: 'Aimlock v10 (Zip)', url: 'https://www.mediafire.com/file/eflddee5yabiozt/Aimlock+v10.zip/file', icon: '📦', meta: 'Zip • مضغوط', desc: 'نسخة مضغوطة من Aimlock.' },
+        { name: 'AIMBOT CUELLO', url: 'https://www.mediafire.com/file/62sqlv4i75371lt/AIMBOT+CUELLO.confg.txt/file', icon: '🎯', meta: 'Config • نصي', badge: 'حصري 🔥', desc: 'إعداد Aim Bot للرقبة.' }
     ];
 
     const shortcuts = [
@@ -990,21 +954,29 @@ This content is protected by DMCA.
     ];
 
     const adPool = [
-        'https://omg10.com/4/11583670', 'https://omg10.com/4/11582772',
-        'https://omg10.com/4/11583690', 'https://omg10.com/4/11583686',
-        'https://omg10.com/4/11583683', 'https://omg10.com/4/11583677',
-        'https://omg10.com/4/11583681', 'https://omg10.com/4/11583688',
-        'https://omg10.com/4/11579405', 'https://omg10.com/4/11578028'
+        'https://omg10.com/4/11578028',
+        'https://omg10.com/4/11579405',
+        'https://omg10.com/4/11583688',
+        'https://omg10.com/4/11583681',
+        'https://omg10.com/4/11583677',
+        'https://omg10.com/4/11583683',
+        'https://omg10.com/4/11583686',
+        'https://omg10.com/4/11582772',
+        'https://omg10.com/4/11583670',
+        'https://omg10.com/4/11583690'
     ];
 
+    // ============ STATE ============
     let currentLang = localStorage.getItem('b2_lang') || 'ar';
     let currentTheme = localStorage.getItem('b2_theme') || 'dark';
     let targetUrl = '';
     let targetName = '';
+    let skipMode = false;
 
     let loyaltyPoints = parseInt(localStorage.getItem('b2_points') || '0');
     if (!localStorage.getItem('b2_points')) localStorage.setItem('b2_points', '0');
 
+    // ============ HELPERS ============
     function getDlCount(name) {
         const key = 'b2_dl_' + name.replace(/\s+/g, '_');
         return parseInt(localStorage.getItem(key) || '0');
@@ -1021,25 +993,15 @@ This content is protected by DMCA.
         return (n / 1000000).toFixed(1) + 'M';
     }
 
-    async function renderItems(containerId, items) {
+    // ============ RENDER ============
+    function renderItems(containerId, items) {
         const container = document.getElementById(containerId);
         if (!container) return;
         container.innerHTML = '';
-        
-        for (const item of items) {
-            let count = 0;
-            // جرب Firebase أولاً
-            if (window.getFirebaseCount) {
-                try {
-                    count = await window.getFirebaseCount(item.name);
-                } catch(e) { count = 0; }
-            }
-            // إذا Firebase أعاد 0، استخدم localStorage
-            if (count === 0) {
-                count = getDlCount(item.name);
-            }
-            
-            const countFormatted = formatCount(count);
+
+        items.forEach((item) => {
+            const localCount = getDlCount(item.name);
+            const countFormatted = formatCount(localCount);
             const badgeHtml = item.badge ? `<span class="badge hot">${item.badge}</span>` : '';
             const card = document.createElement('div');
             card.className = 'app-card';
@@ -1050,7 +1012,7 @@ This content is protected by DMCA.
                     <div class="app-name">${item.name} ${badgeHtml}</div>
                     <div class="app-meta">
                         <span>${item.meta || ''}</span>
-                        <span class="dl-count">⬇ ${countFormatted}</span>
+                        <span class="dl-count" data-file="${item.name.replace(/"/g,'&quot;')}">⬇ ${countFormatted}</span>
                     </div>
                 </div>
                 <div class="dl-btn">تحميل</div>
@@ -1060,7 +1022,24 @@ This content is protected by DMCA.
                 prepareDownload(item.url, item.name, item.desc);
             });
             container.appendChild(card);
+        });
+
+        updateFirebaseCounts(items);
+    }
+
+    function updateFirebaseCounts(items) {
+        if (!window.firebaseReady) {
+            setTimeout(() => updateFirebaseCounts(items), 2000);
+            return;
         }
+        items.forEach((item) => {
+            window.getFirebaseCount(item.name).then((count) => {
+                if (count > 0) {
+                    const el = document.querySelector(`.dl-count[data-file="${item.name.replace(/"/g,'&quot;')}"]`);
+                    if (el) el.textContent = '⬇ ' + formatCount(count);
+                }
+            }).catch(() => {});
+        });
     }
 
     function renderShortcuts() {
@@ -1078,6 +1057,7 @@ This content is protected by DMCA.
         });
     }
 
+    // ============ SEARCH ============
     function filterItems() {
         const query = document.getElementById('searchInput').value.toLowerCase().trim();
         document.querySelectorAll('.app-card').forEach(card => {
@@ -1090,6 +1070,7 @@ This content is protected by DMCA.
         });
     }
 
+    // ============ MENU ============
     function toggleMenu(id, btn) {
         const menu = document.getElementById(id);
         if (!menu) return;
@@ -1102,13 +1083,13 @@ This content is protected by DMCA.
         }
     }
 
-    function toggleFaq(el) {
-        el.classList.toggle('open');
-    }
+    function toggleFaq(el) { el.classList.toggle('open'); }
 
+    // ============ DOWNLOAD ============
     function prepareDownload(url, name, desc) {
         targetUrl = url;
         targetName = name;
+        skipMode = false;
         const modal = document.getElementById('downloadModal');
         const descBox = document.getElementById('modalDesc');
         const titleEl = document.getElementById('modalTitle');
@@ -1122,35 +1103,100 @@ This content is protected by DMCA.
         modal.classList.add('active');
     }
 
-    async function processDownload() {
-        // زيادة عدد التحميلات في Firebase
+    function processDownload() {
+        // إذا المستخدم ضغط "تخطي"
+        if (skipMode) {
+            closeModal();
+            if (targetUrl) window.location.href = targetUrl;
+            return;
+        }
+
+        // 1. زيادة العدّادات
         if (targetName) {
             if (window.incrementFirebaseCount) {
-                try {
-                    await window.incrementFirebaseCount(targetName);
-                } catch(e) { console.warn(e); }
+                window.incrementFirebaseCount(targetName).catch(e => console.warn(e));
             }
             bumpDlCount(targetName);
         }
-        
-        // نقاط الولاء
+
+        // 2. نقاط الولاء
         loyaltyPoints += 1;
         localStorage.setItem('b2_points', loyaltyPoints.toString());
         updateLoyaltyUI();
 
-        // فتح الإعلان والرابط
+        // 3. حفظ الرابط والإعلان
         const ad = adPool[Math.floor(Math.random() * adPool.length)];
-        window.open(ad, '_blank');
-        if (targetUrl) window.location.href = targetUrl;
-        closeModal();
+        const fileUrl = targetUrl;
+
+        // 4. فتح الإعلان مباشرة (بدون تحذير)
+        const adLink = document.createElement('a');
+        adLink.href = ad;
+        adLink.target = '_blank';
+        adLink.rel = 'noopener noreferrer';
+        adLink.style.display = 'none';
+        document.body.appendChild(adLink);
+        adLink.click();
+        setTimeout(() => { if (adLink.parentNode) adLink.parentNode.removeChild(adLink); }, 500);
+
+        // 5. تحديث المودال — نص محايد فقط
+        const modalBtn = document.getElementById('modalConfirmBtn');
+        const modalInfo = document.getElementById('modalInfo');
+        const modalDesc = document.getElementById('modalDesc');
+
+        modalDesc.style.display = 'none';
+        modalBtn.disabled = true;
+        modalBtn.style.opacity = '0.6';
+        modalBtn.style.cursor = 'not-allowed';
+        modalBtn.textContent = '⏳ جاري التحضير...';
+        modalInfo.innerHTML = 'يتم تجهيز الملف... <b id="cd">3</b>';
+
+        // 6. العد التنازلي 3 ثواني
+        let countdown = 3;
+
+        const tick = setInterval(() => {
+            countdown--;
+            const cdEl = document.getElementById('cd');
+            if (cdEl) cdEl.textContent = countdown;
+
+            // عند 2: أظهر زر التخطي
+            if (countdown === 2) {
+                skipMode = true;
+                modalBtn.disabled = false;
+                modalBtn.style.opacity = '1';
+                modalBtn.style.cursor = 'pointer';
+                modalBtn.style.background = 'linear-gradient(135deg, var(--blue-accent), #0284c7)';
+                modalBtn.textContent = '⬇ تحميل الآن';
+            }
+
+            // عند 0: انتقل تلقائياً
+            if (countdown <= 0) {
+                clearInterval(tick);
+                skipMode = false;
+                closeModal();
+                if (fileUrl) window.location.href = fileUrl;
+            }
+        }, 1000);
     }
 
     function closeModal() {
         document.getElementById('downloadModal').classList.remove('active');
         targetUrl = '';
         targetName = '';
+        skipMode = false;
+
+        const modalBtn = document.getElementById('modalConfirmBtn');
+        modalBtn.textContent = 'متابعة';
+        modalBtn.disabled = false;
+        modalBtn.style.opacity = '1';
+        modalBtn.style.cursor = 'pointer';
+        modalBtn.style.background = '';
+
+        const modalDesc = document.getElementById('modalDesc');
+        modalDesc.style.display = 'none';
+        document.getElementById('modalInfo').textContent = 'اضغط متابعة لبدء التحميل';
     }
 
+    // ============ COPY ============
     function copyCode(btn, code) {
         navigator.clipboard.writeText(code).then(() => {
             btn.textContent = '✅ تم';
@@ -1162,17 +1208,20 @@ This content is protected by DMCA.
         }).catch(() => alert('تعذر النسخ'));
     }
 
+    // ============ BUNDLES ============
     function buyBundle(type) {
         const names = { bronze: 'البرونزية', silver: 'الفضية', gold: 'الذهبية' };
         const msg = encodeURIComponent('مرحبا B2، اريد شراء الباقة ' + names[type]);
         window.open('https://wa.me/213658457095?text=' + msg, '_blank');
     }
 
+    // ============ LOYALTY ============
     function updateLoyaltyUI() {
         const el = document.getElementById('loyaltyPoints');
         if (el) el.textContent = loyaltyPoints + ' نقطة';
     }
 
+    // ============ THEME ============
     function toggleTheme() {
         const html = document.documentElement;
         const btn = document.getElementById('themeToggle');
@@ -1198,6 +1247,7 @@ This content is protected by DMCA.
         }
     }
 
+    // ============ LANGUAGE ============
     const translations = {
         ar: {
             siteSub: 'محتوى إعدادات الألعاب والتطبيقات الحصرية 🎮',
@@ -1264,6 +1314,7 @@ This content is protected by DMCA.
         if (active) active.classList.add('active');
     }
 
+    // ============ SHARE ============
     function sharePage() {
         const url = window.location.href;
         const data = {
@@ -1279,24 +1330,25 @@ This content is protected by DMCA.
         }
     }
 
+    // ============ SCROLL TOP ============
     const scrollBtn = document.getElementById('scrollTopBtn');
     window.addEventListener('scroll', () => {
         scrollBtn.classList.toggle('show', window.scrollY > 300);
     });
     scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
+    // ============ SPLASH ============
     function hideSplash() {
         const splash = document.getElementById('splash');
-        if (splash) {
-            setTimeout(() => splash.classList.add('hide'), 1200);
-        }
+        if (splash) setTimeout(() => splash.classList.add('hide'), 1200);
     }
 
-    async function init() {
+    // ============ INIT ============
+    function init() {
         applyTheme();
-        await renderItems('filzaMenu', filzaItems);
-        await renderItems('section3105', items3105);
-        await renderItems('scriptsMenu', scriptsItems);
+        renderItems('filzaMenu', filzaItems);
+        renderItems('section3105', items3105);
+        renderItems('scriptsMenu', scriptsItems);
         renderShortcuts();
         applyLanguage();
         updateLoyaltyUI();
