@@ -6,6 +6,10 @@
     <meta name="description" content="Adem Settings DZ - تحميل إعدادات فري فاير، هكر، زيت، ايم بوت، 3105، شهادات E-Sign، فيلزا" />
     <meta name="keywords" content="فري فاير, هكر, زيت, ايم بوت, ايساين, شهادة, 3105, filza, free fire settings, aimbot" />
     <meta name="author" content="B2" />
+    <meta name="theme-color" content="#080c14" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="https://i.ibb.co/gM9N6S21/IMG-0358.jpg" />
+    <link rel="apple-touch-icon" href="https://i.ibb.co/gM9N6S21/IMG-0358.jpg" />
     <title>Adem_Settings_DZ</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <style>
@@ -20,6 +24,8 @@
             --blue-accent: #38bdf8;
             --green-accent: #10b981;
             --gold-accent: #f59e0b;
+            --red-accent: #ef4444;
+            --purple-accent: #8b5cf6;
             --shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
             --radius: 18px;
             --transition: 0.3s ease;
@@ -36,9 +42,12 @@
             --blue-accent: #2563eb;
             --green-accent: #059669;
             --gold-accent: #d97706;
+            --red-accent: #dc2626;
+            --purple-accent: #7c3aed;
             --shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font); -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
         body {
             background-color: var(--bg-main);
             color: var(--text-main);
@@ -47,37 +56,180 @@
             padding: 20px 12px 40px;
             min-height: 100vh;
             transition: background-color var(--transition), color var(--transition);
+            position: relative;
+            overflow-x: hidden;
         }
-        .container { width: 100%; max-width: 500px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
-
+        .aurora {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .aurora::before,
+        .aurora::after {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.35;
+            animation: float 18s ease-in-out infinite;
+        }
+        .aurora::before {
+            background: radial-gradient(circle, var(--blue-accent), transparent 70%);
+            top: -100px; left: -100px;
+        }
+        .aurora::after {
+            background: radial-gradient(circle, var(--purple-accent), transparent 70%);
+            bottom: -100px; right: -100px;
+            animation-delay: -9s;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(80px, 50px) scale(1.15); }
+        }
+        .container {
+            width: 100%; max-width: 500px;
+            display: flex; flex-direction: column; align-items: center;
+            gap: 16px;
+            position: relative; z-index: 1;
+        }
+        #splash {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--bg-main);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        #splash.hide { opacity: 0; visibility: hidden; }
+        .splash-logo {
+            width: 120px; height: 120px;
+            border-radius: 30px;
+            background: #fff;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 60px rgba(56, 189, 248, 0.5);
+            animation: pulse 1.6s ease-in-out infinite;
+            overflow: hidden;
+        }
+        .splash-logo img { width: 100%; height: 100%; object-fit: cover; }
+        .splash-text {
+            margin-top: 20px;
+            font-size: 1.8rem; font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: 3px;
+        }
+        .splash-bar {
+            margin-top: 24px;
+            width: 120px; height: 4px;
+            background: var(--border-card);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .splash-bar::after {
+            content: '';
+            display: block;
+            width: 40%; height: 100%;
+            background: var(--blue-accent);
+            border-radius: 4px;
+            animation: loading 1.2s ease-in-out infinite;
+        }
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(300%); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(56, 189, 248, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 90px rgba(56, 189, 248, 0.8); }
+        }
+        .update-banner {
+            width: 100%;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(139, 92, 246, 0.15));
+            border: 1px solid var(--blue-accent);
+            border-radius: 14px;
+            padding: 10px 14px;
+            display: flex; align-items: center; gap: 10px;
+            font-size: 0.82rem;
+            color: var(--text-main);
+            animation: slideDown 0.6s ease;
+        }
+        .update-banner .dot {
+            width: 8px; height: 8px;
+            background: var(--green-accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+            animation: blink 1.5s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
         .top-bar {
             display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
-            gap: 8px; width: 100%; padding: 8px 4px;
+            gap: 6px; width: 100%; padding: 8px 6px;
             background: var(--bg-card); border-radius: 60px;
             border: 1px solid var(--border-card); box-shadow: var(--shadow);
         }
         .top-btn {
             background: transparent; border: none; color: var(--text-secondary);
-            font-size: 1.1rem; padding: 6px 12px; border-radius: 40px;
+            font-size: 1.05rem; padding: 6px 10px; border-radius: 40px;
             cursor: pointer; display: flex; align-items: center; gap: 4px;
             font-weight: 700; transition: var(--transition);
         }
         .top-btn:hover { background: var(--bg-hover); color: var(--text-main); }
-        .top-btn.lang-btn { font-size: 0.9rem; padding: 4px 10px; }
-        .theme-btn { font-size: 1.3rem; padding: 4px 10px; }
-        .share-btn { font-size: 1.1rem; }
-
-        .header { display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; }
+        .top-btn.lang-btn { font-size: 0.85rem; padding: 4px 8px; }
+        .top-btn.active { background: var(--blue-accent); color: #fff; }
+        .theme-btn { font-size: 1.25rem; padding: 4px 8px; }
+        .header { display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; position: relative; }
         .logo-box {
             width: 95px; height: 95px; background: #fff; border-radius: 24px;
             display: flex; align-items: center; justify-content: center;
             box-shadow: var(--shadow); overflow: hidden; position: relative; margin-bottom: 10px;
+            transition: transform 0.4s ease;
         }
+        .logo-box:hover { transform: rotate(-3deg) scale(1.05); }
         .logo-box img { width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 2; }
         .logo-fallback { font-size: 2.2rem; font-weight: 800; color: #000; z-index: 1; }
+        .title-wrap {
+            display: flex; align-items: center; gap: 6px;
+            justify-content: center;
+        }
         .title { font-size: 1.6rem; font-weight: 800; letter-spacing: 0.5px; }
+        .verified-badge {
+            width: 22px; height: 22px;
+            display: inline-flex;
+            animation: verifiedGlow 2s ease-in-out infinite;
+        }
+        @keyframes verifiedGlow {
+            0%, 100% { filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.6)); }
+            50% { filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.9)); }
+        }
         .subtitle { font-size: 0.95rem; color: var(--text-secondary); margin-top: 2px; }
-
+        .trust-strip {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            gap: 6px;
+            padding: 10px 6px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 14px;
+            font-size: 0.68rem;
+            flex-wrap: wrap;
+        }
+        .trust-item {
+            display: flex; align-items: center; gap: 4px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+        .trust-item .ico { font-size: 0.9rem; }
         .search-box { width: 100%; position: relative; }
         .search-box input {
             width: 100%; padding: 14px 20px; border-radius: 60px;
@@ -87,15 +239,15 @@
         }
         .search-box input::placeholder { color: var(--text-secondary); }
         .search-box input:focus { border-color: var(--blue-accent); }
-
         .nav-btn {
             width: 100%; background: var(--bg-card); border: 1px solid var(--border-card);
             border-radius: var(--radius); padding: 14px 18px;
             display: flex; align-items: center; justify-content: space-between;
             color: var(--text-main); text-decoration: none; cursor: pointer;
             transition: var(--transition); box-shadow: var(--shadow);
+            position: relative;
         }
-        .nav-btn:hover { border-color: var(--blue-accent); background: var(--bg-hover); }
+        .nav-btn:hover { border-color: var(--blue-accent); background: var(--bg-hover); transform: translateY(-2px); }
         .nav-btn .left { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.05rem; }
         .icon-box {
             width: 38px; height: 38px; background: var(--bg-icon);
@@ -104,18 +256,18 @@
         }
         .arrow { font-size: 1.1rem; color: var(--text-secondary); transition: transform var(--transition); }
         .nav-btn.open .arrow { transform: rotate(-90deg); }
-
         .sub-menu { display: none; flex-direction: column; gap: 10px; padding: 6px 0; width: 100%; }
-        .sub-menu.open { display: flex; }
-
+        .sub-menu.open { display: flex; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
         .app-card {
             background: var(--bg-card); border: 1px solid var(--border-card);
             border-radius: 16px; padding: 12px 14px;
             display: flex; align-items: center; gap: 12px;
             cursor: pointer; transition: var(--transition);
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
         }
-        .app-card:hover { border-color: var(--blue-accent); background: var(--bg-hover); }
+        .app-card:hover { border-color: var(--blue-accent); background: var(--bg-hover); transform: translateX(-4px); }
         .app-icon {
             width: 48px; height: 48px; border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
@@ -125,7 +277,8 @@
         .app-name { font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
         .app-meta { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 0.7rem; color: var(--text-secondary); margin-top: 4px; }
         .badge { font-size: 0.65rem; background: var(--green-accent); color: #fff; padding: 2px 8px; border-radius: 30px; font-weight: 700; }
-        .badge.hot { background: #ef4444; }
+        .badge.hot { background: var(--red-accent); }
+        .badge.lock { background: var(--purple-accent); }
         .dl-count { font-weight: 600; color: var(--blue-accent); font-size: 0.75rem; }
         .dl-btn {
             background: var(--bg-icon); padding: 6px 12px; border-radius: 30px;
@@ -133,7 +286,6 @@
             white-space: nowrap; transition: var(--transition);
         }
         .app-card:hover .dl-btn { background: var(--blue-accent); color: #fff; }
-
         .shortcut-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; padding: 8px 0; }
         .shortcut-item {
             background: var(--bg-card); border: 1px solid var(--border-card);
@@ -142,16 +294,21 @@
             cursor: pointer; transition: var(--transition);
             text-decoration: none; color: var(--text-main);
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: relative; overflow: hidden;
         }
         .shortcut-item:hover { transform: translateY(-3px); border-color: var(--blue-accent); background: var(--bg-hover); }
         .shortcut-icon { font-size: 2.4rem; margin-bottom: 8px; }
         .shortcut-name { font-size: 0.8rem; font-weight: 700; line-height: 1.3; }
         .shortcut-item.vip-gold:hover { border-color: var(--gold-accent); }
-
+        .shortcut-item.locked::after {
+            content: '🔒';
+            position: absolute;
+            top: 8px; right: 8px;
+            font-size: 0.9rem;
+        }
         .social-row { display: flex; flex-direction: column; gap: 10px; width: 100%; }
         .social-row .nav-btn { justify-content: center; }
         .social-row .nav-btn .left { gap: 10px; }
-
         .section-block {
             width: 100%; background: var(--bg-card); border: 1px solid var(--border-card);
             border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow);
@@ -159,47 +316,201 @@
         .section-title {
             font-size: 1.05rem; font-weight: 700; color: var(--blue-accent);
             border-bottom: 1px solid var(--border-card); padding-bottom: 8px; margin-bottom: 12px;
+            display: flex; align-items: center; justify-content: space-between;
         }
         .settings-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-        .settings-table td { padding: 8px 4px; border-bottom: 1px solid var(--border-card); }
+        .settings-table td { padding: 8px 4px; border-bottom: 1px solid var(--border-card); vertical-align: middle; }
         .settings-table code {
-            background: var(--bg-icon); padding: 2px 8px; border-radius: 6px;
+            background: var(--bg-icon); padding: 4px 8px; border-radius: 6px;
             font-family: monospace; color: var(--blue-accent);
-            unicode-bidi: embed; direction: ltr; display: inline-block; font-size: 0.8rem;
+            unicode-bidi: embed; direction: ltr; display: inline-block; font-size: 0.75rem;
         }
-
+        .copy-btn {
+            background: var(--blue-accent); color: #fff; border: none;
+            padding: 4px 10px; border-radius: 20px; font-size: 0.7rem;
+            font-weight: 700; cursor: pointer; transition: var(--transition);
+            margin-right: 6px;
+        }
+        .copy-btn:hover { opacity: 0.85; }
+        .copy-btn.copied { background: var(--green-accent); }
+        .faq-item {
+            border-bottom: 1px solid var(--border-card);
+            padding: 10px 0;
+        }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-q {
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; font-weight: 700; font-size: 0.9rem;
+            padding: 6px 0;
+        }
+        .faq-q .plus {
+            color: var(--blue-accent);
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+        .faq-item.open .faq-q .plus { transform: rotate(45deg); }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            line-height: 1.7;
+            padding: 0 4px;
+        }
+        .faq-item.open .faq-a { max-height: 300px; padding: 6px 4px 10px; }
+        .esign-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.78rem;
+            margin-top: 8px;
+        }
+        .esign-table th,
+        .esign-table td {
+            padding: 10px 6px;
+            text-align: center;
+            border: 1px solid var(--border-card);
+        }
+        .esign-table th {
+            background: var(--bg-icon);
+            color: var(--blue-accent);
+            font-weight: 700;
+        }
+        .esign-table tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+        .esign-table .price { color: var(--gold-accent); font-weight: 800; }
+        .bundle-card {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(139, 92, 246, 0.12));
+            border: 1px solid var(--gold-accent);
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .bundle-card h4 {
+            color: var(--gold-accent);
+            font-size: 1rem;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .bundle-card p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        .bundle-btn {
+            background: var(--gold-accent);
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 800;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+        .bundle-btn:hover { transform: scale(1.02); opacity: 0.92; }
+        .loyalty-box {
+            width: 100%;
+            background: linear-gradient(135deg, var(--bg-card), rgba(139, 92, 246, 0.08));
+            border: 1px solid var(--purple-accent);
+            border-radius: 16px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .loyalty-info { display: flex; flex-direction: column; }
+        .loyalty-label { font-size: 0.75rem; color: var(--text-secondary); }
+        .loyalty-value { font-size: 1.4rem; font-weight: 800; color: var(--purple-accent); }
+        .loyalty-icon { font-size: 2rem; }
+        .blog-post {
+            display: flex; gap: 10px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-card);
+            text-decoration: none;
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+        .blog-post:last-child { border-bottom: none; }
+        .blog-post:hover { padding-right: 6px; }
+        .blog-emoji {
+            font-size: 1.6rem;
+            width: 44px; height: 44px;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--bg-icon);
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+        .blog-content { flex: 1; }
+        .blog-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 3px; }
+        .blog-desc { font-size: 0.72rem; color: var(--text-secondary); line-height: 1.5; }
+        .report-float {
+            position: fixed;
+            bottom: 28px;
+            left: 28px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--red-accent);
+            color: #fff;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+            text-decoration: none;
+        }
+        .report-float:hover { transform: scale(1.1); }
         #scrollTopBtn {
             position: fixed; bottom: 28px; right: 28px; width: 48px; height: 48px;
             border-radius: 50%; background: var(--blue-accent); color: #fff;
-            border: none; font-size: 1.5rem; cursor: pointer;
+            border: none; font-size: 1.3rem; cursor: pointer;
             box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
             transition: var(--transition); display: none;
-            align-items: center; justify-content: center; z-index: 999;
+            align-items: center; justify-content: center; z-index: 998;
         }
         #scrollTopBtn.show { display: flex; }
         #scrollTopBtn:hover { transform: scale(1.1); }
-
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
-        .modal.active { display: flex; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(6px); }
+        .modal.active { display: flex; animation: fadeIn 0.3s ease; }
         .modal-box {
-            background: var(--bg-card); border: 2px solid var(--green-accent);
-            border-radius: 24px; padding: 28px 24px; max-width: 380px;
+            background: var(--bg-card); border: 2px solid var(--blue-accent);
+            border-radius: 24px; padding: 26px 22px; max-width: 400px;
             width: 100%; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            max-height: 85vh; overflow-y: auto;
         }
-        .modal-box h3 { color: var(--green-accent); font-size: 1.3rem; margin-bottom: 8px; }
-        .modal-box p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px; }
+        .modal-box h3 { color: var(--blue-accent); font-size: 1.2rem; margin-bottom: 8px; }
+        .modal-box p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; line-height: 1.6; }
+        .modal-desc {
+            background: var(--bg-icon);
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 0.8rem;
+            color: var(--text-main);
+            text-align: right;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
         .modal-btn {
-            width: 100%; padding: 14px;
+            width: 100%; padding: 13px;
             background: linear-gradient(135deg, var(--green-accent), #059669);
             border: none; border-radius: 14px; color: #fff;
-            font-weight: 800; font-size: 1.05rem; cursor: pointer; transition: var(--transition);
+            font-weight: 800; font-size: 1rem; cursor: pointer; transition: var(--transition);
         }
         .modal-btn:hover { opacity: 0.9; }
         .modal-close {
             background: transparent; border: none; color: var(--text-secondary);
-            margin-top: 14px; font-size: 0.85rem; cursor: pointer; text-decoration: underline;
+            margin-top: 12px; font-size: 0.85rem; cursor: pointer; text-decoration: underline;
         }
-
         footer {
             margin-top: 30px;
             text-align: center;
@@ -207,14 +518,18 @@
             width: 100%;
             border-top: 1px solid var(--border-card);
             color: var(--text-secondary);
-            font-size: 0.85rem;
-            line-height: 1.7;
+            font-size: 0.82rem;
+            line-height: 1.8;
         }
         footer .brand {
             font-size: 1.05rem;
             font-weight: 800;
             color: var(--text-main);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
         }
         footer .handle {
             color: var(--blue-accent);
@@ -222,104 +537,210 @@
             direction: ltr;
             display: inline-block;
         }
-
+        footer .dmca {
+            display: inline-block;
+            margin-top: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
         @media (max-width: 420px) {
-            .top-bar { gap: 4px; padding: 6px 8px; border-radius: 40px; }
-            .top-btn { font-size: 0.8rem; padding: 4px 8px; }
+            .top-bar { gap: 3px; padding: 6px 6px; border-radius: 40px; }
+            .top-btn { font-size: 0.75rem; padding: 4px 6px; }
             .title { font-size: 1.3rem; }
             .logo-box { width: 80px; height: 80px; }
             .shortcut-grid { gap: 10px; }
             .shortcut-icon { font-size: 2rem; }
             .shortcut-name { font-size: 0.72rem; }
+            .trust-strip { font-size: 0.6rem; }
         }
     </style>
+
+    <!-- ============================================
+         Firebase SDK + Configuration
+         ============================================ -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCnNXJN8UFNVoLqzfOHfTbVY28BCJjNC0Y",
+            authDomain: "b2-settings.firebaseapp.com",
+            projectId: "b2-settings",
+            storageBucket: "b2-settings.firebasestorage.app",
+            messagingSenderId: "866461414889",
+            appId: "1:866461414889:web:6cc467f14a5d8725294778",
+            measurementId: "G-1S69WZ6RZL"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // دالة لجلب عدد التحميلات من Firebase
+        window.getFirebaseCount = async function(fileName) {
+            try {
+                const safeName = fileName.replace(/[\/\.\s#\[\]]/g, '_');
+                const docRef = doc(db, 'downloads', safeName);
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    return docSnap.data().count || 0;
+                }
+                return 0;
+            } catch (e) {
+                console.warn('Firebase read error:', e);
+                return 0;
+            }
+        };
+
+        // دالة لزيادة عدد التحميلات
+        window.incrementFirebaseCount = async function(fileName) {
+            try {
+                const safeName = fileName.replace(/[\/\.\s#\[\]]/g, '_');
+                const docRef = doc(db, 'downloads', safeName);
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    await updateDoc(docRef, { count: increment(1) });
+                } else {
+                    await setDoc(docRef, { name: fileName, count: 1 });
+                }
+                return true;
+            } catch (e) {
+                console.warn('Firebase write error:', e);
+                return false;
+            }
+        };
+
+        window.firebaseReady = true;
+        console.log('✅ Firebase initialized');
+    </script>
 </head>
 <body>
 
-<!-- MODAL -->
+<div class="aurora"></div>
+
+<div id="splash">
+    <div class="splash-logo">
+        <img src="https://i.ibb.co/gM9N6S21/IMG-0358.jpg" alt="B2" onerror="this.style.display='none'" />
+    </div>
+    <div class="splash-text">B2</div>
+    <div class="splash-bar"></div>
+</div>
+
 <div class="modal" id="downloadModal">
     <div class="modal-box">
         <h3 id="modalTitle">⚡ جاهز للتحميل</h3>
-        <p id="modalDesc">سيتم فتح الإعلان في تبويب جديد، ثم توجيهك مباشرة إلى ملف التحميل</p>
+        <div class="modal-desc" id="modalDesc"></div>
+        <p id="modalInfo">سيتم فتح الإعلان في تبويب جديد، ثم توجيهك مباشرة إلى ملف التحميل</p>
         <button class="modal-btn" id="modalConfirmBtn">متابعة</button>
         <button class="modal-close" id="modalCloseBtn">إلغاء</button>
     </div>
 </div>
 
+<a class="report-float" href="https://wa.me/213658457095?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20B2%D8%8C%20%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%A8%D9%84%D8%A7%D8%BA%20%D8%B9%D9%86%20%D9%85%D8%B4%D9%83%D9%84" target="_blank" rel="noopener" title="الإبلاغ عن مشكل">⚠️</a>
+
 <button id="scrollTopBtn" aria-label="العودة للأعلى">⬆</button>
 
 <div class="container" id="appContainer">
 
-    <!-- TOP BAR -->
     <div class="top-bar">
-        <button class="top-btn lang-btn" data-lang="ar" onclick="setLang('ar')">🇸🇦 عربي</button>
-        <button class="top-btn lang-btn" data-lang="en" onclick="setLang('en')">🇬🇧 EN</button>
-        <button class="top-btn lang-btn" data-lang="fr" onclick="setLang('fr')">🇫🇷 FR</button>
+        <button class="top-btn lang-btn active" data-lang="ar" onclick="setLang('ar')">🇩🇿</button>
+        <button class="top-btn lang-btn" data-lang="en" onclick="setLang('en')">🇬🇧</button>
+        <button class="top-btn lang-btn" data-lang="fr" onclick="setLang('fr')">🇫🇷</button>
         <button class="top-btn theme-btn" onclick="toggleTheme()" id="themeToggle">🌙</button>
-        <button class="top-btn share-btn" onclick="sharePage()">📤</button>
+        <button class="top-btn share-btn" onclick="sharePage()" title="مشاركة">📤</button>
     </div>
 
-    <!-- HEADER -->
     <div class="header">
         <div class="logo-box">
             <div class="logo-fallback">B2</div>
             <img src="https://i.ibb.co/gM9N6S21/IMG-0358.jpg" alt="B2" onerror="this.style.display='none';" />
         </div>
-        <h1 class="title">B2</h1>
+        <div class="title-wrap">
+            <h1 class="title">B2</h1>
+            <svg class="verified-badge" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="11" fill="#1D9BF0"/>
+                <path d="M9.5 16.5 L5.5 12.5 L7 11 L9.5 13.5 L17 6 L18.5 7.5 L9.5 16.5 Z" fill="#fff"/>
+            </svg>
+        </div>
         <p class="subtitle" data-i18n="siteSub">محتوى إعدادات الألعاب والتطبيقات الحصرية 🎮</p>
     </div>
 
-    <!-- SEARCH -->
+    <div class="trust-strip">
+        <div class="trust-item"><span class="ico">🛡️</span> محمي</div>
+        <div class="trust-item"><span class="ico">✅</span> +1000 مستخدم</div>
+        <div class="trust-item"><span class="ico">⚡</span> تحديث مستمر</div>
+        <div class="trust-item"><span class="ico">💎</span> موثوق</div>
+    </div>
+
+    <div class="update-banner">
+        <span class="dot"></span>
+        <span id="updateText">🆕 آخر تحديث: أضيف FilzaSlop v1.2.0</span>
+    </div>
+
     <div class="search-box">
         <input type="text" id="searchInput" placeholder="🔍 ابحث عن ملف..." data-i18n-placeholder="searchPlaceholder" />
     </div>
 
-    <!-- ===== VIP SECTION (أولوية أولى) ===== -->
+    <div class="loyalty-box">
+        <div class="loyalty-info">
+            <span class="loyalty-label">نقاط الولاء الخاصة بك</span>
+            <span class="loyalty-value" id="loyaltyPoints">0 نقطة</span>
+        </div>
+        <div class="loyalty-icon">⭐</div>
+    </div>
+
+    <!-- VIP SECTION -->
     <div class="nav-btn" onclick="toggleMenu('vipMenu', this)" style="border-color: var(--gold-accent);">
         <span class="left"><span class="icon-box">👑</span> <span data-i18n="vipTitle">VIP 📥🪄</span></span>
         <span class="arrow">←</span>
     </div>
     <div class="sub-menu" id="vipMenu">
         <div class="shortcut-grid">
-            <a href="https://wa.me/213658457095?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A7%D9%84%D9%85%D8%B7%D9%88%D8%B1%3A%20B2%D8%8C%20%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%B4%D8%B1%D8%A7%D8%A1%20%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%2F%D9%85%D9%84%D9%81%20%D9%85%D8%AF%D9%81%D9%88%D8%B9" target="_blank" rel="noopener" class="shortcut-item vip-gold">
+            <a href="https://wa.me/213658457095?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20B2%D8%8C%20%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%B4%D8%B1%D8%A7%D8%A1%20%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%2F%D9%85%D9%84%D9%81%20%D9%85%D8%AF%D9%81%D9%88%D8%B9" target="_blank" rel="noopener" class="shortcut-item vip-gold locked">
                 <span class="shortcut-icon">📥🪄</span>
                 <span class="shortcut-name">تطبيقات وملفات مدفوعة</span>
             </a>
-            <a href="https://wa.me/213658457095?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A7%D9%84%D9%85%D8%B7%D9%88%D8%B1%3A%20B2%D8%8C%20%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%B4%D8%B1%D8%A7%D8%A1%20%D8%B4%D9%87%D8%A7%D8%AF%D8%A9%20E-Sign" target="_blank" rel="noopener" class="shortcut-item vip-gold">
+            <a href="https://wa.me/213658457095?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20B2%D8%8C%20%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%B4%D8%B1%D8%A7%D8%A1%20%D8%B4%D9%87%D8%A7%D8%AF%D8%A9%20E-Sign" target="_blank" rel="noopener" class="shortcut-item vip-gold locked">
                 <span class="shortcut-icon">📜</span>
                 <span class="shortcut-name">شهادات E-Sign مدفوعة</span>
+            </a>
+            <a href="https://wa.me/213658457095?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20B2%D8%8C%20%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%20VIP%20%D8%B4%D9%87%D8%B1%D9%8A" target="_blank" rel="noopener" class="shortcut-item vip-gold locked">
+                <span class="shortcut-icon">💎</span>
+                <span class="shortcut-name">اشتراك VIP شهري</span>
+            </a>
+            <a href="https://wa.me/213658457095?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20B2%D8%8C%20%D8%B9%D9%86%D8%AF%D9%8A%20%D9%83%D9%88%D8%AF%20%D8%AE%D8%B5%D9%85%20B2NEW" target="_blank" rel="noopener" class="shortcut-item vip-gold">
+                <span class="shortcut-icon">🎫</span>
+                <span class="shortcut-name">كود خصم B2NEW</span>
             </a>
         </div>
     </div>
 
-    <!-- OFFICIAL SITE BUTTON -->
     <a href="https://khoindvn.io.vn/" target="_blank" rel="noopener" class="nav-btn" style="border-color: var(--blue-accent); justify-content: center;">
         <span class="left"><span class="icon-box">🌐</span> <span data-i18n="officialSite">الموقع الرسمي</span></span>
         <span class="arrow">→</span>
     </a>
 
-    <!-- FILZA SECTION -->
     <div class="nav-btn" onclick="toggleMenu('filzaMenu', this)">
         <span class="left"><span class="icon-box">📱</span> <span data-i18n="filzaTitle">تطبيقات Filza (8 نسخ)</span></span>
         <span class="arrow">←</span>
     </div>
     <div class="sub-menu" id="filzaMenu"></div>
 
-    <!-- 3105 SECTION -->
     <div class="nav-btn" onclick="toggleMenu('section3105', this)" style="border-color:#ef4444;">
         <span class="left"><span class="icon-box">🔥</span> <span data-i18n="title3105">تطبيق وملفات 3105</span></span>
         <span class="arrow">←</span>
     </div>
     <div class="sub-menu" id="section3105"></div>
 
-    <!-- SCRIPTS SECTION -->
     <div class="nav-btn" onclick="toggleMenu('scriptsMenu', this)">
         <span class="left"><span class="icon-box">⚡</span> <span data-i18n="scriptsTitle">السكريبتات والملفات (16 ملفاً)</span></span>
         <span class="arrow">←</span>
     </div>
     <div class="sub-menu" id="scriptsMenu"></div>
 
-    <!-- SHORTCUTS PANEL -->
     <div class="nav-btn" onclick="toggleMenu('shortcutsMenu', this)">
         <span class="left"><span class="icon-box">🛠️</span> <span data-i18n="shortcutsTitle">بانل تسهيلات الاستخدام</span></span>
         <span class="arrow">←</span>
@@ -328,7 +749,136 @@
         <div class="shortcut-grid" id="shortcutGrid"></div>
     </div>
 
-    <!-- SOCIAL -->
+    <div class="nav-btn" onclick="toggleMenu('bundleMenu', this)" style="border-color: var(--gold-accent);">
+        <span class="left"><span class="icon-box">📦</span> <span>باقات توفيرية 🎁</span></span>
+        <span class="arrow">←</span>
+    </div>
+    <div class="sub-menu" id="bundleMenu">
+        <div class="bundle-card">
+            <h4>📦 الباقة البرونزية</h4>
+            <p>Filza + 3 سكريبتات احترافية + دعم فني لمدة شهر</p>
+            <button class="bundle-btn" onclick="buyBundle('bronze')">💰 اطلب الآن — 15$ بدل 25$</button>
+        </div>
+        <div class="bundle-card">
+            <h4>🥈 الباقة الفضية</h4>
+            <p>Filza + تطبيق 3105 + 5 سكريبتات + شهادة E-Sign شهرية</p>
+            <button class="bundle-btn" onclick="buyBundle('silver')">💰 اطلب الآن — 35$ بدل 60$</button>
+        </div>
+        <div class="bundle-card">
+            <h4>👑 الباقة الذهبية</h4>
+            <p>كل التطبيقات + كل الملفات + شهادة E-Sign سنوية + دعم VIP</p>
+            <button class="bundle-btn" onclick="buyBundle('gold')">💰 اطلب الآن — 70$ بدل 120$</button>
+        </div>
+    </div>
+
+    <div class="nav-btn" onclick="toggleMenu('esignMenu', this)" style="border-color: var(--purple-accent);">
+        <span class="left"><span class="icon-box">📜</span> <span>مقارنة شهادات E-Sign</span></span>
+        <span class="arrow">←</span>
+    </div>
+    <div class="sub-menu" id="esignMenu">
+        <div class="section-block" style="margin: 0;">
+            <table class="esign-table">
+                <thead>
+                    <tr>
+                        <th>الميزة</th>
+                        <th>شهري</th>
+                        <th>سنوي</th>
+                        <th>دائم</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>المدة</td><td>30 يوم</td><td>365 يوم</td><td>مدى الحياة</td></tr>
+                    <tr><td>السعر</td><td class="price">10$</td><td class="price">40$</td><td class="price">80$</td></tr>
+                    <tr><td>عدد الأجهزة</td><td>1</td><td>2</td><td>3</td></tr>
+                    <tr><td>تحديثات</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                    <tr><td>دعم VIP</td><td>❌</td><td>✅</td><td>✅</td></tr>
+                </tbody>
+            </table>
+            <a href="https://wa.me/213658457095?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20B2%D8%8C%20%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%B4%D8%B1%D8%A7%D8%A1%20%D8%B4%D9%87%D8%A7%D8%AF%D8%A9%20E-Sign" target="_blank" rel="noopener" style="display:block; text-align:center; margin-top: 12px; padding: 12px; background: var(--purple-accent); color: #fff; text-decoration: none; border-radius: 12px; font-weight: 800;">📞 اطلب الآن</a>
+        </div>
+    </div>
+
+    <div class="nav-btn" onclick="toggleMenu('blogMenu', this)">
+        <span class="left"><span class="icon-box">📝</span> <span>مقالات وشروحات</span></span>
+        <span class="arrow">←</span>
+    </div>
+    <div class="sub-menu" id="blogMenu">
+        <div class="section-block" style="margin: 0;">
+            <a class="blog-post" href="https://wa.me/213658457095?text=%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%B4%D8%B1%D8%AD%20%D8%A7%D9%81%D8%B6%D9%84%20%D8%A7%D8%B9%D8%AF%D8%A7%D8%AF%D8%A7%D8%AA%20%D9%81%D8%B1%D9%8A%20%D9%81%D8%A7%D9%8A%D8%B1%202026" target="_blank" rel="noopener">
+                <div class="blog-emoji">🎮</div>
+                <div class="blog-content">
+                    <div class="blog-title">أفضل إعدادات فري فاير 2026</div>
+                    <div class="blog-desc">دليل شامل لأفضل الإعدادات لتحسين الأداء والتصويب</div>
+                </div>
+            </a>
+            <a class="blog-post" href="https://wa.me/213658457095?text=%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%B4%D8%B1%D8%AD%203105" target="_blank" rel="noopener">
+                <div class="blog-emoji">🔥</div>
+                <div class="blog-content">
+                    <div class="blog-title">شرح تطبيق 3105 خطوة بخطوة</div>
+                    <div class="blog-desc">كيف تثبت وتستخدم تطبيق 3105 وملفاته الحصرية</div>
+                </div>
+            </a>
+            <a class="blog-post" href="https://wa.me/213658457095?text=%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%B4%D8%B1%D8%AD%20%D8%A7%D8%AE%D8%AA%D9%8A%D8%A7%D8%B1%20%D8%A7%D9%84%D8%B2%D9%8A%D8%AA" target="_blank" rel="noopener">
+                <div class="blog-emoji">⚡</div>
+                <div class="blog-content">
+                    <div class="blog-title">كيف تختار الزيت المناسب؟</div>
+                    <div class="blog-desc">مقارنة بين أنواع الزيوت وأيها يناسب أسلوب لعبك</div>
+                </div>
+            </a>
+            <a class="blog-post" href="https://wa.me/213658457095?text=%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%B4%D8%B1%D8%AD%20Filza%20%D9%88%D8%B7%D8%B1%D9%8A%D9%82%D8%A9%20%D8%AA%D8%AB%D8%A8%D9%8A%D8%AA%D9%87" target="_blank" rel="noopener">
+                <div class="blog-emoji">📱</div>
+                <div class="blog-content">
+                    <div class="blog-title">شرح تثبيت Filza على iPhone</div>
+                    <div class="blog-desc">دليل كامل لتثبيت Filza بجميع إصداراته</div>
+                </div>
+            </a>
+            <a class="blog-post" href="https://wa.me/213658457095?text=%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%B4%D8%B1%D8%AD%20%D8%B4%D9%87%D8%A7%D8%AF%D8%A7%D8%AA%20E-Sign" target="_blank" rel="noopener">
+                <div class="blog-emoji">📜</div>
+                <div class="blog-content">
+                    <div class="blog-title">كل ما تحتاج معرفته عن E-Sign</div>
+                    <div class="blog-desc">شرح شهادات التوقيع وأهميتها لأصحاب iPhone</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="nav-btn" onclick="toggleMenu('faqMenu', this)">
+        <span class="left"><span class="icon-box">❓</span> <span>الأسئلة الشائعة</span></span>
+        <span class="arrow">←</span>
+    </div>
+    <div class="sub-menu" id="faqMenu">
+        <div class="section-block" style="margin: 0;">
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q"><span>📱 كيف أثبّت Filza على الآيفون؟</span><span class="plus">+</span></div>
+                <div class="faq-a">قم بتحميل الملف من قسم Filza، ثم استخدم AltStore أو Sideloadly لتثبيته. تأكد من تفعيل "الجهاز الموثوق" في الإعدادات.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q"><span>🔥 ما هو تطبيق 3105؟</span><span class="plus">+</span></div>
+                <div class="faq-a">3105 هو تطبيق مدفوع يوفر ميزات احترافية لفري فاير مع 5 ملفات حصرية (NECK HS, AIMCHEST, AIMBODY...). متوفر في قسم 3105.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q"><span>💳 ما هي طرق الدفع المتوفرة؟</span><span class="plus">+</span></div>
+                <div class="faq-a">نقبل: CCP، بريدي موب، فليكسي (محلياً)، وRedotPay، PayPal (دولياً). تواصل معنا على واتساب للتفاصيل.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q"><span>⏱️ كم يستغرق التفعيل؟</span><span class="plus">+</span></div>
+                <div class="faq-a">عادة خلال 5-30 دقيقة بعد تأكيد الدفع. في أوقات الذروة قد يستغرق حتى ساعة.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q"><span>🛡️ هل هناك حماية من الحظر؟</span><span class="plus">+</span></div>
+                <div class="faq-a">نعم، جميع الملفات مشفرة وآمنة. نضمن حماية كاملة طوال مدة الاشتراك. في حال حدوث أي مشكل، نستبدل الملف مجاناً.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q"><span>🎫 كيف أستخدم كود الخصم؟</span><span class="plus">+</span></div>
+                <div class="faq-a">عند التواصل معنا على واتساب، أرسل كود <b>B2NEW</b> للحصول على خصم 20% على أول عملية شراء.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q"><span>⭐ كيف أحصل على نقاط الولاء؟</span><span class="plus">+</span></div>
+                <div class="faq-a">كل عملية تحميل أو زيارة للموقع تمنحك نقاطاً. عند وصولك إلى 10 نقاط تحصل على ملف مجاني. (النقاط محفوظة في جهازك فقط).</div>
+            </div>
+        </div>
+    </div>
+
     <div class="social-row">
         <a href="https://youtube.com/@adem_ar28?si=4OVhIL2CdXbFezeE" target="_blank" rel="noopener" class="nav-btn" style="border-color:#ff0033;">
             <span class="left"><span class="icon-box">▶️</span> <span data-i18n="youtube">يوتيوب</span></span>
@@ -342,88 +892,95 @@
             <span class="left"><span class="icon-box">📷</span> <span data-i18n="instagram">إنستغرام</span></span>
             <span class="arrow">→</span>
         </a>
+        <a href="https://tiktok.com/@blak.b28" target="_blank" rel="noopener" class="nav-btn" style="border-color:#000;">
+            <span class="left"><span class="icon-box">🎵</span> <span>تيك توك</span></span>
+            <span class="arrow">→</span>
+        </a>
     </div>
 
-    <!-- SETTINGS TABLE -->
     <div class="section-block">
         <div class="section-title" data-i18n="settingsTitle">🎮 إعدادات وتعديلات اللعبة</div>
         <table class="settings-table">
-            <tr><td data-i18n="noSmoke">No Smoke</td><td><code>FX.MaxCPUParticles...=1</code></td></tr>
-            <tr><td data-i18n="noWater">No Water</td><td><code>water.heightScale=0</code></td></tr>
-            <tr><td data-i18n="aimbot">Aimbot</td><td><code>SystemAimAssistSettings</code></td></tr>
+            <tr>
+                <td data-i18n="noSmoke">No Smoke</td>
+                <td><code>FX.MaxCPUParticles...=1</code> <button class="copy-btn" onclick="copyCode(this, 'FX.MaxCPUParticles...=1')">📋 نسخ</button></td>
+            </tr>
+            <tr>
+                <td data-i18n="noWater">No Water</td>
+                <td><code>water.heightScale=0</code> <button class="copy-btn" onclick="copyCode(this, 'water.heightScale=0')">📋 نسخ</button></td>
+            </tr>
+            <tr>
+                <td data-i18n="aimbot">Aimbot</td>
+                <td><code>SystemAimAssistSettings</code> <button class="copy-btn" onclick="copyCode(this, 'SystemAimAssistSettings')">📋 نسخ</button></td>
+            </tr>
         </table>
     </div>
 
-    <!-- FOOTER / COPYRIGHT -->
     <footer>
-        <div class="brand">© 2026 B2</div>
+        <div class="brand">
+            © 2026 B2
+            <svg class="verified-badge" style="width:16px; height:16px;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="11" fill="#1D9BF0"/>
+                <path d="M9.5 16.5 L5.5 12.5 L7 11 L9.5 13.5 L17 6 L18.5 7.5 L9.5 16.5 Z" fill="#fff"/>
+            </svg>
+        </div>
         <div>جميع الحقوق محفوظة — جميع المحتويات مِلكية حصرية</div>
         <div><span class="handle">@blak.b28</span> | الجزائر 🇩🇿</div>
+        <div class="dmca">🛡️ محمي بـ DMCA</div>
     </footer>
 
 </div>
 
-<!-- HIDDEN COPYRIGHT FINGERPRINT -->
 <!-- 
 ==========================================
 © 2026 B2 - @blak.b28 - All Rights Reserved
 Original Creator: B2 (formerly Adem_Settings_DZ)
 Country: Algeria 🇩🇿
 Contact: +213 658 45 70 95
-First Published: 2024
-This content is protected. Any unauthorized reproduction 
-is a violation of copyright law.
+This content is protected by DMCA.
 ==========================================
 -->
 
 <script>
-    // ============================================================
-    //  DATA
-    // ============================================================
-
-    // Filza items (8)
     const filzaItems = [
-        { name: 'Filza iOS 26-27', url: 'https://www.mediafire.com/file/2jssxjhxf80zai1/Filza-iOS-26-27.ipa/file', icon: '📁', meta: 'IPA • رئيسي' },
-        { name: 'Filza Jailed', url: 'https://www.mediafire.com/file/91j014gmw3zez56/FilzaJailed.ipa/file', icon: '🔒', meta: 'IPA • آمن' },
-        { name: 'Filza Standard', url: 'https://www.mediafire.com/file/o2rr473iu06ocxs/Filza.ipa/file', icon: '📂', meta: 'IPA • عادي' },
-        { name: 'Filza iOS 26-27 (نسخة 2)', url: 'https://www.mediafire.com/file/2jssxjhxf80zai1/Filza-iOS-26-27.ipa/file', icon: '📁', meta: 'IPA • مكرر' },
-        { name: 'Filza V4', url: 'https://www.mediafire.com/file/qukjj032uo1njxj/Filza_V4.ipa/file', icon: '📦', meta: 'IPA • محدث' },
-        { name: 'Filza Sandbox Apply', url: 'https://www.mediafire.com/file/kut6mi01lph8rsw/FILZA_SANDBOX_APPLY.dylib/file', icon: '🧩', meta: 'dylib • أداة' },
-        { name: 'Filza Mod 4.0', url: 'https://www.mediafire.com/file/jma0r53oqhn9l09/Filza_Mod_4.0_1786666141.ipa/file', icon: '⭐', meta: 'IPA • معدل', badge: 'حصري 🔥' },
-        { name: 'FilzaSlop v1.2.0', url: 'https://www.mediafire.com/file/l234z09c9n3x5xy/FilzaSlop-v1.2.0-unsigned.ipa/file', icon: '🆕', meta: 'IPA • إصدار جديد', badge: 'جديد 🆕' }
+        { name: 'Filza iOS 26-27', url: 'https://www.mediafire.com/file/2jssxjhxf80zai1/Filza-iOS-26-27.ipa/file', icon: '📁', meta: 'IPA • رئيسي', desc: 'النسخة الرئيسية المتوافقة مع iOS 16-17، مثالية للاستخدام العام.' },
+        { name: 'Filza Jailed', url: 'https://www.mediafire.com/file/91j014gmw3zez56/FilzaJailed.ipa/file', icon: '🔒', meta: 'IPA • آمن', desc: 'نسخة آمنة لا تحتاج Jailbreak، تعمل على الأجهزة العادية.' },
+        { name: 'Filza Standard', url: 'https://www.mediafire.com/file/o2rr473iu06ocxs/Filza.ipa/file', icon: '📂', meta: 'IPA • عادي', desc: 'النسخة الكلاسيكية من Filza لتصفح الملفات.' },
+        { name: 'Filza iOS 26-27 (v2)', url: 'https://www.mediafire.com/file/2jssxjhxf80zai1/Filza-iOS-26-27.ipa/file', icon: '📁', meta: 'IPA • مكرر', desc: 'نسخة احتياطية من Filza iOS 26-27.' },
+        { name: 'Filza V4', url: 'https://www.mediafire.com/file/qukjj032uo1njxj/Filza_V4.ipa/file', icon: '📦', meta: 'IPA • محدث', desc: 'الإصدار الرابع بميزات محسّنة وواجهة محدثة.' },
+        { name: 'Filza Sandbox Apply', url: 'https://www.mediafire.com/file/kut6mi01lph8rsw/FILZA_SANDBOX_APPLY.dylib/file', icon: '🧩', meta: 'dylib • أداة', desc: 'أداة مساعدة لتطبيق Sandbox على Filza.' },
+        { name: 'Filza Mod 4.0', url: 'https://www.mediafire.com/file/jma0r53oqhn9l09/Filza_Mod_4.0_1786666141.ipa/file', icon: '⭐', meta: 'IPA • معدل', badge: 'حصري 🔥', desc: 'نسخة معدلة بميزات إضافية وحصرية.' },
+        { name: 'FilzaSlop v1.2.0', url: 'https://www.mediafire.com/file/l234z09c9n3x5xy/FilzaSlop-v1.2.0-unsigned.ipa/file', icon: '🆕', meta: 'IPA • جديد', badge: 'جديد 🆕', desc: 'أحدث إصدار من FilzaSlop بميزات محسّنة.' }
     ];
 
-    // 3105 items (app + 5 files)
     const items3105 = [
-        { name: 'تطبيق 3105 (2.0 beta4)', url: 'https://www.mediafire.com/file/cukfm9m5tgp80ug/3105-2.0beta4-build8-unsigned.ipa/file', icon: '🔥', meta: 'IPA • النسخة الرسمية', badge: 'حصري 🔥' },
-        { name: 'NECK HS FFM 3105', url: 'https://www.mediafire.com/file/0dcrkx0909gfill/NECK+HS+FFM.3105/file', icon: '🎯', meta: 'ملف • 3105' },
-        { name: 'FFTH AIMCHEST 3105', url: 'https://www.mediafire.com/file/bvofjsdap8zg012/FFTH+AIMCHEST.3105/file', icon: '🎯', meta: 'ملف • 3105' },
-        { name: 'FFTH AIMBODY 3105', url: 'https://www.mediafire.com/file/xf8sdk64ryx5na7/FFTH+AIMBODY.3105/file', icon: '🎯', meta: 'ملف • 3105' },
-        { name: 'HS NECK - ANTENNA FFTH 3105', url: 'https://www.mediafire.com/file/bm05s21xsedxgxu/HS+NECK+-+ANTENNA+FFTH.3105/file', icon: '📡', meta: 'ملف • 3105' },
-        { name: 'FFTH AIM BODY 3105', url: 'https://www.mediafire.com/file/9ic2rdmk2hx9pqg/FFTH+AIM+BODY.3105/file', icon: '🎯', meta: 'ملف • 3105' }
+        { name: 'تطبيق 3105 (2.0 beta4)', url: 'https://www.mediafire.com/file/cukfm9m5tgp80ug/3105-2.0beta4-build8-unsigned.ipa/file', icon: '🔥', meta: 'IPA • رسمي', badge: 'حصري 🔥', desc: 'التطبيق الرسمي بإصدار 2.0 beta4 مع دعم كامل.' },
+        { name: 'NECK HS FFM 3105', url: 'https://www.mediafire.com/file/0dcrkx0909gfill/NECK+HS+FFM.3105/file', icon: '🎯', meta: 'ملف • 3105', desc: 'ملف تصويب الرقبة والرأس لـ3105.' },
+        { name: 'FFTH AIMCHEST 3105', url: 'https://www.mediafire.com/file/bvofjsdap8zg012/FFTH+AIMCHEST.3105/file', icon: '🎯', meta: 'ملف • 3105', desc: 'ملف تصويب الصدر مع دقة عالية.' },
+        { name: 'FFTH AIMBODY 3105', url: 'https://www.mediafire.com/file/xf8sdk64ryx5na7/FFTH+AIMBODY.3105/file', icon: '🎯', meta: 'ملف • 3105', desc: 'ملف تصويب الجسم بالكامل.' },
+        { name: 'HS NECK - ANTENNA FFTH 3105', url: 'https://www.mediafire.com/file/bm05s21xsedxgxu/HS+NECK+-+ANTENNA+FFTH.3105/file', icon: '📡', meta: 'ملف • 3105', desc: 'ملف الهيدشوت مع أنتينا الرقبة.' },
+        { name: 'FFTH AIM BODY 3105', url: 'https://www.mediafire.com/file/9ic2rdmk2hx9pqg/FFTH+AIM+BODY.3105/file', icon: '🎯', meta: 'ملف • 3105', desc: 'ملف تصويب الجسم الاحترافي.' }
     ];
 
-    // Scripts items (16)
     const scriptsItems = [
-        { name: 'كشف أماكن AIM BOT 85%', url: 'https://www.mediafire.com/file/u2yqg6nvmklbk2y/%E2%80%8E%D9%83%D8%B4%D9%81+%D8%A7%D9%95%D9%85%D9%83%D8%A7%D9%86++AIM+BOT+85%25+%E2%81%A9.zip/file', icon: '🎯', meta: 'Zip • VIP' },
-        { name: 'VIP ⚙️🪄', url: 'https://www.mediafire.com/file/s4w64kaz4ve69l3/VIP+%E2%9A%99%EF%B8%8F%F0%9F%AA%84.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '👑', meta: 'Config • VIP' },
-        { name: 'cache_res 2', url: 'https://www.mediafire.com/file/7e0mjrw9w6wdcvs/cache_res+2.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '📦', meta: 'Cache • V2' },
-        { name: 'Adem.Zit.VV', url: 'https://www.mediafire.com/file/keom86elamj5ezd/Adem.Zit.VV.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '⚡', meta: 'Config • خاص' },
-        { name: 'cache_res (V1)', url: 'https://www.mediafire.com/file/ic2ker2yxdpoaiw/cache_res.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '🗂️', meta: 'Cache • عادي' },
-        { name: 'cache_res 3', url: 'https://www.mediafire.com/file/3cukb3p6mita611/cache_res+3.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '📦', meta: 'Cache • V3' },
-        { name: 'cache_res OdVY (2)', url: 'https://www.mediafire.com/file/23xs8xgra00w07x/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D+2/file', icon: '🗂️', meta: 'Cache • نسخة' },
-        { name: '3D OdVY', url: 'https://www.mediafire.com/file/c9uw9o8igl0ox2j/3D.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D/file', icon: '🎮', meta: 'ملف • ثلاثي' },
-        { name: 'cache_res OdVY', url: 'https://www.mediafire.com/file/c4t52290jp0r6yo/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D/file', icon: '📦', meta: 'Cache • نسخة' },
-        { name: 'Aimlock v10 (mobileconfig)', url: 'https://www.mediafire.com/file/n2c3g52hqtruy3z/Aimlock+v10.mobileconfig/file', icon: '📱', meta: 'Config • دقيق' },
-        { name: 'VIP 🗿🪄 assetindexer', url: 'https://www.mediafire.com/file/a315csklqijsk9s/VIP.+%F0%9F%97%BF%F0%9F%AA%84assetindexer.PENojQAQf9a1l6Dzjs0n1Z3rtVU~3D/file', icon: '👾', meta: 'ملف • VIP' },
-        { name: 'assetindexer 2', url: 'https://www.mediafire.com/file/33l4v8ii1vd6c3d/assetindexer+2.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file', icon: '📄', meta: 'ملف • نسخة' },
-        { name: 'assetindexer', url: 'https://www.mediafire.com/file/zlxp3tmme9lpt28/assetindexer.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file', icon: '📄', meta: 'ملف • عادي' },
-        { name: 'assetindexer 3', url: 'https://www.mediafire.com/file/ynwgltfbf3rmuq3/assetindexer+3.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file', icon: '📄', meta: 'ملف • V3' },
-        { name: 'Aimlock v10 (Zip)', url: 'https://www.mediafire.com/file/eflddee5yabiozt/Aimlock+v10.zip/file', icon: '📦', meta: 'Zip • مضغوط' },
-        { name: 'AIMBOT CUELLO.confg', url: 'https://www.mediafire.com/file/62sqlv4i75371lt/AIMBOT+CUELLO.confg.txt/file', icon: '🎯', meta: 'Config • نصي', badge: 'حصري 🔥' }
+        { name: 'كشف أماكن AIM BOT 85%', url: 'https://www.mediafire.com/file/u2yqg6nvmklbk2y/%E2%80%8E%D9%83%D8%B4%D9%81+%D8%A7%D9%95%D9%85%D9%83%D8%A7%D9%86++AIM+BOT+85%25+%E2%81%A9.zip/file', icon: '🎯', meta: 'Zip • VIP', desc: 'كشف أماكن الأعداء بدقة 85%.' },
+        { name: 'VIP ⚙️🪄', url: 'https://www.mediafire.com/file/s4w64kaz4ve69l3/VIP+%E2%9A%99%EF%B8%8F%F0%9F%AA%84.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '👑', meta: 'Config • VIP', desc: 'إعدادات VIP حصرية.' },
+        { name: 'cache_res 2', url: 'https://www.mediafire.com/file/7e0mjrw9w6wdcvs/cache_res+2.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '📦', meta: 'Cache • V2', desc: 'ملف cache محدّث للنسخة الثانية.' },
+        { name: 'Adem.Zit.VV', url: 'https://www.mediafire.com/file/keom86elamj5ezd/Adem.Zit.VV.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '⚡', meta: 'Config • خاص', desc: 'ملف Zit خاص بإعدادات دقيقة.' },
+        { name: 'cache_res (V1)', url: 'https://www.mediafire.com/file/ic2ker2yxdpoaiw/cache_res.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '🗂️', meta: 'Cache • عادي', desc: 'ملف cache الأساسي.' },
+        { name: 'cache_res 3', url: 'https://www.mediafire.com/file/3cukb3p6mita611/cache_res+3.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D/file', icon: '📦', meta: 'Cache • V3', desc: 'النسخة الثالثة من ملف cache.' },
+        { name: 'cache_res OdVY (2)', url: 'https://www.mediafire.com/file/23xs8xgra00w07x/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D+2/file', icon: '🗂️', meta: 'Cache • نسخة', desc: 'نسخة OdVY من ملف cache.' },
+        { name: '3D OdVY', url: 'https://www.mediafire.com/file/c9uw9o8igl0ox2j/3D.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D/file', icon: '🎮', meta: 'ملف • ثلاثي', desc: 'ملف 3D لدقة أعلى.' },
+        { name: 'cache_res OdVY', url: 'https://www.mediafire.com/file/c4t52290jp0r6yo/cache_res.OdVY88vqa9NcdHWx8dKH1EWvhoo~3D/file', icon: '📦', meta: 'Cache • نسخة', desc: 'ملف cache بنسخة OdVY.' },
+        { name: 'Aimlock v10', url: 'https://www.mediafire.com/file/n2c3g52hqtruy3z/Aimlock+v10.mobileconfig/file', icon: '📱', meta: 'Config • دقيق', desc: 'إعداد Aimlock بدقة عالية.' },
+        { name: 'VIP 🗿🪄 assetindexer', url: 'https://www.mediafire.com/file/a315csklqijsk9s/VIP.+%F0%9F%97%BF%F0%9F%AA%84assetindexer.PENojQAQf9a1l6Dzjs0n1Z3rtVU~3D/file', icon: '👾', meta: 'ملف • VIP', desc: 'ملف assetindexer حصري VIP.' },
+        { name: 'assetindexer 2', url: 'https://www.mediafire.com/file/33l4v8ii1vd6c3d/assetindexer+2.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file', icon: '📄', meta: 'ملف • نسخة', desc: 'النسخة الثانية من assetindexer.' },
+        { name: 'assetindexer', url: 'https://www.mediafire.com/file/zlxp3tmme9lpt28/assetindexer.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file', icon: '📄', meta: 'ملف • عادي', desc: 'ملف assetindexer الأساسي.' },
+        { name: 'assetindexer 3', url: 'https://www.mediafire.com/file/ynwgltfbf3rmuq3/assetindexer+3.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D/file', icon: '📄', meta: 'ملف • V3', desc: 'النسخة الثالثة من assetindexer.' },
+        { name: 'Aimlock v10 (Zip)', url: 'https://www.mediafire.com/file/eflddee5yabiozt/Aimlock+v10.zip/file', icon: '📦', meta: 'Zip • مضغوط', desc: 'نسخة مضغوطة من Aimlock v10.' },
+        { name: 'AIMBOT CUELLO', url: 'https://www.mediafire.com/file/62sqlv4i75371lt/AIMBOT+CUELLO.confg.txt/file', icon: '🎯', meta: 'Config • نصي', badge: 'حصري 🔥', desc: 'إعداد Aim Bot للرقبة (Cuello).' }
     ];
 
-    // Shortcuts (5)
     const shortcuts = [
         { name: 'Aimbot Headtrick 78%', url: 'https://www.icloud.com/shortcuts/da0a85deb2054496995c6772b06b973c', icon: '🎯' },
         { name: 'AimxDrag 90% Hs', url: 'https://www.icloud.com/shortcuts/8a899ee7ed2140e89889515462e09c91', icon: '🔥' },
@@ -432,7 +989,6 @@ is a violation of copyright law.
         { name: '911', url: 'https://www.icloud.com/shortcuts/6be1cc2efe8b44d9b29faf3896028791', icon: '🆘' }
     ];
 
-    // Ad pool (10)
     const adPool = [
         'https://omg10.com/4/11583670', 'https://omg10.com/4/11582772',
         'https://omg10.com/4/11583690', 'https://omg10.com/4/11583686',
@@ -441,27 +997,49 @@ is a violation of copyright law.
         'https://omg10.com/4/11579405', 'https://omg10.com/4/11578028'
     ];
 
-    // ============================================================
-    //  STATE
-    // ============================================================
     let currentLang = localStorage.getItem('b2_lang') || 'ar';
     let currentTheme = localStorage.getItem('b2_theme') || 'dark';
     let targetUrl = '';
+    let targetName = '';
 
-    // ============================================================
-    //  RENDER
-    // ============================================================
-    function generateRandomCount() {
-        return 80000 + Math.floor(Math.random() * 870000);
+    let loyaltyPoints = parseInt(localStorage.getItem('b2_points') || '0');
+    if (!localStorage.getItem('b2_points')) localStorage.setItem('b2_points', '0');
+
+    function getDlCount(name) {
+        const key = 'b2_dl_' + name.replace(/\s+/g, '_');
+        return parseInt(localStorage.getItem(key) || '0');
+    }
+    function bumpDlCount(name) {
+        const key = 'b2_dl_' + name.replace(/\s+/g, '_');
+        const current = parseInt(localStorage.getItem(key) || '0') + 1;
+        localStorage.setItem(key, current.toString());
+        return current;
+    }
+    function formatCount(n) {
+        if (n < 1000) return n.toString();
+        if (n < 1000000) return (n / 1000).toFixed(1) + 'K';
+        return (n / 1000000).toFixed(1) + 'M';
     }
 
-    function renderItems(containerId, items) {
+    async function renderItems(containerId, items) {
         const container = document.getElementById(containerId);
         if (!container) return;
         container.innerHTML = '';
-        items.forEach((item, index) => {
-            const count = generateRandomCount() + index * 1234;
-            const countFormatted = (count / 1000).toFixed(1) + 'K';
+        
+        for (const item of items) {
+            let count = 0;
+            // جرب Firebase أولاً
+            if (window.getFirebaseCount) {
+                try {
+                    count = await window.getFirebaseCount(item.name);
+                } catch(e) { count = 0; }
+            }
+            // إذا Firebase أعاد 0، استخدم localStorage
+            if (count === 0) {
+                count = getDlCount(item.name);
+            }
+            
+            const countFormatted = formatCount(count);
             const badgeHtml = item.badge ? `<span class="badge hot">${item.badge}</span>` : '';
             const card = document.createElement('div');
             card.className = 'app-card';
@@ -479,10 +1057,10 @@ is a violation of copyright law.
             `;
             card.addEventListener('click', function(e) {
                 e.stopPropagation();
-                prepareDownload(item.url);
+                prepareDownload(item.url, item.name, item.desc);
             });
             container.appendChild(card);
-        });
+        }
     }
 
     function renderShortcuts() {
@@ -500,9 +1078,6 @@ is a violation of copyright law.
         });
     }
 
-    // ============================================================
-    //  SEARCH
-    // ============================================================
     function filterItems() {
         const query = document.getElementById('searchInput').value.toLowerCase().trim();
         document.querySelectorAll('.app-card').forEach(card => {
@@ -515,9 +1090,6 @@ is a violation of copyright law.
         });
     }
 
-    // ============================================================
-    //  TOGGLE MENU
-    // ============================================================
     function toggleMenu(id, btn) {
         const menu = document.getElementById(id);
         if (!menu) return;
@@ -530,27 +1102,77 @@ is a violation of copyright law.
         }
     }
 
-    // ============================================================
-    //  DOWNLOAD
-    // ============================================================
-    function prepareDownload(url) {
-        targetUrl = url;
-        document.getElementById('downloadModal').classList.add('active');
+    function toggleFaq(el) {
+        el.classList.toggle('open');
     }
-    function processDownload() {
+
+    function prepareDownload(url, name, desc) {
+        targetUrl = url;
+        targetName = name;
+        const modal = document.getElementById('downloadModal');
+        const descBox = document.getElementById('modalDesc');
+        const titleEl = document.getElementById('modalTitle');
+        titleEl.textContent = '⚡ ' + (name || 'جاهز للتحميل');
+        if (desc) {
+            descBox.textContent = desc;
+            descBox.style.display = 'block';
+        } else {
+            descBox.style.display = 'none';
+        }
+        modal.classList.add('active');
+    }
+
+    async function processDownload() {
+        // زيادة عدد التحميلات في Firebase
+        if (targetName) {
+            if (window.incrementFirebaseCount) {
+                try {
+                    await window.incrementFirebaseCount(targetName);
+                } catch(e) { console.warn(e); }
+            }
+            bumpDlCount(targetName);
+        }
+        
+        // نقاط الولاء
+        loyaltyPoints += 1;
+        localStorage.setItem('b2_points', loyaltyPoints.toString());
+        updateLoyaltyUI();
+
+        // فتح الإعلان والرابط
         const ad = adPool[Math.floor(Math.random() * adPool.length)];
         window.open(ad, '_blank');
         if (targetUrl) window.location.href = targetUrl;
         closeModal();
     }
+
     function closeModal() {
         document.getElementById('downloadModal').classList.remove('active');
         targetUrl = '';
+        targetName = '';
     }
 
-    // ============================================================
-    //  THEME
-    // ============================================================
+    function copyCode(btn, code) {
+        navigator.clipboard.writeText(code).then(() => {
+            btn.textContent = '✅ تم';
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.textContent = '📋 نسخ';
+                btn.classList.remove('copied');
+            }, 1500);
+        }).catch(() => alert('تعذر النسخ'));
+    }
+
+    function buyBundle(type) {
+        const names = { bronze: 'البرونزية', silver: 'الفضية', gold: 'الذهبية' };
+        const msg = encodeURIComponent('مرحبا B2، اريد شراء الباقة ' + names[type]);
+        window.open('https://wa.me/213658457095?text=' + msg, '_blank');
+    }
+
+    function updateLoyaltyUI() {
+        const el = document.getElementById('loyaltyPoints');
+        if (el) el.textContent = loyaltyPoints + ' نقطة';
+    }
+
     function toggleTheme() {
         const html = document.documentElement;
         const btn = document.getElementById('themeToggle');
@@ -576,9 +1198,6 @@ is a violation of copyright law.
         }
     }
 
-    // ============================================================
-    //  LANGUAGE
-    // ============================================================
     const translations = {
         ar: {
             siteSub: 'محتوى إعدادات الألعاب والتطبيقات الحصرية 🎮',
@@ -591,10 +1210,7 @@ is a violation of copyright law.
             shortcutsTitle: 'بانل تسهيلات الاستخدام',
             youtube: 'يوتيوب', telegram: 'تيليجرام', instagram: 'إنستغرام',
             settingsTitle: '🎮 إعدادات وتعديلات اللعبة',
-            noSmoke: 'No Smoke', noWater: 'No Water', aimbot: 'Aimbot',
-            modalTitle: '⚡ جاهز للتحميل',
-            modalDesc: 'سيتم فتح الإعلان في تبويب جديد، ثم توجيهك مباشرة إلى ملف التحميل',
-            modalConfirm: 'متابعة', modalCancel: 'إلغاء'
+            noSmoke: 'No Smoke', noWater: 'No Water', aimbot: 'Aimbot'
         },
         en: {
             siteSub: 'Exclusive game settings & apps content 🎮',
@@ -607,10 +1223,7 @@ is a violation of copyright law.
             shortcutsTitle: 'Shortcuts Panel',
             youtube: 'YouTube', telegram: 'Telegram', instagram: 'Instagram',
             settingsTitle: '🎮 Game Settings & Tweaks',
-            noSmoke: 'No Smoke', noWater: 'No Water', aimbot: 'Aimbot',
-            modalTitle: '⚡ Ready to download',
-            modalDesc: 'Ad will open in new tab, then you\'ll be redirected to the file',
-            modalConfirm: 'Proceed', modalCancel: 'Cancel'
+            noSmoke: 'No Smoke', noWater: 'No Water', aimbot: 'Aimbot'
         },
         fr: {
             siteSub: 'Contenu exclusif de paramètres de jeux et applications 🎮',
@@ -623,10 +1236,7 @@ is a violation of copyright law.
             shortcutsTitle: 'Panneau des raccourcis',
             youtube: 'YouTube', telegram: 'Télégramme', instagram: 'Instagram',
             settingsTitle: '🎮 Paramètres et ajustements du jeu',
-            noSmoke: 'No Smoke', noWater: 'No Water', aimbot: 'Aimbot',
-            modalTitle: '⚡ Prêt à télécharger',
-            modalDesc: 'La publicité s\'ouvrira dans un nouvel onglet, puis vous serez redirigé vers le fichier',
-            modalConfirm: 'Continuer', modalCancel: 'Annuler'
+            noSmoke: 'No Smoke', noWater: 'No Water', aimbot: 'Aimbot'
         }
     };
 
@@ -646,58 +1256,57 @@ is a violation of copyright law.
             const key = el.getAttribute('data-i18n-placeholder');
             if (t[key] !== undefined) el.placeholder = t[key];
         });
-        document.getElementById('modalTitle').textContent = t.modalTitle;
-        document.getElementById('modalDesc').textContent = t.modalDesc;
-        document.getElementById('modalConfirmBtn').textContent = t.modalConfirm;
-        document.getElementById('modalCloseBtn').textContent = t.modalCancel;
-        document.querySelectorAll('.dl-btn').forEach(btn => {
-            btn.textContent = t.modalConfirm === 'Proceed' ? 'Download' : (t.modalConfirm === 'Continuer' ? 'Télécharger' : 'تحميل');
-        });
         const dir = currentLang === 'ar' ? 'rtl' : 'ltr';
         document.documentElement.dir = dir;
         document.documentElement.lang = currentLang;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        const active = document.querySelector(`.lang-btn[data-lang="${currentLang}"]`);
+        if (active) active.classList.add('active');
     }
 
-    // ============================================================
-    //  SHARE
-    // ============================================================
     function sharePage() {
         const url = window.location.href;
+        const data = {
+            title: 'B2 — إعدادات فري فاير الحصرية',
+            text: '🎮 شوف موقع B2! إعدادات فري فاير، زيوت، 3105، Filza، وشهادات E-Sign',
+            url: url
+        };
         if (navigator.share) {
-            navigator.share({ title: 'B2', url: url });
+            navigator.share(data).catch(() => {});
         } else {
-            navigator.clipboard.writeText(url).then(() => {
-                alert('تم نسخ الرابط! / Link copied!');
-            }).catch(() => prompt('انسخ الرابط:', url));
+            const msg = encodeURIComponent(data.text + '\n' + url);
+            window.open('https://wa.me/?text=' + msg, '_blank');
         }
     }
 
-    // ============================================================
-    //  SCROLL TOP
-    // ============================================================
     const scrollBtn = document.getElementById('scrollTopBtn');
     window.addEventListener('scroll', () => {
         scrollBtn.classList.toggle('show', window.scrollY > 300);
     });
     scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // ============================================================
-    //  INIT
-    // ============================================================
-    function init() {
+    function hideSplash() {
+        const splash = document.getElementById('splash');
+        if (splash) {
+            setTimeout(() => splash.classList.add('hide'), 1200);
+        }
+    }
+
+    async function init() {
         applyTheme();
-        renderItems('filzaMenu', filzaItems);
-        renderItems('section3105', items3105);
-        renderItems('scriptsMenu', scriptsItems);
+        await renderItems('filzaMenu', filzaItems);
+        await renderItems('section3105', items3105);
+        await renderItems('scriptsMenu', scriptsItems);
         renderShortcuts();
         applyLanguage();
+        updateLoyaltyUI();
+        hideSplash();
 
         document.getElementById('modalConfirmBtn').addEventListener('click', processDownload);
         document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
         document.getElementById('downloadModal').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
         });
-
         document.getElementById('searchInput').addEventListener('input', filterItems);
 
         document.addEventListener('click', function(e) {
@@ -706,6 +1315,10 @@ is a violation of copyright law.
                 document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('open'));
             }
         });
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js').catch(() => {});
+        }
     }
 
     document.addEventListener('DOMContentLoaded', init);
