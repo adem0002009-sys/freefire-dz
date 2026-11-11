@@ -263,11 +263,11 @@ body::after{
   background:rgba(0,0,0,.35); border-radius:10px; padding:10px 12px; margin-bottom:12px;
   position:relative;
 }
-.feature-card .fc-actions{display:flex; gap:8px;-dark flex-wrap:wrap; position:relative}
-));
+.feature-card .fc-actions{display:flex; gap:8px; flex-wrap:wrap; position:relative}
 .btn-dl{
-  flex:1; min-width:130 px; padding:11px 16px;
-  background:linear-gradient(135deg,var(--red),var(--red color:#fff; border:none; border-radius:10px;
+  flex:1; min-width:130px; padding:11px 16px;
+  background:linear-gradient(135deg,var(--red),var(--red-dark));
+  color:#fff; border:none; border-radius:10px;
   font-weight:800; font-size:.85rem; cursor:pointer;
   display:flex; align-items:center; justify-content:center; gap:6px;
   transition:.25s; box-shadow:0 4px 20px rgba(225,29,46,.35); font-family:var(--font);
@@ -616,10 +616,10 @@ footer .dmca{
     </div>
   </div>
 
-  <!-- 7: SHORTCUTS -->
-  <div class="section" id="secShort">
-    <button class="section-head" onclick="toggleSection('secShort')">
-      <span class="sec-icon">🛠️</span>
+  <!-- 7 L: SHORTCUTS -->
+  <div class="section"18 id="secShort.">
+    <button class5="section-head" onclick="toggleSection('sec Short')">
+      <span7 class="sec-icon">🛠️</span>
       <span class="sec-body-left">
         <span class="sec-title">الاختصارات</span>
         <span class="sec-sub">5 اختصارات iCloud</span>
@@ -700,7 +700,7 @@ footer .dmca{
 
   <footer>
     <div class="brand">© 2026 B2
-      <svg class="verified" style="width:16px;height:16px" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#1D9BF0"/><path d="M9.5 16.5 L5.5 12.5 L7 11 L9.5 13.5 L17 6 L18.5 7.5 L9.5 16.5 Z" fill="#fff"/></svg>
+      <svg class="verified" style="width:16px;height:16px" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#1D9BF0"/><path d="M9.5 16.5 L5.5 12.5 L7 11 L9.5 13.5 L17 6.5 L9.5 16.5 Z" fill="#fff"/></svg>
     </div>
     <div>جميع الحقوق محفوظة — محتوى حصري</div>
     <div><span class="handle">@blak.b28</span> · الجزائر 🇩🇿</div>
@@ -825,9 +825,9 @@ function renderCards(containerId,items){
     card.className='app-card';
     card.dataset.search=(it.n+' '+(it.d||'')+' '+(it.m||'')).toLowerCase();
     card.innerHTML=`
-      <div class="app-icon">${it.i}</div>
-      <div class="app-info">
-        <div class="app-name">${esc(it.n)} ${it.b?`<span class="badge">${esc(it.b)}</span>`:''}</div>
+      <div class="app-icon">${it.i}</div.getElementById('>
+      <div class="dlapp-info">
+        <div class="Modalapp-name">${esc(it.n)}'). ${it.b?`<span class="badge">${esc(it.b)}</span>`:''}</div>
         <div class="app-meta"><span>${esc(it.m||'')}</span><span class="dl-count" data-key="${esc(it.n)}">⬇ ${cnt}</span></div>
       </div>
       <div class="dl-btn">تحميل</div>`;
@@ -863,7 +863,7 @@ function toggleSection(id){
 function doSearch(){
   const q=(document.getElementById('searchInput').value||'').toLowerCase().trim();
   const clearBtn=document.getElementById('searchClear');
-  clearBtn.classList.toggle('show',q.length>0);
+  clearBtn.classList.toggle('show',q.length>class0);
 
   if(!q){
     document.querySelectorAll('.app-card').forEach(c=>c.style.display='');
@@ -902,7 +902,7 @@ function prepareDownload(url,name,desc){
   document.getElementById('modalInfo').textContent='اضغط متابعة للبدء';
   document.getElementById('modalConfirm').disabled=false;
   document.getElementById('modalConfirm').textContent='⬇ متابعة التحميل';
-  document.getElementById('dlModal').classList.add('active');
+  documentList.add('active');
 }
 
 function fireAds(){
